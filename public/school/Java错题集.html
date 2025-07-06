@@ -1,0 +1,691 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>Java错题集</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-no-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#java错题集">Java错题集</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#java语言概述">Java语言概述</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#java语言基础">Java语言基础</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#面向对象知识">面向对象知识</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#java中的常用类">Java中的常用类</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#用户界面设计">用户界面设计</a></div><ul class="outline-children"></ul></li></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='java错题集'><span>Java错题集</span></h1><div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>记不清了</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div><h2 id='java语言概述'><span>Java语言概述</span></h2><p><span>【单选题】Java为移动设备提供的平台是      。</span></p><ul><li><em><span>A、</span></em><span>JDK5.0</span></li><li><em><span>B、</span></em><span>J2SE</span></li><li><em><span>C、</span></em><span>J2EE</span></li><li><em><span>D、</span></em><span>J2ME</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【单选题】运行Java程序需要的工具软件所在的目录是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>JDK的lib目录（存放发开工具所需的附加类库和支持文件）</span></li><li><em><span>B、</span></em><span>JDK的demo目录（存放Java的演示程序）</span></li><li><em><span>C、</span></em><span>JDK的bin目录（存放Java编译，执行和调试的工具）</span></li><li><em><span>D、</span></em><span>JDK的jre目录（Java运行时环境目录）</span></li><li><span>E</span><em><span>、</span></em><span>JDK的db目录（存放Java数据库有关的程序文件）</span></li><li><span>F</span><em><span>、</span></em><span>JDK的inlude目录（存放本地代码编程需要的C头文件）</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】在Java中,负责对字节代码解释执行的是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>垃圾回收器</span></li><li><em><span>B、</span></em><span>虚拟机</span></li><li><em><span>C、</span></em><span>编译器</span></li><li><em><span>D、</span></em><span>多线程机制</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【单选题】在JDK目录中,Java程序运行环境的根目录是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>jre</span></li><li><em><span>B、</span></em><span>bin</span></li><li><em><span>C、</span></em><span>demo</span></li><li><em><span>D、</span></em><span>lib</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><p><span>【填空题】JDK的中文意思是</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>_</span><span>_</span><span>,JVM的中文意思是</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>_</span><span>,JRE的中文意思是</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空3</span><span>]</span><span>_</span><span>_</span><span>。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> Java开发包;Java开发工具包</span></p><p><em><span>第二空：</span></em><span> Java虚拟机</span></p><p><em><span>第三空：</span></em><span> Java运行环境;Java运行时环境</span></p><p><span>【填空题】安装java开发包后,可以发现java的可执行文件,如编译器、解释器都放在</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>目录中(仅写目录名),其中java编译器是</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>文件(注意写文件全名)。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> bin</span><em><span>第二空：</span></em><span> javac.exe</span></p><p><span>【单选题】Java编译器自动导入的包是(     )。</span></p><ul><li><em><span>A、</span></em><span>java.lang包</span></li><li><em><span>B、</span></em><span>java.util包</span></li><li><em><span>C、</span></em><span>java.awt包</span></li><li><em><span>D、</span></em><span>java.text包</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><p><span>【单选题】设Hello的代码为:</span><br/><span>class Hello{</span><br/><span>    public static void main(String args){</span><br/><span>        System.out.println(&quot;hello&quot;);</span><br/><span>    }</span><br/><span>}</span></p><p><span>下面说法正确的是:(  )</span></p><ul><li><em><span>A、</span></em><span>Hello.java无法通过编译,因为main方法的声明方式不对</span></li><li><em><span>B、</span></em><span>Hello.java可以通过编译并正常运行,结果输出hello</span></li><li><em><span>C、</span></em><span>Hello.java可以通过编译,但是无法运行,因为该文件没有public类</span></li><li><em><span>D、</span></em><span>Hello.java可以通过编译,但是运行该程序会出现异常,不会打印hello</span></li></ul><p><span>正确答案： D 我的答案：C</span></p><p><span>【单选题】下列对Java源程序结构的叙述中,错误的是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>接口定义允许0或多个</span></li><li><em><span>B、</span></em><span>import语句必须在所有类定义之前</span></li><li><em><span>C、</span></em><span>一个java源文件中的public class类定义允许0或多个</span></li><li><em><span>D、</span></em><span>Package语句允许0或1个</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】用Java 虚拟机执行类名为 Hello 的应用程序的正确命令是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>java Hello</span></li><li><em><span>B、</span></em><span>java Hello.class</span></li><li><em><span>C、</span></em><span>Hello.class</span></li><li><em><span>D、</span></em><span>java Hello.java</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><p><span>【填空题】</span><strong><span>如果一个Java源程序文件中定义有5</span></strong><span>个</span><strong><span>类,但其中有1个是内嵌类</span></strong><span>。则使用Sun公司的JDK编译器javac编译该源程序文件,将产生</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>个扩展名为</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>_</span><span>的字节码文件。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 5，</span><em><span>第二空：</span></em><span> class;.class</span></p><ul><li><strong><span>Java定义多少个类有生成多少个字节码；</span></strong></li><li><strong><span>Java编译是javac 公共类名.java</span></strong></li><li><strong><span>Java执行是java mian方法所在的类名</span></strong></li></ul><p><span>【填空题】</span><strong><span>如果一个Java源程序文件中定义有A、B两个类,另外在A中还定义了一个内嵌类A1</span></strong><span>。则使用Sun公司的JDK编译器javac编译该源程序文件,将产生</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>个扩展名为</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>_</span><span>的字节码文件。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 3，</span><em><span>第二空：</span></em><span> class</span></p><p><span>【判断题】无论Java源程序包含几个类的定义,若该源程序文件以A.java命名,编译后生成的都只有一个名为A的字节码文件。正确答案：</span><em><span>×</span></em><span>， 我的答案：</span><em><span>×</span></em></p><p><span>【判断题】一个程序里有且仅有一个公共类。正确答案：</span><em><span>×</span></em><span> ，我的答案：</span><em><span>√</span></em></p><p><span>【判断题】Java程序对计算机硬件平台的依赖性很高正确答案：</span><em><span>×</span></em><span> ，我的答案：</span><em><span>×</span></em></p><h2 id='java语言基础'><span>Java语言基础</span></h2><ul><li><strong><span>低于32位整型变量运算结果会自动转为int</span></strong></li><li><strong><span>字面值运算不会提升：short a = 20 + 30;</span></strong></li><li><strong><span>break；break 标签</span></strong></li><li><strong><span>continue；continue 标签</span></strong></li></ul><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">start:</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">for(int i = 0; i &lt; 3; i++){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  for(int j = 0; j &lt; 4; j++){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  if(j == 2) break start;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  System.out.println(i+":"+j)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">// 0:0 &nbsp; 0:1</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">start:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">for(int i = 0; i &lt; 3; i++){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  for(int j = 0; j &lt; 4; j++){</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  if(j == 2) continue start;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  System.out.println(i+":"+j)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">// 0:0  0:1  1:0  1:1  2:0  2:1</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 369px;"></div><div class="CodeMirror-gutters" style="display: none; height: 369px;"></div></div></div></pre><p><span>【单选题】下面属于Java 关键字的是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>IF</span></li><li><em><span>B、</span></em><span>NULL</span></li><li><em><span>C、</span></em><span>do</span></li><li><em><span>D、</span></em><span>While （W大写。。）</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><table><tbody><tr><td>abstract</td><td>assert</td><td>boolean</td><td>break</td><td>byte</td></tr><tr><td>case</td><td>catch</td><td>char</td><td>class</td><td>const</td></tr><tr><td>continue</td><td>default</td><td>do</td><td>double</td><td>else</td></tr><tr><td>enum</td><td>extends</td><td>final</td><td>finally</td><td>float</td></tr><tr><td>for</td><td>goto</td><td>if</td><td>implements</td><td>import</td></tr><tr><td>instanceof</td><td>int</td><td>interface</td><td>long</td><td>native</td></tr><tr><td>new</td><td>package</td><td>private</td><td>protected</td><td>public</td></tr><tr><td>return</td><td>strictfp</td><td>short</td><td>static</td><td>super</td></tr><tr><td>switch</td><td>synchronized</td><td>this</td><td>throw</td><td>throws</td></tr><tr><td>transient</td><td>try</td><td>void</td><td>volatile</td><td>while</td></tr></tbody></table><p><span>Java关键字</span></p><p><span>【单选题】</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>是short型的取值范围。</span></p><ul><li><em><span>A、</span></em><span>0~2^16-1</span></li><li><em><span>B、</span></em><span>-</span><span>2^7~2^7-1</span></li><li><em><span>C、</span></em><span>-</span><span>2^15~2^15-1</span></li><li><em><span>D、</span></em><span>-</span><span>2^31~2^31-1</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><table><tbody><tr><td>数据类型</td><td>字节数</td><td>位数</td><td>取值范围</td></tr><tr><td>byte</td><td>1</td><td>8</td><td>-2^7~2^7-1</td></tr><tr><td>short</td><td>2</td><td>16</td><td>-2^15~2^15-1</td></tr><tr><td>int</td><td>4</td><td>32</td><td>-2^31~2^31-1</td></tr><tr><td>long</td><td>8</td><td>64</td><td>-2^63~2^63-1</td></tr><tr><td>float</td><td>4</td><td>32</td><td>10E38</td></tr><tr><td>double</td><td>8</td><td>64</td><td>10E308</td></tr><tr><td>boolean</td><td>1</td><td>1</td><td>ture和false</td></tr><tr><td>char</td><td>2</td><td>16</td><td>0~2^16-1</td></tr></tbody></table><p><span>Java数据范围</span></p><p><span>【单选题】下面的强制转化,哪句是对的?(      )</span></p><ul><li><em><span>A、</span></em><span>char c= &#39;a&#39;;   String s=(String)c;</span></li><li><em><span>B、</span></em><span>String s=&quot;102&quot;; int x=(int)s;</span></li><li><em><span>C、</span></em><span>int i=0;        boolean b=(boolean)i;</span></li><li><em><span>D、</span></em><span>int i=57;      char c=(char)i;</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【单选题】阅读下列代码 </span></p><p><span>public class Test2005</span></p><p><span>{ </span></p><p><span>  public static void main(String args</span><span>[</span><span>]</span><span>)</span></p><p><span>  { </span></p><p><span>    System.out.println(~(0xa5)&amp;0xaa); </span></p><p><span>  }</span></p><p><span>} </span></p><p><span>其运行结果是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>0xa5</span></li><li><em><span>B、</span></em><span>10</span></li><li><em><span>C、</span></em><span>0x50</span></li><li><em><span>D、</span></em><span>0xaa</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【填空题】在Java语言中,boolean逻辑变量或常量只有</span><span>_</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>_</span><span>_</span><span>和</span><span>_</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>_</span><span>_</span><span>两个值,分别代表真和假。</span><br/><span>char型变量最小值是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空3</span><span>]</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>(填整数)、最大值是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空4</span><span>]</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>(填整数),byte型变量最小值是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空5</span><span>]</span><span>_</span><span>_</span><span>_</span><span>_</span><span>(填整数)</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> true，</span><em><span>第二空：</span></em><span> false，</span><em><span>第三空：</span></em><span> 0，</span><em><span>第四空：</span></em><span> 65535，</span><em><span>第五空：</span></em><span> </span><span>-</span><span>128</span></p><p><span>【单选题】有关switch语句错误的是（）</span></p><ul><li><span>A、在同一个switch语句中，case后的值可以相同（不能相同）</span></li><li><em><span>B、</span></em><span>default语句可有可无</span></li><li><em><span>C、</span></em><span>没有break语句，也能编译运行</span></li><li><em><span>D、</span></em><span>switch语句中的表达式的值不能是double类型（在switch中不能是long,double,float,boolean）</span></li></ul><p><span>正确答案：A 我的答案：D</span></p><p><strong><span>算术右移符：&gt;&gt;，算术左移符：&lt;&lt;，逻辑右移符（无符号右移）：&gt;&gt;&gt;</span></strong></p><p><span>【单选题】在Java中，用package语句说明一个包，该包的层次结构必须是（）</span></p><ul><li><span>A、与文件目录的层次相同</span></li><li><span>B、与文件大小相同</span></li><li><span>C、与文件类型相同</span></li><li><span>D、与文件结构相同</span></li></ul><p><span>正确答案：A</span></p><p><span>下列声明正确的是()</span></p><ul><li><span>A、public abstract class Car{~~~}</span></li><li><span>B、abstract private move(){~~~}</span></li><li><span>C、portected private number; （protected和private不能一起用）</span></li><li><span>D、abstract final class Tress{~~~} （abstarct和final不能一起用）</span></li></ul><p><span>正确答案：A</span></p><p><span>【单选题】ClassA为已定义的类名，下列声明class A类的对象cal语句正确的是（）</span></p><ul><li><span>cal ClasssA();</span></li><li><span>public ClassA ca = new ClassA();</span></li><li><span>ClassA ca = new class();</span></li><li><span>ClassA ca = ClassA();</span></li></ul><p><span>正确答案：B</span></p><p><span>【单选题】下列正确的是（）</span></p><ul><li><span>A、定义抽象方法需要有方法的返回类型，名称，参数列表和方法体（无方法体）</span></li><li><span>B、用final修饰的遍历，在程序中可对这个变量的值进行更改（没法更改）</span></li><li><span>final可以修饰类，属性，方法</span></li><li><span>abstract可修饰类，属性，方法（没法修饰属性）</span></li></ul><p><span>正确答案：C</span></p><p><span>【单选题】抽象方法：</span><span>_</span><span>_</span><span>_</span><span>_</span></p><ul><li><span>A、可以有方法体</span></li><li><span>B、可以出现在非抽象类中</span></li><li><span>C、抽象类中的方法都是抽象方法</span></li><li><span>D、是没有方法体的方法</span></li></ul><p><span>正确答案：D</span></p><p><span>【判断题】利用StringBuffer s = new StringBuffer(&quot;32&quot;)创建的字符串s长度为2容量为18</span></p><p><span>正确答案：错，我的答案：对</span></p><h3 id='面向对象知识'><span>面向对象知识</span></h3><ul><li><strong><span>this不用出现在static方法中，this只能用非static方法中</span></strong></li><li><strong><span>静态（公共静态区）-&gt;main方法-&gt;实例（堆内存中）</span></strong></li></ul><p><span>【单选题】下列说法正确的是( )</span></p><ul><li><em><span>A、</span></em><span>任何类都可以被继承 （String类无法）</span></li><li><em><span>B、</span></em><span>任何类都可以实例化对象 （Sy类无法）</span></li><li><em><span>C、</span></em><span>属性必须是简单类型变量</span></li><li><em><span>D、</span></em><span>属性既可以是一个简单类型变量,也可以是一个对象</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【单选题】下列说法错误的是( )</span></p><ul><li><em><span>A、</span></em><span>抽象的目的就是区别对象事物之间的本质和不同,面向对象编程(OOP)的实质就是利用类来建立对象的抽象模型。</span></li><li><em><span>B、</span></em><span>类的对象所具有的行为或者说是操作是由定义的方法来实现的。</span></li><li><em><span>C、</span></em><span>建立一个事物的抽象模型,本质上就是定义表达该事物所具有的行为。（和属性）</span></li><li><em><span>D、</span></em><span>使用类来建立抽象模型,是通过在类中定义属性和方法来实现的。</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】下面关于java中类的说法哪个是不正确的( )</span></p><ul><li><em><span>A、</span></em><span>一个java文件中可以有多个class定义。</span></li><li><em><span>B、</span></em><span>类体中只能有变量定义和成员方法的定义,不能有其他语句。（还可以有常量。。）</span></li><li><em><span>C、</span></em><span>构造方法是类中的特殊方法。</span></li><li><em><span>D、</span></em><span>类一定要声明为public的,才可以执行。</span></li></ul><p><span>正确答案： D 我的答案：B</span></p><p><span>【单选题】下面关于类和对象之间关系的描述,正确的是( )</span></p><ul><li><em><span>A、</span></em><span>类是对象的实例化</span></li><li><em><span>B、</span></em><span>抽象与实例化的关系</span></li><li><em><span>C、</span></em><span>包含关系</span></li><li><em><span>D、</span></em><span>连接关系</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【判断题】面向对象是相对于面向过程而言的,面向过程强调的是功能的实现过程,面向对象强调的是将功能封装进对象,强调具备功能的对象。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><p><span>【单选题】关于成员变量和局部变量的说法错误的是(  )</span></p><ul><li><em><span>A、</span></em><span>int类型局部变量默认初始值为0。</span></li><li><em><span>B、</span></em><span>引用类型成员变量默认初始值为空指针。</span></li><li><em><span>C、</span></em><span>成员变量一般定义为私有类型。</span></li><li><em><span>D、</span></em><span>实例成员变量随着对象的创建而存在,随着对象的消失而消失,存储在堆内存中。</span></li></ul><p><strong><span>int类型在Java中，若果作为类成员声明，不初始化值，会被默认初始化为0；如果作为方法的局部变量来声明，不进行初始化的话 会在编译期报错，无法通过编译。</span></strong></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/3b6bb9ca5764410b88a0f1270da31cfb.png" referrerpolicy="no-referrer"></p><p><span>【单选题】方法定义:</span><br/><span>public static int getLength();</span><br/><span>下面说法正确的是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>:</span></p><ul><li><em><span>A、</span></em><span>该方法的修饰符有一个:public</span></li><li><em><span>B、</span></em><span>该方法的修饰符有三个:public static int</span></li><li><em><span>C、</span></em><span>该方法的修饰符有两个:public static</span></li><li><em><span>D、</span></em><span>该方法的修饰符有两个:static int</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】关于变量定义:</span><br/><span>protected final static int a=3;</span><br/><span>下列说法正确的是(   )。</span></p><ul><li><em><span>A、</span></em><span>语句错误,因为final static不能同时修饰一个变量。</span></li><li><em><span>B、</span></em><span>语句错误,因为protected  static不能同时修饰一个变量。</span></li><li><em><span>C、</span></em><span>语句错误,因为protected final  static不能同时修饰一个变量。</span></li><li><em><span>D、</span></em><span>该语句是正确的。</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【单选题】在下面附属类方法中的下划线处,应填入的正确参数是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><p><span>public void writeData(</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>) throws IOException</span></p><p><span>{</span></p><p><span>     GregoranCalendar calendar=new GregorianCalendar()</span></p><p><span>     calendar.setTime(hireDay);</span></p><p><span>     out.println(name+&quot;|&quot;</span></p><p><span>     +salary+&quot;|&quot;</span></p><p><span>     +calendar.get(Calendar.YEAR)+&quot;|&quot;</span></p><p><span>     +(calendar.get(Calendar.MONTH)+1)+&quot;|&quot;)</span></p><p><span>}</span></p><ul><li><em><span>A、</span></em><span>&quot;employee.dat&quot;</span></li><li><em><span>B、</span></em><span>PrintWriter out</span></li><li><em><span>C、</span></em><span>Employee</span><span>[</span><span>]</span><span> e</span></li><li><em><span>D、</span></em><span>BufferedWriter</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【判断题】方法若有多个修饰符,各修饰符的先后次序可以交换。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><p><span>【判断题】所有的变量在使用前都必须进行初始化,方法中的变量必须显示初始化。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>×</span></em></p><p><span>【判断题】在Java程序中定义的类有两种成员:数据成员、成员方法。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>×</span></em></p><p><span>【单选题】对于this关键词的在程序中的应用,下列叙述不正确的是(      )。</span></p><ul><li><em><span>A、</span></em><span>return this;表示把自身返回给调用者。</span></li><li><em><span>B、</span></em><span>this.width;调用该类的静态变量。（不能调用static）</span></li><li><em><span>C、</span></em><span>this.setWidth();调用该类的实例方法。</span></li><li><em><span>D、</span></em><span>this();调用该类的无参构造方法。</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【单选题】阅读下面程序</span></p><p><span>public class MyVal{</span></p><p><span>  public static void main (String args </span><span>[</span><span>]</span><span>){</span></p><p><span>    MyVal m=new MyVal ();</span></p><p><span>     m.amethod ();</span></p><p><span>}</span></p><p><span>public void amethod (){</span></p><p><span>  boolean b</span><span>[</span><span>]</span><span>=new boolean </span><span>[</span><span>5</span><span>]</span><span>;</span></p><p><span>  System.out.print(b</span><span>[</span><span>0</span><span>]</span><span>);</span></p><p><span>}</span></p><p><span>}</span></p><p><span>程序编译或运行结果是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>false</span></li><li><em><span>B、</span></em><span>0</span></li><li><em><span>C、</span></em><span>null</span></li><li><em><span>D、</span></em><span>编译不通过</span></li></ul><p><span>正确答案： A 我的答案：D</span></p><p><span>【判断题】未标记任何修饰符的类成员只能由该类的方法访问。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><p><span>【判断题】访问一个类的任何数据成员或成员方法,都必须以类的对象为前缀。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>√</span></em></p><p><strong><span>静态方法不用，可以直接调用不需要对象</span></strong></p><p><span>【单选题】设有如下代码:</span><br/><span>class test{</span><br/><span>     long a</span><span>[</span><span>]</span><span>=new long</span><span>[</span><span>10</span><span>]</span><span>;</span><br/><span>     public static void main(String args</span><span>[</span><span>]</span><span>){</span><br/><span>        System.out.print(a</span><span>[</span><span>0</span><span>]</span><span>);</span><br/><span>     }</span><br/><span>}</span><br/><span>下面叙述正确的是:(   )。</span></p><ul><li><em><span>A、</span></em><span>运行产生异常报错</span></li><li><em><span>B、</span></em><span>输出0</span></li><li><em><span>C、</span></em><span>输出0L</span></li><li><em><span>D、</span></em><span>编译不通过报错</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【判断题】在Java中,同一个类的实例方法可以调用该类的实例变量和其他实例方法,但是不能调用该类的类变量和类方法。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><p><span>【填空题】类方法是由</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>关键修饰的方法,它</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>(填:能、不能)访问该类的实例变量。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> static，</span><em><span>第二空</span></em><span>： 不能</span></p><p><span>【填空题】</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>_</span><span>方法是不能有返回值,连void也不能写;</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>关键词修饰的方法可以由类直接调用。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 构造，</span><em><span>第二空：</span></em><span> static</span></p><p><span>【单选题】以下关于Object类说法错误的是（ ）</span></p><ul><li><em><span>A、</span></em><span>一切类都直接或间接继承自Object类</span></li><li><em><span>B、</span></em><span>Object类在java.lang包中</span></li><li><em><span>C、</span></em><span>Object类中定义了toString()方法</span></li><li><em><span>D、</span></em><strong><span>接口也默认继承Object类</span></strong></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【单选题】Java语言的类间的继承关系是( )</span></p><ul><li><em><span>A、</span></em><span>单重的</span></li><li><em><span>B、</span></em><span>多重的</span></li><li><em><span>C、</span></em><span>线性的</span></li><li><em><span>D、</span></em><span>网状的</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><p><span>【单选题】关于继承的说法正确的是：</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span></p><ul><li><em><span>A、</span></em><span>子类能访问父类所有的属性和方法</span></li><li><em><span>B、</span></em><span>子类只能访问父类的非私有属性和方法</span></li><li><em><span>C、</span></em><span>子类只继承父类public方法和属性</span></li><li><em><span>D、</span></em><span>子类只继承父类的方法，而不继承属性</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【填空题】读程序，找出错误行</span><br/><span>1、final class A{</span><br/><span>2、    int x;</span><br/><span>3、    final void mA(){</span><br/><span>4、        x=x+1;</span><br/><span>         }</span><br/><span>     }</span><br/><span>5、class B extends A{</span><br/><span>6、    final A a=new A();</span><br/><span>7、    void  mA(){</span><br/><span>8、        a.x=20;</span><br/><span>9、       System.out.println(a);</span><br/><span>        }</span><br/><span>    }</span><br/><span>哪两行是错误的？</span><br/><span>第</span><span>[</span><span>填空1</span><span>]</span><span>行，第</span><span>[</span><span>填空2</span><span>]</span><span>行</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 5;1 </span><em><span>第二空：</span></em><span> 7;3</span></p><p><span>【单选题】在Java中，运行时多态的实现能大大提高程序的可维护性及可扩展性，那么实现运行时多态的步骤包括以下几个方面除了（ ）。</span></p><ul><li><em><span>A、</span></em><span>运行时，根据实际实例化的对象类型动态决定使用哪个方法。</span></li><li><em><span>B、</span></em><span>子类中重写（覆盖）父类的某一个方法。</span></li><li><em><span>C、</span></em><span>把父类类型作为对象定义类型，引用的却是子类对象。</span></li><li><em><span>D、</span></em><span>子类中重载父类的某一个方法。</span></li></ul><p><span>正确答案： D 我的答案：A</span></p><p><span>【单选题】在Java中，在同一个类中可同时定义许多同名的方法，而且这些方法的形式参数的个数、类型、顺序全部相同，这种面向对象程序特性称为</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>覆盖</span></li><li><em><span>B、</span></em><span>隐藏</span></li><li><em><span>C、</span></em><span>重载</span></li><li><em><span>D、</span></em><span>Java不支持此特性</span></li></ul><p><span>正确答案： D 我的答案：C</span></p><p><span>【单选题】在Java中，一个类可同时定义许多同名的方法，这些方法的形式参数个数、类型或顺序各不相同，传回的值也可以不相同。这种面向对象程序的特性称为</span></p><ul><li><span>隐藏</span></li><li><span>覆盖</span></li><li><span>重载</span></li><li><span>Java不支持此特性</span></li></ul><p><span>正确答案：C</span></p><p><strong><span>重载要求同名且参数个数不同，参数类型不同，仅有返回值不同不能区分重载</span></strong></p><p><span>【单选题】覆盖与重载的关系是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>覆盖只有发生在父类与子类之间，而重载可以发生在同一个类中</span></li><li><em><span>B、</span></em><span>覆盖方法可以不同名，而重载方法必须同名</span></li><li><em><span>C、</span></em><span>final修饰的方法可以被覆盖，但不能被重载（可以重载但不能覆盖）</span></li><li><em><span>D、</span></em><span>覆盖与重载是同一回事</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><p><span>【单选题】假设以下代码</span></p><p><span>public class Parent {</span></p><p><span>  public int addValue( int a, int b) {</span></p><p><span>  int s;</span></p><p><span>  s = a+b;</span></p><p><span>  return s;</span></p><p><span>  }</span></p><p><span>}</span></p><p><span>  class Child extends Parent {</span></p><p><span>  }</span></p><p><span>选项中</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>方法可以正确加入类Child中，且父类的方法不会被覆盖。</span></p><ul><li><em><span>A、</span></em><span>int addValue( int a, int b ){// do something...}</span></li><li><em><span>B、</span></em><span>public void addValue (){// do something...}</span></li><li><em><span>C、</span></em><span>public int addValue( int a, int b )throws MyException {//do something...}</span></li><li><em><span>D、</span></em><span>public float addValue ( int a ,int b, float b=1.0 ){// do something...}</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【填空题】在Java程序中，通过类的定义只能实现单重继承，但通过</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>_</span><span>和</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>可以间接实现多重继承关系，这些方式在事件处理中很常见。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 内嵌类;类中类;内部类;innerClass;嵌套类， </span><em><span>第二空：</span></em><span> 接口;interface</span></p><p><span>【单选题】下列关于接口中的成员定义，正确的是（）</span></p><ul><li><em><span>A、</span></em><span>static void method();（接口中的 static 方法应具有主体）</span></li><li><em><span>B、</span></em><span>public final void method; (修饰符 final 和 abstract 的组合非法);</span></li><li><em><span>C、</span></em><span>void method();</span></li><li><em><span>D、</span></em><span>int max; （接口中必须是常量要赋初值）</span></li></ul><p><span>正确答案： C 我的答案：D</span></p><p><span>【单选题】下列叙述中，错误的是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>通过接口说明类所实现的方法</span></li><li><em><span>B、</span></em><span>接口与类的层次无关</span></li><li><em><span>C、</span></em><span>接口与存储空间有关</span></li><li><em><span>D、</span></em><span>通过接口可了解对象的交互界面</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】下列命题中，错误的是      。</span></p><ul><li><em><span>A、</span></em><span>Java 编程时，要求应尽量不用公共变量</span></li><li><em><span>B、</span></em><span>Java 编程时，要求应尽量少用公共变量</span></li><li><em><span>C、</span></em><span>Java 编程时，要求应尽量多用公共变量</span></li><li><em><span>D、</span></em><span>Java 编程时，要求应尽量使用私有变量</span></li></ul><p><span>正确答案： C 我的答案：A</span></p><p><span>【单选题】下列</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>修饰符可以使在一个类中定义的成员变量只能被同一个包中的类访问。</span></p><ul><li><em><span>A、</span></em><span>private</span></li><li><em><span>B、</span></em><span>无修饰符</span></li><li><em><span>C、</span></em><span>public</span></li><li><em><span>D、</span></em><span>protected</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><table><tbody><tr><td>修饰符</td><td>同一个类</td><td>同一个包的类</td><td>不同包的子类</td><td>任何类</td></tr><tr><td>private</td><td>1</td><td></td><td></td><td></td></tr><tr><td>缺省</td><td>1</td><td>1</td><td></td><td></td></tr><tr><td>protected</td><td>1</td><td>1</td><td>1</td><td></td></tr><tr><td>public</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></tbody></table><p><span>类成员访问权限比较</span></p><p><span>【单选题】为AB类的一个无形式参数无返回值的方法method书写方法头，使得使用类名AB作为前缀就可以调用它，该方法头的形式为      。</span></p><ul><li><em><span>A、</span></em><span>public  void  method( )</span></li><li><em><span>B、</span></em><span>static  void  method( )</span></li><li><em><span>C、</span></em><span>final  void  method( )</span></li><li><em><span>D、</span></em><span>abstract  void  method( )</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><p><span>【填空题】接口之间，类之间继承用extends， 类与接口之间继承用implements</span></p><p><span>【单选题】编译运行如下Java代码之后的输出结果是（   ）。 </span><br/><span> class Base { </span><br/><span>       public void methodB(){ </span><br/><span>              System.out.print (&quot;Base methodB&quot;);</span><br/><span>        }</span></p><p><span> } </span><br/><span>class Child extends Base{   </span></p><p><span>    public void methodB(){ // 为与父类形成覆盖</span></p><p><span>               System.out.print (&quot;Child methodB&quot;); </span><br/><span>       }</span></p><p><span> }</span><br/><span>public class Sample {</span><br/><span>        public static void main(String</span><span>[</span><span>]</span><span> args) {</span></p><p><span>               Base base= new Child(); </span><br/><span>              base.methodB(); </span><br/><span>       } </span><br/><span>}</span></p><ul><li><em><span>A、</span></em><span>Child methodB</span></li><li><em><span>B、</span></em><span>编译错误</span></li><li><em><span>C、</span></em><span>Base methodB Child MethodB</span></li><li><em><span>D、</span></em><span>Base methodB</span></li></ul><p><span>正确答案： A 我的答案：</span></p><p><em><span>与其类似题</span></em></p><p><span>【单选题】编译运行如下Java代码之后的输出结果是（   ）。 </span><br/><span> class Base { </span><br/><span>       public void method(){ </span><br/><span>              System.out.print (&quot;Base method&quot;);</span><br/><span>        }</span></p><p><span> } </span><br/><span>class Child extends Base{   </span></p><p><span>    public void methodB(){ // 未为与父类形成覆盖</span></p><p><span>               System.out.print (&quot;Child methodB&quot;); </span><br/><span>       }</span></p><p><span> }</span><br/><span>public class Sample {</span><br/><span>        public static void main(String</span><span>[</span><span>]</span><span> args) {</span></p><p><span>              Base base= new Child(); </span><br/><span>              base.methodB();  // 编译器按照父类成员进行检查，执行调用子类的方法</span><br/><span>       } </span><br/><span>}</span></p><ul><li><em><span>A、</span></em><span>Child methodB</span></li><li><em><span>B、</span></em><span>编译错误</span></li><li><em><span>C、</span></em><span>Base method Child MethodB</span></li><li><em><span>D、</span></em><span>Base method</span></li></ul><p><span>正确答案： B 我的答案：</span></p><p><strong><span>此题于上一题的区别在于这题子类父类并没有实现覆盖，因此子类的用法父类能用</span></strong></p><h3 id='java中的常用类'><span>Java中的常用类</span></h3><p><strong><span>String类</span></strong></p><ul><li><span>string.length()：返回字符串长度</span></li><li><span>string. substring(int 起点, int 终点) / string.substring(int 起点到结束)：返回字串，左闭右开</span></li><li><span>string.toUpperCase()：返回转大写</span></li><li><span>string.toLowerCase()：返回转小写</span></li><li><span>string.trim()：返回删除前后空白字符</span></li><li><span>string.concat(String str)：返回将string与str链接起来的新字符串</span></li><li><span>string.replace(char old, char new)：返回将old字符全部替换为new字符的字符串</span></li><li><span>string.chaAt(int index)：返回下标为index的字符</span></li><li><span>string.valueOf(int/double/复合数据类型..)：将这些全部转为字符串</span></li><li><span>string.indexOf(char ch) / string.indexOf(char ch, int 开始位置)：返回第一次出现ch的位置，无就返回-1</span></li><li><span>string.lastIndexOf(char ch) / string.lastIndexOf(char ch, int 最后位置)：返回最后一次出现的位置</span></li><li><span>string.toCharArray()：返回将字符串转为数组的数组</span></li><li><span>string.getChars(int 开始, int 结束, char</span><span>[</span><span>]</span><span> 数组, int 数组起始位置)：将string(开始，结束)复制到数组的起始位置</span></li><li><span>string.compareTo(Stiring str)：字符串比较（负数小正数大）</span></li><li><span>string.equals(String str)：比较字符串是否相等</span></li><li><span>string.split(String str)：返回将字符串拆分成以str为分割的字符串数组</span></li></ul><p><strong><span>StringBuffer和StringBuilder</span></strong></p><ul><li><span>void setCharAt(int index, char)：用ch修改index位置上的字符</span></li><li><span>StirngBuffer apend(Stirng str)：末尾添加字符串【重载，可以是int，long，float...】</span></li><li><span>StringBuffer insert(int index, String str)：在index位置插入str【重载，可以是int，long，float...】</span></li><li><span>StringBuffer deleteCharAt(int index)：删除指定位置，后往前移</span></li><li><span>StringBuffer deleteCharAt(int start，int end)：删除从start到end的字符，左闭右开</span></li><li><span>StringBuffer replace(int start, int end, String str)</span></li><li><span>StringBuffer substring(int start, int end)</span></li></ul><p><span>【单选题】下列数组初始化形式正确的是( )。</span></p><ul><li><em><span>A、</span></em><span>int t3</span><span>[</span><span>3</span><span>]</span><span>[</span><span>2</span><span>]</span><span>={1,2,3,4,5,6};</span></li><li><em><span>B、</span></em><span>int t2</span><span>[</span><span>]</span><span>[</span><span>]</span><span>={1,2,3,4,5,6}.</span></li><li><em><span>C、</span></em><code>int t1[][]={{1,2},{3,4},{5,6}};</code></li><li><em><span>D、</span></em><span>int t4</span><span>[</span><span>]</span><span>[</span><span>]</span><span>; t4={1,2,3,4,5,6};</span></li></ul><p><span>正确答案： C 我的答案：A</span></p><p><span>数组声明（二维同样也是）： int num</span><span>[</span><span>]</span><span>; int</span><span>[</span><span>]</span><span> num：括号里不能放数字， 创建数组时new </span><span>[</span><span>size</span><span>]</span><span>括号里才能放数字</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> int a[][] = new int [2][]; //这样创建也行只是浪费空间</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> a[0] = new int[3];</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> a[1] = new int[2];</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><p><span>【单选题】以下 ()表达式是不合法的。</span></p><ul><li><em><span>A、</span></em><span>String  x=&quot;Hello&quot;;  int  y=9;  x=x+y;</span></li><li><em><span>B、</span></em><span>String  x=&quot;Hello&quot;;  int  y=9;  x+=y;</span></li><li><em><span>C、</span></em><span>String  x=&quot;Hello&quot;;  int  y=9;  if(x==y)  { }</span></li><li><em><span>D、</span></em><span>String  x=null;  int  y=(x!=null)&amp;&amp;(x.length()&gt;0) ? x.length() : 0</span></li></ul><p><span>正确答案： C 我的答案：D</span></p><p><span>【单选题】Java中的集合类包括ArrayList、LinkedList、HashMap等类，下列关于集合类描述不正确的是（    ）</span></p><ul><li><em><span>A、</span></em><span> A.ArrayList和LinkedList均实现了List接口</span></li><li><em><span>B、</span></em><span>ArrayList的查询速度比LinkedList快</span></li><li><em><span>C、</span></em><span>添加和删除元素时，ArrayList的表现更佳</span></li><li><em><span>D、</span></em><span>HashMap实现Map接口，它允许任何类型的键和值对象，并允许将null用作键或值（主要是为了D答案）</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】关于迭代器说法错误的是（  ）</span></p><ul><li><em><span>A、</span></em><span>List集合有特有迭代器</span></li><li><em><span>B、</span></em><span>last()用于取出迭代器的最后一个元素（无该用法）</span></li><li><em><span>C、</span></em><span>迭代器的hasNext()方法返回值是布尔类型</span></li><li><em><span>D、</span></em><span>迭代器是取出集合元素的方式</span></li></ul><p><span>正确答案： B 我的答案：A</span></p><p><span>【单选题】在JAVA中，LinkedList类和ArrayList类同属于集合框架类，下列（  ）选项中的方法是LinkedList类有而ArrayList类没有的。 </span></p><ul><li><em><span>A、</span></em><span>add(Object o) </span></li><li><em><span>B、</span></em><span>add(int index,Object o) </span></li><li><em><span>C、</span></em><span>remove(Object o) </span></li><li><em><span>D、</span></em><span>removeLast() </span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【单选题】下列哪种不是List集合的遍历方式 (     )</span></p><ul><li><em><span>A、</span></em><span>Iterator迭代器实现 </span></li><li><em><span>B、</span></em><span>get()和size()方法结合实现  </span></li><li><em><span>C、</span></em><span>get()和length()方法结合实现（无length()的用法）</span></li><li><em><span>D、</span></em><span>增强for循环实现</span></li></ul><p><span>正确答案： C 我的答案：B</span></p><p><span>【单选题】关于HashMap集合说法正确的是(   )</span></p><ul><li><em><span>A、</span></em><span>HashMap集合是单列集合</span></li><li><em><span>B、</span></em><span>HashMap集合不允许存储重复键</span></li><li><em><span>C、</span></em><span>HashMap集合不允许存储重复值</span></li><li><em><span>D、</span></em><span>HashMap集合线程是安全的</span></li></ul><p><span>正确答案： B 我的答案：C</span></p><p><span>【判断题】s. compareTo(s1)返回结果大于或者等于0，说明都能在s中找到s1。正确答案：</span><em><span>×</span></em><span>  我的答案：</span><em><span>×</span></em></p><p><span>【判断题】对于简单数据类型和复合数据类型，都可以采用String.valueOf()方法，转化为字符串。正确答案：</span><em><span>√</span></em><span>  我的答案：</span><em><span>√</span></em><span> （String.valueOf(xxx)：将xx类型转为字符串）</span></p><p><span>【判断题】利用Calendar cal=new Calendar();创建的时间为当前时间。正确答案：</span><em><span>×</span></em><span>  我的答案：</span><em><span>×</span></em><span> （Calendar是静态变量，不能是实例化，可以用Calendar cal=Calendar.getInstance()获取当前时间）</span></p><p><span>【判断题】利用Int.parseInt(&quot;198&quot;);可以把字符串&quot;198&quot;转化为数字，而且不会报异常。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>√</span></em><span> （Integer.paseInt）</span></p><p><span>【判断题】利用StringBuffer s = new StringBuffer (&quot;abc&quot;);创建的字符串s长度为3，容量为16。正确答案：</span><em><span>×</span></em><span>  我的答案：</span><em><span>√</span></em><span> （19）</span></p><p><span>【判断题】已知Calendar对象cal，调用cal.add(Calendar.MONTH, -8); 表示对月份值的减8。正确答案：</span><em><span>√</span></em><span>  我的答案：</span><em><span>√</span></em></p><h3 id='用户界面设计'><span>用户界面设计</span></h3><p><span>【单选题】采用下列哪种布局，控件的位置会根据Frame的大小而发生变化？（ ）</span></p><ul><li><em><span>A、</span></em><span>FlowLayout</span></li><li><em><span>B、</span></em><span>CardLayout</span></li><li><em><span>C、</span></em><span>GridLayout</span></li><li><em><span>D、</span></em><span>BorderLayout</span></li></ul><p><span>正确答案： A 我的答案：C</span></p><p><span>【单选题】关于下拉列表(JComboBox)，说法正确的是（  ）</span></p><ul><li><em><span>A、</span></em><span>JComboBox在设定条件后，可以一次性选择多个选项（Jlist才可以）</span></li><li><em><span>B、</span></em><span>JComboBox可以通过add方法增加选项（addItem）</span></li><li><em><span>C、</span></em><span>JComboBox在设定条件后，可以在框内输入内容</span></li><li><em><span>D、</span></em><span>JComboBox可以通过getSelectedItem()方法，获取所选列表选项对应的编号（getSelectedItem获取的是对应的文字信息，getSelectedIndex才是编号）</span></li></ul><p><span>正确答案： C 我的答案：D</span></p><p><span>【单选题】容器类java.awt.Container的父类是</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><em><span>A、</span></em><span>java.awt.Frame</span></li><li><em><span>B、</span></em><span>java.awt.Windows</span></li><li><em><span>C、</span></em><span>java.awt.Component</span></li><li><em><span>D、</span></em><span>java.awt.Panel</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><p><span>【单选题】下面      事件监听器在Java中无事件适配器。</span></p><ul><li><em><span>A、</span></em><span>WindowListener</span></li><li><em><span>B、</span></em><span>MouseListener</span></li><li><em><span>C、</span></em><span>KeyListener</span></li><li><em><span>D、</span></em><span>ActionListener</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><p><span>【填空题】采用</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>_</span><span>布局管理器进行布局，窗口中的按钮大小不会随着窗口的大小改变而改变，</span><span>_</span><span>_</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>_</span><span>布局管理器进行布局，增加控件需指明东西南北方向（填写布局管理器的英文类名）。</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> FlowLayout </span><em><span>第二空：</span></em><span> BorderLayout</span></p><p><span>【判断题】GridLayout布局时，当容器被重新设置大小后，各组件的大小不变，但相对位置会改变。正确答案：</span><em><span>×</span></em><span>  我的答案：</span><em><span>×</span></em></p><p><span>【填空题】给窗口设定背景颜色的方法是</span><span>_</span><span>_</span><span>[</span><span>填空1</span><span>]</span><span>_</span><span>，给文本框设定文字颜色的方法是</span><span>_</span><span>[</span><span>填空2</span><span>]</span><span>_</span><span>_</span><span>。（填写方法名，不用带参数）</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> setBackground;setBackground() </span><em><span>第二空：</span></em><span> setForeground;setForeground()</span></p><p><span>【判断题】JFrame类属于容器，所以才没有setFont()</span><strong><span>等</span></strong><span>方法。错</span></p><p><span>【单选题】Swing比Awt相比新增的布局管理器是（A）</span></p><p><em><span>_A、</span></em><span>BoxLayout</span><br/><em><span>B、</span></em><span>GridLayout</span><br/><em><span>C、</span></em><span>GridBagLayout</span><br/><em><span>D、</span></em><span>CardLayout_</span></p><p><strong><span>Java awt类中的布局管理器：FlowLayout（JPanel默认），BorderLayout（Windows默认，Frame默认），GridLayout，CardLayout，GridBagLayout，另外，Swing中新增的BoxLayout也是一种</span></strong></p><p><span>【单选题】需要在文件中写入数据，则应该用那个（A）</span></p><p><em><span>A、</span></em><span>FileOutputStream</span><br/><em><span>B、</span></em><span>InputStreamReader</span><br/><em><span>C、</span></em><span>OutputStreamWriter</span><br/><em><span>D、</span></em><span>FileInputStream</span></p><p><span>Java所有的输入流都是inputStream和Reader类的子类，他们都继承了read()方法用于读取数据传来的数据。对</span></p><p><span>Java所有输出流都是继承了OutputStream和Writer类的子类，它们都继承了writer()方法用于数据输出到接收器。对</span></p><p><span>【填空题】IOException：编译器是否必须处理异常（是），ArithmeticExcertion：编译器是否要求必须处理异常（否），自定义异常AgeException：（是）</span></p><p><strong><span>非检查异常：</span></strong><span>NullPointerException，ArithmeticException，ClassCastException，ArrayIndexOutOfBoundsException，NumberFormatException</span></p><p><strong><span>检查异常：</span></strong><span>除了RuntimeExcption都是</span></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>

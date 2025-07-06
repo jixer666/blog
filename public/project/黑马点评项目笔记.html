@@ -1,0 +1,612 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>黑马点评项目笔记</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-no-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#黑马点评项目笔记">黑马点评项目笔记</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#session共享问题">Session共享问题</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缓存更新策略">缓存更新策略</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#策略选择">策略选择</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#关于主动更新策略的思考">关于主动更新策略的思考</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缓存穿透">缓存穿透</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缓存雪崩">缓存雪崩</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缓存击穿">缓存击穿</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#redis全局唯一id">Redis全局唯一ID</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#优惠券秒杀">优惠券秒杀</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#超卖">超卖</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#悲观锁方法">悲观锁方法</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#乐观锁方法">乐观锁方法</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#一人一单">一人一单</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#分布式锁">分布式锁</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#总结-1">总结</a></div><ul class="outline-children"></ul></li></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#redisson">Redisson</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#可重入锁原理">可重入锁原理</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#可重试锁原理">可重试锁原理</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#超时续约原理">超时续约原理</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#主从一致性原理">主从一致性原理</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#秒杀优化">秒杀优化</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#思路">思路</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#使用阻塞队列存在的问题">使用阻塞队列存在的问题</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#reids消息队列">Reids消息队列</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#基于list结构模拟消息队列">基于List结构模拟消息队列</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#优点-1">优点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缺点-1">缺点</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#基于pubsub的消息队列">基于PubSub的消息队列</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#优点-2">优点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#缺点-2">缺点</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#基于stream类型消息队列">基于Stream类型消息队列</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#特点">特点</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h4"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#消费者组">消费者组</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#比较">比较</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#feed流">Feed流</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#与传统模式的区别">与传统模式的区别</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#feed流常见的模式">Feed流常见的模式</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#feed流实现方案">Feed流实现方案</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#hyperloglog用法">HyperLogLog用法</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#总结-2">总结</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2024-1-16">2024-1-16</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2024-1-17">2024-1-17</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2024-1-18">2024-1-18</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2024-1-19">2024-1-19</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2024-3-10">2024-3-10</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#2024-3-11">2024-3-11</a></div><ul class="outline-children"></ul></li></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='黑马点评项目笔记'><span>黑马点评项目笔记</span></h1><div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>2024-01-26</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div><h2 id='session共享问题'><span>Session共享问题</span></h2><p><span>多台Tomcat并不共享session存储空间，当切换到不同的tomcat服务时导致数据丢失的问题</span></p><h2 id='缓存更新策略'><span>缓存更新策略</span></h2><ul><li><span>内存淘汰：reids自带的内存淘汰机制</span></li><li><span>过期淘汰：利用exprie命令给数据设置过期时间</span></li><li><span>主动更新：主动完成数据库与reids的同时更新</span></li></ul><h3 id='策略选择'><span>策略选择</span></h3><ul><li><span>低一致性需求：内存淘汰或过期淘汰</span></li><li><span>高一致性需求：主动更新为主，过期淘汰为辅</span></li></ul><h3 id='关于主动更新策略的思考'><span>关于主动更新策略的思考</span></h3><p><span>1、</span><strong><span>问题：是更新缓存还是删除缓存？</span></strong></p><p><span>更新缓存：会产生无效更新，因为有可能你更新了，系统一直没用上。并且存在较大的线程安全问题</span></p><p><span>删除缓存：本质是延迟更新，没有无效更新，线程安全问题相对较低</span></p><p><span>经过思考得出的最佳策略：</span><strong><span>删除缓存</span></strong></p><p><span>2、</span><strong><span>问题：先操作数据库还是缓存？</span></strong></p><p><strong><span>方案一：先删除缓存，再更新数据库</span></strong></p><p><span>正常情况：线程一先执行删除缓存，再更新数据库；线程二查询缓存有发现没有缓存，就查询数据库。</span></p><p><span>异常情况：线程一先执行删除缓存，这时候线程二到了，查询缓存后发现无缓存，就去查询数据库，这时候数据库的数据是没更新的数据，就出现了异常，最后线程一才执行更新数据库。</span></p><p><strong><span>方案二：先更新数据库，再删除缓存</span></strong></p><p><span>正常情况：线程一先更新数据库，再删除缓存，线程二查询缓存发现没有缓存，就查询数据库。</span></p><p><span>异常情况：线程二线查询缓存，发现有缓存，这时候线程一才到达，线程一就更新数据库，删除缓存，线程二就出现了异常，用的是没更新的数据。</span></p><p><span>经过思考得出的最佳策略：</span><strong><span>方案二</span></strong></p><p><span>3、</span><strong><span>如何确保数据库与缓存操作的原子性？</span></strong></p><p><span>单体系统：利用事务机制</span></p><p><span>分布式系统：利用分布式事务机制</span></p><h2 id='缓存穿透'><span>缓存穿透</span></h2><p><span>缓存穿透是指客户端请求的数据在缓存中和数据库中都不存在，这样缓存永远不会生效，这些请求都会打到数据库。</span></p><p><strong><span>解决方案</span></strong></p><ul><li><p><span>缓存空对象：请求到了后缓存一个值为null的数据到redis中</span></p><ul><li><span>优点：简单，容易维护</span></li><li><span>缺点：1、额外的内存消耗。2、可能造成短期的不一致</span></li></ul></li><li><p><span>布隆过滤：在客户端和redis之间加个过滤器，用二进制数组判断是否存在。注意这个方法并不是百分百准确</span></p><ul><li><span>优先：内存占用少</span></li><li><span>缺点：1、实现复杂。2、存在误判可能</span></li></ul></li></ul><h2 id='缓存雪崩'><span>缓存雪崩</span></h2><p><span>缓存雪崩是指在同一时段大量的缓存key同时失效或者Redis服务宕机，导致大量请求到达数据库，带来巨大压力。</span></p><p><strong><span>解决方案</span></strong></p><ul><li><span>给不同的key设置不同的的过期时间</span></li><li><span>添加Redis集群提高服务可用性</span></li><li><span>给缓存添加降级限流策略</span></li><li><span>给业务添加多级缓存</span></li></ul><h2 id='缓存击穿'><span>缓存击穿</span></h2><p><span>缓存击穿问题也叫热点Key问题，就是一个被高并发访问并且缓存重建业务较复杂的key突然失效了，无数的请求访问会在瞬间给数据库带来巨大的冲击。</span></p><p><strong><span>解决方案</span></strong></p><ul><li><span>给热点接口添加互斥锁</span></li><li><span>逻辑过期【在redis中额外添加一个时间字段】</span></li></ul><h2 id='redis全局唯一id'><span>Redis全局唯一ID</span></h2><p><img src="https://s11.ax1x.com/2024/01/17/pFkCTn1.png" referrerpolicy="no-referrer"></p><ul><li><span>符号位：1bit，永远为0</span></li><li><span>时间戳：31bit，以秒为单位，可以用69年</span></li><li><span>序列号：32bit，秒内的计数器，支持每秒产生2^32个不同的ID</span></li></ul><h2 id='优惠券秒杀'><span>优惠券秒杀</span></h2><h3 id='超卖'><span>超卖</span></h3><p><strong><span>解决办法</span></strong></p><ul><li><p><span>悲观锁：认为线程安全问题一定会发生，因此在操作数据之前先获取同步锁，确保线程串行执行。例如Synchronized、Lock都属于悲观锁</span></p><ul><li><span>优点：简单粗暴</span></li><li><span>缺点：性能一般</span></li></ul></li><li><p><span>乐观锁：认为线程安全问题不一定会发生，因此不加锁，</span><strong><span>只是在更新数据时去判断有没有其它线程对数据做了修改</span></strong><span>。</span></p><ul><li><span>如果没有修改则认为是安全的，自己才更新数据。</span></li><li><span>如果已经被其它线程修改说明发生了安全问题，此时可以重试或异常。</span></li><li><span>优点：性能好</span></li><li><span>缺点：存在成功率低的问题（需要做处理）</span></li></ul></li></ul><h4 id='悲观锁方法'><span>悲观锁方法</span></h4><p><span>使用</span><code>synchronized</code><span>过于简单，采用乐观锁方法</span></p><h4 id='乐观锁方法'><span>乐观锁方法</span></h4><blockquote><p><span>对于</span><strong><span>乐观锁</span></strong><span>的关键是判断之前查询得到的数据受否被修改过，常见的方法有两种：</span></p></blockquote><p><span>1、</span><strong><span>版本号法</span></strong></p><p><img src="https://s11.ax1x.com/2024/01/17/pFkM5m8.png" referrerpolicy="no-referrer"></p><p><span>2、</span><strong><span>CAS法</span></strong></p><p><span>CAS法和版本号法的区别在于CAS法是直接将库存和原来库做比较，而版本号法是比较的版本</span></p><p><img src="https://s11.ax1x.com/2024/01/17/pFkMOlq.png" referrerpolicy="no-referrer"></p><p><strong><span>弊端</span></strong><span>：出错率大大增加，100个库春，结果只有几十个成功卖出。为什么呢？</span></p><p><span>解答：假设有100个线程同时请求，只有一个线程成功，其他99线程都在最后一步扣减库存的时候需要判断是否和之前的库存一致出错了，所以就大大提高了错误率。</span></p><p><strong><span>怎么解决这个弊端？</span></strong></p><p><span>解答：将最后判断是否和之前库存一致改为</span><strong><span>只要库存大于0</span></strong><span>就行了</span></p><h3 id='一人一单'><span>一人一单</span></h3><p><strong><span>解决办法</span></strong><span>：使用乐观锁方法，添加同步代码</span><code>synchronized</code><span>，限制只有一个线程进入</span></p><p><strong><span>存在的问题</span></strong><span>：在单机模式下没问题，但在集群模式下就会出现问题，不同的SpringBoot服务中JVM使用的常量池、锁监视器是不一样，这导致了同一个用户两次请求都会进入到锁里，就出现了安全问题</span></p><p><img src="https://s11.ax1x.com/2024/01/18/pFkqadJ.png" referrerpolicy="no-referrer"></p><p><strong><span>解决办法</span></strong><span>：分布式锁，下面讲解分布式锁</span></p><h3 id='分布式锁'><span>分布式锁</span></h3><p><strong><span>概念</span></strong><span>：满足分布式系统或集群模式下多进程可见并且互斥的锁</span></p><p><strong><span>满足的基本特性</span></strong><span>：多进程可见、高可用、互斥、好性能、安全性</span></p><p><strong><span>核心</span></strong><span>：实现多进程之间的互斥，下面是常见的三种</span></p><p><img src="https://s11.ax1x.com/2024/01/18/pFkL2cV.png" referrerpolicy="no-referrer"></p><p><strong><span>需要实现的两个基本方法</span></strong></p><ul><li><p><span>获取锁【通过</span><code>set lock name NX EX 10</code><span>来实现互斥锁并加上过期时间，NX是互斥，EX是设置超时时间】</span></p><ul><li><span>互斥：确保只能有一个线程获取锁</span></li><li><span>非阻塞：尝试一次，成功返回true，失败返回false</span></li></ul></li><li><p><span>释放锁【</span><code>Del key</code><span>】</span></p><ul><li><span>手动释放</span></li><li><span>超时释放</span></li></ul></li></ul><p><strong><span>分布式锁误删问题</span></strong><span>：因为线程一的某种原因导致阻塞，时间超过了Redis锁的过期时间，锁自动释放，线程二获取了线程一的锁，若此时线程一的业务执行完毕，就会手动调用释放锁，就把线程二的锁给释放了，出现了误删的情况</span></p><p><img src="https://s11.ax1x.com/2024/01/18/pFkjB7D.png" referrerpolicy="no-referrer"></p><p><strong><span>误删情况解决办法</span></strong><span>：获取锁的时候将value值设置为UUID+线程ID，每次释放锁的时候就拿redis中存放的值与这个值判断一下，相同才释放，否则不释放</span></p><p><strong><span>采用上诉方法还是存在问题</span></strong></p><p><span>释放锁的过程，是先判断reids中的值是否一致，再释放锁。可能出现在判断过后到是否锁之间出现阻塞的情况，因为在JVM中有个东西叫垃圾回收，它会阻塞代码。于是需要保证判断和释放这两部操作是原子操作，不可分割</span></p><p><img src="https://s11.ax1x.com/2024/01/18/pFAPylQ.png" referrerpolicy="no-referrer"></p><p><strong><span>解决办法</span></strong><span>：采用Lua脚本解决，编写Lua脚本，用Java调用</span></p><h4 id='总结-1'><span>总结</span></h4><p><strong><span>实现Reids分布式锁的思路</span></strong></p><ul><li><span>利用</span><code>set nx ex</code><span>获取锁，并设置过期时间，保存现场标识</span></li><li><span>释放锁先判断线程标识是否与自己一致，一致就删除锁【使用Lua脚本保证原子性】</span></li></ul><h2 id='redisson'><span>Redisson</span></h2><p><strong><span>Redis的分布式锁是基于setnx实现的，存在一下问题</span></strong></p><ul><li><span>不可重入：同一个线程无法多次获取同一把锁</span></li><li><span>不可重试：获取锁只尝试一次就返回false，没有重试机制</span></li><li><span>超时释放：锁超时释放虽然可以避免死锁，但如果是业务执行耗时较长，也会导致锁释放，存在安全隐患</span></li><li><span>主从一致性：如果Redis提供了主从集群,主从同步存在延迟，当主宕机时，如果从并同步主中的锁数据，则会出现锁实现</span></li></ul><p><strong><span>Redisson提供一系列分布式的Java常用对象和许多分布式服务</span></strong></p><p><img src="https://s11.ax1x.com/2024/01/18/pFAEp5t.png" referrerpolicy="no-referrer"></p><h3 id='可重入锁原理'><span>可重入锁原理</span></h3><p><span>通过redis的hash结构进行锁的存储，同一个线程进入，会将value值加一，并设置有效期，每次释放锁就value值减一。若减后的值不为0，就重置有效期，否则就直接删除。实现代码通过Lua脚本进行。</span></p><p><img src="https://s11.ax1x.com/2024/01/18/pFAVqne.png" referrerpolicy="no-referrer"></p><p><strong><span>流程图</span></strong></p><p><img src="https://s11.ax1x.com/2024/01/18/pFAZp1f.png" referrerpolicy="no-referrer"></p><h3 id='可重试锁原理'><span>可重试锁原理</span></h3><p><span>利用信号量和PubSub功能实现等待、唤醒、获取锁失效的重试机制</span></p><p><img src="https://s11.ax1x.com/2024/01/18/pFAeYZQ.png" referrerpolicy="no-referrer"></p><h3 id='超时续约原理'><span>超时续约原理</span></h3><p><span>利用wathDog，每隔一段时间，重置超时时间</span></p><h3 id='主从一致性原理'><span>主从一致性原理</span></h3><p><span>多个独立的Redis结点，必须所有的结点都获取重入锁，才算获取锁成功</span></p><h2 id='秒杀优化'><span>秒杀优化</span></h2><h3 id='思路'><span>思路</span></h3><ul><li><span>利用Reids Lua脚本完成库存余量、一人一单判断，完成抢单业务</span></li><li><span>再将下单业务放入阻塞队列中，利用独立线程异步下单</span></li></ul><h3 id='使用阻塞队列存在的问题'><span>使用阻塞队列存在的问题</span></h3><ul><li><span>内存限制问题：当队列的元素超过容量的时候会出现内存溢出</span></li><li><span>数据安全问题：当队列的任务服务出现宕机，任务就会丢失</span></li></ul><h2 id='reids消息队列'><span>Reids消息队列</span></h2><h3 id='基于list结构模拟消息队列'><span>基于List结构模拟消息队列</span></h3><p><span>Reids中的List数据结构是一个双向链表，利用LPUSH结合RPOP，或者RPUSH结合LPOP来实现</span></p><p><span>不过需要注意的是，当消息队列没有消息时RPOP和LPOP操作会返回NULL，并不像JVM阻塞队列那样会阻塞并等待消息。</span></p><p><span>因此应该使用BRPOP或者BLPOP来实现阻塞效果</span></p><h4 id='优点-1'><span>优点</span></h4><ul><li><span>利用Reids存储，不受限于JVM内存上限</span></li><li><span>基于Reidis的持久化机制，数据安全性有保证</span></li><li><span>可以满足消息有序性</span></li></ul><h4 id='缺点-1'><span>缺点</span></h4><ul><li><span>无法避免消息丢失</span></li><li><span>只支持单消费者</span></li></ul><h3 id='基于pubsub的消息队列'><span>基于PubSub的消息队列</span></h3><p><span>生产者向对应的cahnnel发送消息后，所有订阅者都能收到消息【一对多】</span></p><ul><li><span>SUBSCRIBE channel [channel]：订阅一个或多个频道</span></li><li><span>PUSLISH channel msg：向一个频道发送消息</span></li><li><span>PSUBSCRIBE pattern [pattern]：订阅与pattern格式匹配的所有频道</span></li></ul><h4 id='优点-2'><span>优点</span></h4><ul><li><span>采用发布订阅模型，支持多生产、多消费</span></li></ul><h4 id='缺点-2'><span>缺点</span></h4><ul><li><span>不支持数据持久化</span></li><li><span>无法避免消息丢失</span></li><li><span>消息堆积有上限，超出时数据丢失</span></li></ul><h3 id='基于stream类型消息队列'><span>基于Stream类型消息队列</span></h3><p><span>stream是一种数据类型，专门为消息队列设计的，相较于前面两种方式能够更加完美实现一个消息队列</span></p><p><strong><span>生产消息</span></strong><span>：用于向指定的Stream流中添加一个消息</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XADD key *|ID value [value ...]</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 创建名为 users 的队列，并向其中发送一个消息，内容是：{name=jack,age=21}，并且使用Redis自动生成ID</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">127.0.0.1:6379&gt; XADD users * name jack age 21</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">"1644805700523-0</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 115px;"></div><div class="CodeMirror-gutters" style="display: none; height: 115px;"></div></div></div></pre><p><span>key就是消息队列，key不存(*)在会自动创建（默认），ID是消息表示，value是消息的内容</span></p><p><strong><span>消费消息</span></strong><span>：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XREAD [COUNT count] [BLOCK milliseconds] STREAMS key [key ...] ID ID</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 读取XREAD中的第一条消息</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XREAD COUNT 1 STREAMS users 0</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 阻塞1秒钟后从XREAD中读取的最新消息</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XREAD COUNT 1 BLOCK 1000 STREAMS users $</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 138px;"></div><div class="CodeMirror-gutters" style="display: none; height: 138px;"></div></div></div></pre><p><span>注意：当我们指定起始ID为</span><code>$</code><span>时代表读取最后一条消息（读取最新的消息）ID为</span><code>0</code><span>时代表读最开始的一条消息（读取最旧的消息），如果我们处理一条消息的过程中，又有超过1条以上的消息到达队列，则下次获取时也只能获取到最新的一条，会出现漏读消息的问题</span></p><h4 id='特点'><span>特点</span></h4><ul><li><span>消息可回溯</span></li><li><span>一个消息可以被多个消费者读取</span></li><li><span>可以阻塞堆区</span></li><li><span>有消息漏读风险</span></li></ul><h4 id='消费者组'><span>消费者组</span></h4><p><span>上面我们介绍的消费方式都是</span><strong><span>单消费方式</span></strong><span>，容易发生消息堆积导致消息丢失，所以我们需要改用消费者组的模式</span></p><p><strong><span>消费者组</span></strong><span>：将多个消费者划分到一个组，监听同一队列</span></p><ul><li><strong><span>消息分流</span></strong><span>：队列中的消息会分流给组内的不同消费者，而不是重复消费，从而加快消息处理的速度</span></li><li><strong><span>消息标识</span></strong><span>：消费者组会维护一个标示，记录最后一个被处理的消息，哪怕消费者宕机重启，还会从标示之后读取消息。确保每一个消息都会被消费</span></li><li><strong><span>消息确认</span></strong><span>：消费者获取消息后，消息处于</span><code>pending</code><span>（待处理）状态，并存入一个</span><code>pending-list</code><span>。当处理完成后需要通过</span><code>XACK</code><span>来确认消息，标记消息为已处理，才会从pending-list移除。</span></li></ul><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 创建消费者组</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XGROUP CREATE key groupName ID</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 删除指定的消费者组</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XGROUP DESTORY key groupName</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 给指定的消费者组添加消费者</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XGROUP CREATECONSUMER key groupName consumerName</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 删除消费者组中指定消费者</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XGROUP DELCONSUMER key groupName consumerName</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"># 从消费者组中读取消息</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">XREADGROUP GROUP</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 230px;"></div><div class="CodeMirror-gutters" style="display: none; height: 230px;"></div></div></div></pre><p><img src="https://img-blog.csdnimg.cn/img_convert/27039c5d7c9c137c15bab614293a63fe.png" referrerpolicy="no-referrer"></p><p><img src="https://img-blog.csdnimg.cn/img_convert/c1ffb0ac9d815f997953b1dfeae6768f.png" referrerpolicy="no-referrer"></p><p><code>stream</code><span>类型消息队列的</span><code>XREADGROUP</code><span>命令特点：</span></p><ul><li><span>消息可回溯</span></li><li><span>可以多消费者争抢消息，加快消费速度</span></li><li><span>可以阻塞读取</span></li><li><span>没有消息漏读的风险</span></li><li><span>有消息确认机制，保证消息至少被消费一次</span></li></ul><h3 id='比较'><span>比较</span></h3><p><img src="https://s21.ax1x.com/2024/03/11/pF6P3RK.png" referrerpolicy="no-referrer"></p><h2 id='feed流'><span>Feed流</span></h2><p><span>关注推送也叫投喂，为用户持续提供沉浸式体验，通过无限下拉刷新获取新的信息</span></p><h3 id='与传统模式的区别'><span>与传统模式的区别</span></h3><ul><li><span>传统模式：用户寻找内容</span></li><li><span>Feed模式：内容匹配用户</span></li></ul><h3 id='feed流常见的模式'><span>Feed流常见的模式</span></h3><ul><li><span>TimeLine：不做内容筛选，简单的按照内容发布时间排序，常用于好友或者关注</span></li><li><span>智能排序：利用智能算法屏蔽掉违规的、用户不感兴趣的内容</span></li></ul><h3 id='feed流实现方案'><span>Feed流实现方案</span></h3><p><img src="https://s11.ax1x.com/2024/01/19/pFAoHxO.png" referrerpolicy="no-referrer"></p><h2 id='hyperloglog用法'><span>HyperLogLog用法</span></h2><p><span>首先搞懂两个概念</span></p><ul><li><span>UV：独立访客量，1天内一个用户多次访问该网站，只记录一次</span></li><li><span>PV：页面访问量：用户多次打开页面，记录多次PV</span></li></ul><p><span>UV统计</span></p><ul><li><span>优点：内存占用极小</span></li><li><span>缺点：存在0.81%的误差【不过可以完全忽略】</span></li></ul><h2 id='总结-2'><span>总结</span></h2><h3 id='2024-1-16'><span>2024-1-16</span></h3><p><span>1、写了发短信验证码和登录接口，随机生成token，将用户信息存入redis中</span></p><p><span>2、写了两个拦截器，一个拦截所有请求的token刷新拦截器【没有token直接放行，token中找不到数据直接放行，全部通过就存入UserHolder中】，一个是只拦截需要验证的登录拦截器【只需要检验UserHolder中是否有数据，有就通过，否则拦截】。</span></p><p><span>3、对查询商品接口做了缓存，并且对</span><strong><span>缓存击穿【互斥锁】</span></strong><span>和</span><strong><span>缓存穿透【缓存空对象】</span></strong><span>做了处理，用jmeter进行检验</span></p><h3 id='2024-1-17'><span>2024-1-17</span></h3><p><span>1、 用逻辑过期时间解决缓存击穿【在shop中使用expire字段】，</span><strong><span>使用这个方法需要将热点key提前预热</span></strong><span>。通过比较当前时间和逻辑时间，而从决定是否需要重建数据。通过互斥锁来保证只有一个线程能够进入，通过独立线程来重构数据来减少响应时间</span></p><p><span>2、创建了redis全局唯一ID生成器，通过符号位(1位)+时间错(31位)+序列号(32位)来形成一个唯一ID，但这样这个ID最大值并不满足总量的所需的范围要求，因此需要通过</span><strong><span>不同的key来生成序列号</span></strong><span>【通过加上</span><code>年:月:日</code><span>前缀】来保证每天的都有会不同的ID，这个最大值并不会超过一天所需的范围要求。</span></p><p><span>3、写了优惠券秒杀功能，正常写法会出现超卖的情况，使用</span><strong><span>乐观锁</span></strong><span>优化后加上库存限制解决超卖问题【这里也可以用悲观锁解决，通过互斥锁或者同步代码】；使用</span><strong><span>悲观锁</span></strong><code>synchronized</code><span>解决一人一单的问题，并用</span><strong><span>代理事务【AopContext.currentProxy()】</span></strong><span>解决事务</span><span>	</span></p><h3 id='2024-1-18'><span>2024-1-18</span></h3><p><span>1、一人一单集群模式下使用分布式锁解决，分布式锁带来了一系列问题，比如：两个服务的</span><code>synchronized (userId.toString().intern())</code><span>获取的对象不一致【</span><strong><span>通过互斥锁解决</span></strong><span>】，误删【</span><strong><span>通过每次释放前判断存入锁的值是否一致解决</span></strong><span>】，原子性问题【</span><strong><span>释放锁的操作分为判断是否一致和释放锁，需要用Java调用写好的Lua脚本来确保原子性</span></strong><span>】</span></p><p><span>2、整合Redisson，了解其可重入的原理，可重试锁原理、超时续约原理、主从一致性原理</span></p><p><span>3、新增查询笔记、点赞笔记</span></p><h3 id='2024-1-19'><span>2024-1-19</span></h3><p><span>1、点赞排行榜【采用redis的zSet存储，按照时间戳排序】、关注、共同关注【set集合取两个集合的并集】</span></p><p><span>2、使用Feed流，在博文发布的时候推送给关注自己的人</span></p><p><span>3、签到：使用二进制位</span><code>stringRedisTemplate.opsForValue().setBit(key, dayOfMonth - 1, true);</code><span>存储签到，签到了就是1，没签到就是0</span></p><p><span>4、统计连续签到，通过</span><code>stringRedisTemplate.opsForValue().bitField</code><span>来获取 本月截至今天为止所有的签到记录</span></p><h3 id='2024-3-10'><span>2024-3-10</span></h3><p><span>1、优化优惠券秒杀逻辑，将原本对数据库的查询等判断条件全部放到Lua脚本中，改为从Reids中判断，极大的优化了查询的时间</span></p><p><span>2、使用阻塞队列 + 线程池实现异步秒杀</span></p><h3 id='2024-3-11'><span>2024-3-11</span></h3><p><span>1、优化秒杀，使用Stream消息队列替换阻塞队列，能够弥补阻塞队列带来的问题，例如：内存上限，数据丢失等</span></p></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>

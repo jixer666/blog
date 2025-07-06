@@ -1,5 +1,18 @@
 # 第十二届蓝桥杯 B 组省赛
 
+<div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>2024-01-17</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div>
+
 ## 空间
 
 单位换算题

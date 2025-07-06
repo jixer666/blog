@@ -1,0 +1,692 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>操作系统原理错题集</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-no-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#操作系统原理错题集">操作系统原理错题集</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第一单元-操作系统引论">第一单元 操作系统引论</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第二单元-进程">第二单元 进程</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第三单元-进程的并发">第三单元 进程的并发</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第四单元-进程通信和调度">第四单元 进程通信和调度</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第五单元-死锁">第五单元 死锁</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第六单元-存储器管理">第六单元 存储器管理</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第一章课后作业">第一章课后作业</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#第二章课后作业">第二章课后作业</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#虚拟存储器课后作业">虚拟存储器课后作业</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#io设备课后作业">IO设备课后作业</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#其他题">其他题</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#文件系统">文件系统</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#外部空间管理">外部空间管理</a></div><ul class="outline-children"></ul></li></ul></li></div></div><div id='write'  class=''><h1 id='操作系统原理错题集'><span>操作系统原理错题集</span></h1><div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>记不清了</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div><h2 id='第一单元-操作系统引论'><span>第一单元 操作系统引论</span></h2><p><span>【单选题】以下哪个不是操作系统的名字</span></p><ul><li><em><span>A、</span></em><span>SUSE</span></li><li><em><span>B、</span></em><span>Android</span></li><li><em><span>C、</span></em><span>MongoDB（数据库）</span></li><li><em><span>D、</span></em><span>UNIX</span></li></ul><p><span>我的答案：C</span></p><hr /><p><span>【单选题】并发和并行的说法正确的是</span></p><ul><li><em><span>A、</span></em><span>单核处理器上无法实现并行</span></li><li><em><span>B、</span></em><span>并发并行在宏观上是一个概念</span></li><li><em><span>C、</span></em><span>多核CPU上的程序肯定是并行运行的</span></li><li><em><span>D、</span></em><span>并发是指同一时间运行多个程序</span></li></ul><p><span>我的答案：A</span></p><hr /><p><span>【单选题】操作系统是</span></p><ul><li><em><span>A、</span></em><span>即包括软件也包括硬件</span></li><li><em><span>B、</span></em><span>硬件</span></li><li><em><span>C、</span></em><span>软件</span></li></ul><p><span>我的答案：C</span></p><hr /><p><span>【多选题】操作系统的几大功能是</span></p><ul><li><em><span>A、</span></em><span>文件管理</span></li><li><em><span>B、</span></em><span>存储管理</span></li><li><em><span>C、</span></em><span>作业管理</span></li><li><em><span>D、</span></em><span>进程管理</span></li><li><em><span>E、</span></em><span>设备管理</span></li></ul><p><span>我的答案：ABCDE</span></p><hr /><p><span>【判断题】操作系统就是对软硬件资源进行管理的系统软件。我的答案：</span><em><span>√</span></em></p><hr /><p><span>【单选题】分时系统关键技术是（）</span></p><ul><li><em><span>A、</span></em><span>虚拟内存技术</span></li><li><em><span>B、</span></em><span>缓存技术</span></li><li><em><span>C、</span></em><span>中断技术</span></li><li><em><span>D、</span></em><span>交换技术</span></li></ul><p><span>我的答案：C</span></p><blockquote><p><span>分时操作系统等待周期：时间片</span><span>*</span><span>用户数量</span></p></blockquote><hr /><p><span>【单选题】对单道操作系统认识正确的是</span></p><ul><li><em><span>A、</span></em><span>里面只有一个程序在运行，没有其他</span></li><li><em><span>B、</span></em><span>除了一个运行的程序，里面实际上还有Monitor程序在运行</span></li><li><em><span>C、</span></em><span>只有一个运行的程序，Monitor程序在外存监控</span></li><li><em><span>D、</span></em><span>可以有多个程序在内存中，但只有一个在运行</span></li></ul><p><span>我的答案：B</span></p><blockquote><p><span>单道：作业串行执行，一个作业没处理完，另一个作业不能进行。当程序陷入是循环时，不能切换到另一个程序</span></p><p><span>缺点：平均周转时间长；无交互能力；独占CPU</span></p></blockquote><hr /><p><span>【判断题】操作系统的“单道”“多道”的道,指的是CPU核心个数。我的答案：</span><em><span>×</span></em></p><blockquote><p><span>多道：内存中同时存放多道程序。当某道程序不能运行时，监控程序便调度另一程序投入运行，这样尽可能让CPU处于忙碌状态，提高系统效率</span></p><p><span>缺点：单个作业处理时间变长；作业的交互能力差；作业的运行过程不确定，受到其他作业运行过程的影响</span></p></blockquote><hr /><p><span>【多选题】以下哪些是操作系统的非功能性需求</span></p><ul><li><em><span>A、</span></em><span>效率</span></li><li><em><span>B、</span></em><span>公平</span></li><li><em><span>C、</span></em><span>可靠性</span></li><li><em><span>D、</span></em><span>可扩展性</span></li><li><em><span>E、</span></em><span>可移植性</span></li></ul><p><span>我的答案：ABCDE</span></p><hr /><p><span>【填空题】我们从两个大方面去考虑操作系统的需求,一是( )需求,一是( )需求</span></p><p><span>我的答案：</span><em><span>第一空：</span></em><span> 功能</span><em><span>第二空：</span></em><span> 非功能</span></p><blockquote><p><span>功能需求：用户名命令；系统调用</span></p><p><span>非功能需求：效率；公平性；可靠性；安全性；移植性；可伸缩性</span></p></blockquote><hr /><p><span>【填空题】用户界面的英文缩写是( ),应用程序开发接口的缩写是( )</span></p><p><span>我的答案：</span><em><span>第一空：</span></em><span> UI</span><em><span>第二空：</span></em><span> API</span></p><hr /><p><span>【判断题】单处理器的计算机无法实现并行，只能通过软件实现并发。我的答案：</span><em><span>√</span></em></p><hr /><p><span>【单选题】下面哪个是分层式结构OS的缺点（  ）</span></p><ul><li><em><span>A、</span></em><span>依赖关系复杂</span></li><li><em><span>B、</span></em><span>效率低</span></li><li><em><span>C、</span></em><span>无序</span></li><li><em><span>D、</span></em><span>不易维护</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><blockquote><p><span>操作系统逻辑结构三种类型：整体式（模块化结构，宏内核结构），层次式，微内核式</span></p><p><strong><span>整体式：</span></strong><span>优点【1、模块设计、编码和调试独立；2、模块之间可以自由调用】，缺点【信息传递随意，维护和更新困难】</span></p><p><strong><span>层次式：</span></strong><span>优点【1、结构清晰，避免循环调用；2、整体问题局部化，系统的正确性容易保证；3、有利于操作系统的维护。扩充、移植】，缺点【效率低】</span></p><p><strong><span>微内核结构：</span></strong><span>优点【便于扩充，移植，安全性高，便于维护，系统更加稳定】，缺点【效率低】</span></p></blockquote><h2 id='第二单元-进程'><span>第二单元 进程</span></h2><p><span>【单选题】一个进程被唤醒意味着( )（13.0分）</span></p><ul><li><em><span>A、</span></em><span>进程变为活动就绪状态</span></li><li><em><span>B、</span></em><span>该进程重新占有了CPU</span></li><li><em><span>C、</span></em><span>它的优先权变为最大</span></li><li><em><span>D、</span></em><span>其PCB移至等待队列队首</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/image-20200712142536609.png" referrerpolicy="no-referrer"></p><hr /><p><span>【单选题】下列进程状态变化中,( )变化是不可能发生的（13.0分）</span></p><ul><li><em><span>A、</span></em><span>活动阻塞-&gt;活动就绪</span></li><li><em><span>B、</span></em><span>静止阻塞-&gt;活动阻塞</span></li><li><em><span>C、</span></em><span>运行-&gt;静止就绪</span></li><li><em><span>D、</span></em><span>活动就绪-&gt;活动阻塞</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><hr /><p><span>【单选题】进程和程序的根本区别在于( )（13.0分）</span></p><ul><li><em><span>A、</span></em><span>是不是被调入内存</span></li><li><em><span>B、</span></em><span>是不是占有处理器</span></li><li><em><span>C、</span></em><span>静态和动态的特点</span></li><li><em><span>D、</span></em><span>是不是具有就绪运行和等待三种状态</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><blockquote><p><span>进程动态，程序静态（程序是菜谱，进程是做菜的过程）</span></p></blockquote><hr /><p><span>【单选题】进程的并发执行是指若干个进程( )（13.0分）</span></p><ul><li><em><span>A、</span></em><span>在执行的时间上是重叠的</span></li><li><em><span>B、</span></em><span>同时执行</span></li><li><em><span>C、</span></em><span>有些在执行,有些没有执行</span></li><li><em><span>D、</span></em><span>多个处理机上同时执行</span></li></ul><p><span>正确答案： A 我的答案：B</span></p><blockquote><p><span>进程的并发性是指一组进程的执行在时间上是重叠的，重叠是指一个进程执行的第一条指令是在另一个进程执行的最后一条指令完成之前开始的</span></p></blockquote><hr /><p><span>【单选题】对于挂起状态说法正确的是( )（13.0分）</span></p><ul><li><em><span>A、</span></em><span>挂起是进程在内存中暂停运行</span></li><li><em><span>B、</span></em><span>挂起是进程因为IO而暂停,系统会把这种进程挪到外存去</span></li><li><em><span>C、</span></em><span>挂起可能是系统的行为,也可能是进程主动的行为</span></li><li><em><span>D、</span></em><span>就绪的进程不会被挂起</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><blockquote><p><strong><span>阻塞状态</span></strong><span>：活动阻塞（正常阻塞）、静止阻塞（阻塞且挂起，不能被调度）</span></p><p><strong><span>就绪状态</span></strong><span>：活动就绪（正常就绪）、静止就绪（就绪且挂起，不能被调度）</span></p><p><span>一个进程被挂起后的特征：</span></p><p><span>1、不能立即执行，除非解挂</span></p><p><span>2、处于阻塞态被挂起的进程（静止阻塞）阻塞实践结束了也不能执行</span></p><p><span>3、能实施挂起操作的进程包括进程自身、进程的父进程或操作系统</span></p><p><span>4、只有实施挂起操作的进程才能激活（解挂）被挂起的进程</span></p></blockquote><hr /><p><span>【单选题】进程和程序说法正确的是( )（13.0分）</span></p><ul><li><em><span>A、</span></em><span>进程和程序是一一对应的</span></li><li><em><span>B、</span></em><span>一个程序至少一个进程</span></li><li><em><span>C、</span></em><span>一个进程可能对应多个程序</span></li><li><em><span>D、</span></em><span>程序包含进程</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><hr /><p><span>【填空题】如果系统有3个处理机,有 5 个进程,则就绪队列中进程的个数最多为( )（14.0分）</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 2;2个</span></p><blockquote><p><span>如果系统中有n个进程，则在就绪队列中进程的个数最多为n-1个。</span></p></blockquote><hr /><p><span>【判断题】如果系统只有1个进程,那么可以从阻塞状态直接到运行状态（8.0分）正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><hr /><p><span>【单选题】</span><strong><span>PCB是进程存在的唯一标志,</span></strong><span>下列不属于PCB内容的是( )</span></p><ul><li><em><span>A、</span></em><span>CPU控制寄存器内容</span></li><li><em><span>B、</span></em><span>栈指针</span></li><li><em><span>C、</span></em><span>全局变量</span></li><li><em><span>D、</span></em><span>进程优先级</span></li></ul><p><span>我的答案：C</span></p><blockquote><p><span>进程 = PCB + 程序</span></p></blockquote><hr /><p><span>【单选题】当一个进程处于( )状态时, 称为就绪状态。</span></p><ul><li><em><span>A、</span></em><span>等待输入数据</span></li><li><em><span>B、</span></em><span>等待调度</span></li><li><em><span>C、</span></em><span>等待分配PCB</span></li><li><em><span>D、</span></em><span>等待进入内存</span></li></ul><p><span>我的答案：B</span></p><hr /><p><span>【单选题】进程映像是指( )</span></p><ul><li><em><span>A、</span></em><span>一个独立的程序</span></li><li><em><span>B、</span></em><span>一个独立的程序所对应的数据</span></li><li><em><span>C、</span></em><span>PCB结构、程序、数据以及栈的组合</span></li><li><em><span>D、</span></em><span>PCB结构</span></li></ul><p><span>我的答案：C</span></p><hr /><p><span>【判断题】I/O中断不一定导致进程的切换。我的答案：</span><em><span>√</span></em></p><blockquote><p><span>进程切换时机</span></p><p><span>1、时间片</span><strong><span>中断</span></strong><span>、IO</span><strong><span>中断</span></strong><span>后 更改优先级进程；（导致被中断进程进入</span><strong><span>就绪态</span></strong><span>）；</span></p><p><span>2、阻塞式</span><strong><span>系统调用</span></strong><span>、</span><strong><span>虚拟地址异常</span></strong><span>；（导致被中断进程进入</span><strong><span>等待态</span></strong><span>）</span></p><p><span>3、终止用</span><strong><span>系统调用</span></strong><span>、</span><strong><span>不能继续执行的异常</span></strong><span>；（导致被中断进程进入</span><strong><span>终止态</span></strong><span>）</span></p><p><strong><span>中断不一定导致进程的切换</span></strong></p></blockquote><hr /><p><span>【判断题】进程切换时,肯定会进行系统模式切换。我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】模式切换时,一定有进程切换。我的答案：</span><em><span>×</span></em></p><blockquote><p><span>模式切换：用户态-核心态</span></p><p><span>进程切换： 运行-就绪-阻塞</span></p></blockquote><hr /><p><span>【判断题】进程结束后,进程的PCB应立即被OS回收,以便把内存利用起来。我的答案：</span><em><span>x</span></em></p><blockquote><p><span>需要检查是否子进程，就先撤销子进程</span></p></blockquote><hr /><p><span>【判断题】当用户申请创建进程时,有可能创建失败。我的答案：</span><em><span>√</span></em></p><hr /><p><span>【单选题】如果同时登录两个QQ,那么这两个在运行的QQ是( )</span></p><ul><li><em><span>A、</span></em><span>是两个进程</span></li><li><em><span>B、</span></em><span>是同一个进程</span></li><li><em><span>C、</span></em><span>是同一个进程的两个线程</span></li><li><em><span>D、</span></em><span>是一个线程的两个拷贝</span></li></ul><p><span>正确答案： A 我的答案：C</span></p><hr /><p><span>【单选题】进程P创建若干个线程,这多个线程不共享的是( )</span></p><ul><li><em><span>A、</span></em><span>进程P的全局变量</span></li><li><em><span>B、</span></em><span>进程P打开的文件</span></li><li><em><span>C、</span></em><span>进程P的I/O资源</span></li><li><em><span>D、</span></em><span>进程P中某线程的控制块</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><blockquote><p><span>控制块（PCB）是唯一标识该进程的标志，不能共享</span></p></blockquote><hr /><p><span>【判断题】用户级线程切换不需要内核参与,但是跨进程的线程切换则需要。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】线程比进程更轻量,所以不管是内核级还是用户级线程,切换都比进程快。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】一个进程,如果有多个内核级线程,那么这些线程可以并行的运行在多个CPU核心上。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】同样的CPU,在多道程系统中比单道进程系统的CPU运算速度更快。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><hr /><p><span>【判断题】</span><strong><span>用户级线程阻塞时,所在的整个进程都会阻塞</span></strong><span>（这里是对的）,所以用户级线程没什么作用。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><hr /><p><span>【判断题】用户级线程比内核级线程运行速度更慢。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>内核级线程是</span><a href='https://wenwen.sogou.com/s/?w=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E6%A0%B8&amp;ch=ww.xqy.chain'><span>操作系统内核</span></a><span>实现、管理和调度的一种线程。由于有操作系统管理，所以操作系统是知道线程的存在，并为其安排</span><a href='https://wenwen.sogou.com/s/?w=%E6%97%B6%E9%97%B4%E7%89%87&amp;ch=ww.xqy.chain'><span>时间片</span></a><span>，管理与其有关的</span><a href='https://wenwen.sogou.com/s/?w=%E5%86%85%E6%A0%B8%E5%AF%B9%E8%B1%A1&amp;ch=ww.xqy.chain'><span>内核对象</span></a><span>。因为内核级线程是由内核来管理，所以每次线程创建、切换都要执行一个模式切换</span><a href='https://wenwen.sogou.com/s/?w=%E4%BE%8B%E7%A8%8B&amp;ch=ww.xqy.chain'><span>例程</span></a><span>，所以内核级线程效率比较低，而且内核级线程的调度是由操作系统的设计者来决定的，所以缺乏灵活性。但是内核级线程有一个有点就是当一个进程的某个线程因为一个</span><a href='https://wenwen.sogou.com/s/?w=%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8&amp;ch=ww.xqy.chain'><span>系统调用</span></a><span>或者</span><a href='https://wenwen.sogou.com/s/?w=%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD&amp;ch=ww.xqy.chain'><span>缺页中断</span></a><span>而阻塞时，不会导致该进程的所有</span><a href='https://wenwen.sogou.com/s/?w=%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E&amp;ch=ww.xqy.chain'><span>线程阻塞</span></a><span>。 内核级线程的优点： 较好的并行能力，一个进程内的线程阻塞不会影响该进程内的其他线程 内核级线程的缺点： 线程管理的开销过大，缺乏灵活性。 用户级线程是通过运行在</span><a href='https://wenwen.sogou.com/s/?w=%E7%94%A8%E6%88%B7%E6%80%81&amp;ch=ww.xqy.chain'><span>用户态</span></a><span>的运行时库来管理的，其优点是，线程的一切（包括调度、创建）都可以完全由用户自己决定，所以具有较高的灵活性。而且由于是在用户态上进行管理，所以就省去了内核管理的开销，所以具有高效率。 但是用户级线程有一个致命的缺点：一个进程内的某一个线程阻塞将导致整个进程内的所有线程全部阻塞。而且由于用户级线程没有时间片概念，所以每个线程必须运行一段时间后将CPU让个其他的线程使用，否则，该线程将独占CPU。 用户级线程的优点： 有较高的灵活性和高效率 用户级线程的缺点： 较差并发能力</span></p></blockquote><hr /><p><span>【判断题】同样的电脑上,用两个线程和一个线程进行同样的数学运算,两个线程的算的更快。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><h2 id='第三单元-进程的并发'><span>第三单元 进程的并发</span></h2><p><span>【单选题】</span><br/><span>关于临界区说法正确的是（）</span></p><ul><li><em><span>A、</span></em><span>一个进程只有1个临界区</span></li><li><em><span>B、</span></em><span>只能有一个进程在临界区内执行，执行时其他进程处于阻塞状态</span></li><li><em><span>C、</span></em><span>临界区是进程运行的一块内存区域</span></li><li><em><span>D、</span></em><span>以上说法都不对</span></li></ul><p><span>我的答案：D</span></p><blockquote><p><span>临界资源：被多个进程竞争访问且具有逻辑排他性的资源</span></p><p><span>临界区：访问临界资源的代码片段</span></p></blockquote><hr /><p><span>【单选题】</span><br/><span>下面有关进程同步互斥的概念说法错误的是（  ）</span></p><ul><li><em><span>A、</span></em><span>互斥可以看作是同步的特殊情况</span></li><li><em><span>B、</span></em><span>程序员不能用让某个进程先运行，某个后运行的方法做进程的同步，因为系统调度情况程序员无法预知</span></li><li><em><span>C、</span></em><span>同步和互斥都涉及到并发进程共享资源的访问问题</span></li><li><em><span>D、</span></em><span>同一个进程的多个线程需要同步，否则会导致结果不可再现</span></li></ul><p><span>我的答案：不知道</span></p><hr /><p><span>【单选题】</span><br/><span>若信号量 S 的初值为 3,当前值为−2,则表示有（ ）等待进程</span></p><ul><li><em><span>A、</span></em><span>1</span></li><li><em><span>B、</span></em><span>2</span></li><li><em><span>C、</span></em><span>3</span></li><li><em><span>D、</span></em><span>4</span></li></ul><p><span>我的答案：B</span></p><hr /><p><span>【单选题】</span><br/><span>设与某资源相关联的信号量初值为3，当前值为1，若M表示该资源的可用个数，N表示等待资源的进程数，则M，N分别是( )</span></p><ul><li><em><span>A、</span></em><span>1，0</span></li><li><em><span>B、</span></em><span>3,1</span></li><li><em><span>C、</span></em><span>1,2</span></li><li><em><span>D、</span></em><span>3,2</span></li></ul><p><span>我的答案：A</span></p><hr /><p><span>【单选题】</span><br/><span>如果4个进程共享一个程序段，每次最多允许2个进程进入，用PV操作做同步，那么信号量的取值范围是（ ）</span></p><ul><li><em><span>A、</span></em><span>2,1,0,-1</span></li><li><em><span>B、</span></em><span>3,2,1,0,-1</span></li><li><em><span>C、</span></em><span>3,2,1,0,-1,-2,-3</span></li><li><em><span>D、</span></em><span>2,1,0,-1,-2</span></li></ul><p><span>我的答案：D</span></p><blockquote><p><span>个人理解：两次p操作为-2，一次p操作为-1，一次p一次v为0，一次v为1，两次v为2</span></p></blockquote><hr /><p><span>【单选题】</span><br/><span>A初始值为3，signal操作时，加1后 若信号量A值为（    ）， 则要去唤醒某个进程</span></p><ul><li><em><span>A、</span></em><span>0</span></li><li><em><span>B、</span></em><span>1</span></li><li><em><span>C、</span></em><span>2</span></li><li><em><span>D、</span></em><span>以上都是</span></li></ul><p><span>我的答案：A</span></p><blockquote><p><strong><span>P操作</span></strong></p><p><span>s-1; s &gt;= 0, continue; s &lt; 0, 插入阻塞队列</span></p><p><strong><span>V操作</span></strong></p><p><span>s+1; s &gt; 0, continue; s &lt;= 0, 唤醒一个进程</span></p></blockquote><hr /><p><span>【单选题】</span></p><p><span>两个进程共享一个全局变量c，c的初始值是1，两个进程的代码如下所示</span></p><p><span>P1: {</span></p><p><span>   ....</span></p><p><span>   c=c+1;</span></p><p><span>    ....</span></p><p><span>    输出c;</span></p><p><span>}</span></p><p><span>P2: {</span></p><p><span>   ....</span></p><p><span>   c=c-1;</span></p><p><span>    ....</span></p><p><span>    输出c;</span></p><p><span>}</span></p><p><span>两进程并发执行，则对于输出的两个值说法错误的是( )</span></p><ul><li><em><span>A、</span></em><span>可能是 2 , 2</span></li><li><em><span>B、</span></em><span>可能是 2 ,0</span></li><li><em><span>C、</span></em><span>可能是 2 , 1</span></li><li><em><span>D、</span></em><span>可能是 1 , 3</span></li></ul><p><span>我的答案：D</span></p><blockquote><p><span>第一种情况： c=c+1和c=c-1一起执行，但是c=c-1最先执行完，得到c都为2</span></p><p><span>第二种情况：c=c+1和c=c-1一起执行，但是c=c+1直到输出c-1都还没执行完，此时第一次输出为2，第二次输出为0</span></p><p><span>第三种情况：先+1后-1</span></p></blockquote><hr /><p><span>【单选题】</span><br/><span>在操作系统中， P,V 操作是－种（）。</span></p><ul><li><em><span>A、</span></em><span>机器指令</span></li><li><em><span>B、</span></em><span>系统调用</span></li><li><em><span>C、</span></em><span>低级进程通信原语</span></li><li><em><span>D、</span></em><span>作业控制命令</span></li></ul><p><span>我的答案：D</span></p><hr /><p><span>【单选题】</span><br/><span>不需要信号量就能实现的功能是( )。</span></p><ul><li><em><span>A、</span></em><span>进程同步</span></li><li><em><span>B、</span></em><span>进程互斥</span></li><li><em><span>C、</span></em><span>进程并发</span></li><li><em><span>D、</span></em><span>执行的前驱关系</span></li></ul><p><span>我的答案：C</span></p><hr /><p><span>【单选题】</span><br/><span>在操作系统中， P,V 操作是－种（）。</span></p><ul><li><em><span>A、</span></em><span>机器指令</span></li><li><em><span>B、</span></em><span>系统调用</span></li><li><em><span>C、</span></em><span>低级进程通信原语</span></li><li><em><span>D、</span></em><span>作业控制命令</span></li></ul><p><span>我的答案：B</span></p><hr /><p><span>【判断题】</span><br/><span>之所以提出硬件方式解决方案的一个原因是因为用纯软件方法解决同步很困难。我的答案：√</span></p><h2 id='第四单元-进程通信和调度'><span>第四单元 进程通信和调度</span></h2><p><span>【单选题】需要用户自己做同步互斥的IPC方式是（ ）</span></p><ul><li><em><span>A、</span></em><span>共享存储器</span></li><li><em><span>B、</span></em><span>管道文件</span></li><li><em><span>C、</span></em><span>消息传递</span></li><li><em><span>D、</span></em><span>客户服务器方式</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><blockquote><p><span>共享存储器系统，操作系统只负责提供共享和映射，读写的控制由用户进程自己决定</span></p></blockquote><hr /><p><span>【单选题】以下哪个不是常用的</span><strong><span>高级通信</span></strong><span>方式</span></p><ul><li><em><span>A、</span></em><span>管道通信</span></li><li><em><span>B、</span></em><span>信号通信</span></li><li><em><span>C、</span></em><span>消息通信</span></li><li><em><span>D、</span></em><span>共享存储器通信</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><blockquote><p><span>信号及信号量通信都属于低级通信</span></p></blockquote><blockquote><p><span>进程通信：合作进程之间交换信息的过程</span></p><p><span>进程通信分为低级通信（少量信息）和高级通信（大量数据）</span></p><p><span>实现通信的方法：直接通信（信号机制、消息缓冲通信方式）和间接通信（共享内存通信、管道通信）</span></p></blockquote><hr /><p><span>【填空题】通常用于网络环境下的进程通信方式中，一个关键的数据结构称为套接字，其英文是(socket)</span></p><hr /><p><span>【单选题】最适合分时系统的进程调度算法是（   ）。</span></p><ul><li><em><span>A、</span></em><span>优先级</span></li><li><em><span>B、</span></em><span>FCFS</span></li><li><em><span>C、</span></em><span>时间片轮转</span></li><li><em><span>D、</span></em><span>SJF</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><blockquote><p><span>作业调度算法：</span></p><p><span>&gt;</span><span> 先来先服务调度算法（FCFS）：易实现，效率不高，不利于短作业，通常与其他调度算法联合使用</span></p><p><span>&gt;</span><span> 短作业优先调度算法（SJF）：降低了平均等待时间，有利于提高系统吞吐量；易实现，效率低，易出现进程饥饿现象</span></p><p><span>&gt;</span><span> 响应比高者优先调度算法（RRHF）：</span><code>响应比=响应时间/运行时间=1+等待时间/运行时间</code><span> ，相应比越高越容易调度。优点：有利于短作业、有利于等待已久的作业、有利于长作业</span></p><p><span>进程调度算法：</span></p><p><span>&gt;</span><span> 优先数高者优先调度算法（HPF）</span></p><p><span>&gt;</span><span> 时间片轮转调度算法（RR）：主要用在分时系统，既满足用户交互性又满足系统的并发性</span></p><p><span>&gt;</span><span> 多重时间片轮转调度算法</span></p></blockquote><hr /><p><span>【单选题】不适合作业调度的算法是（   ）。</span></p><ul><li><em><span>A、</span></em><span>优先级</span></li><li><em><span>B、</span></em><span>FCFS</span></li><li><em><span>C、</span></em><span>时间片轮转</span></li><li><em><span>D、</span></em><span>SJF</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><blockquote><p><span>作业调度是将作业调入内存，时间片轮转调度将在内外存调度作业，效率太低，不合适</span></p></blockquote><hr /><p><span>（   ）优先权是在创建进程时确定的，确定之后在整个进程运行期间不再改变。 </span></p><ul><li><em><span>A、</span></em><span>静态    </span></li><li><em><span>B、</span></em><span>动态</span></li><li><em><span>C、</span></em><span>短作业</span></li><li><em><span>D、</span></em><span>截止时间</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><hr /><p><span>【判断题】通常，轮转调度时，时间片应越小越好。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>太小，会增加系统负担，降低效率</span></p></blockquote><hr /><p><span>【判断题】时间片轮转调度算法对IO型进程不利。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>IO频繁的进程会在时间片没用完就阻塞，然后重新排队</span></p></blockquote><hr /><p><span>【判断题】一个进程的带权周转时间不可能小于1。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>由公式可知答案</span></p></blockquote><blockquote><p><span>周转时间：作业提交给计算机开始到给出结果所花费的时间，符号t，周转时间越短，用户体验越好。</span></p><p><code>t = tc(作业完成时间) - ts(作业提交时间)</code></p><p><code>t = tw(作业等待时间) + tr(作业运行时间)</code></p><p><span>平均周转时间：</span><code>t&#39; = (t1 + t2 + t3 + ...) / n</code></p><p><span>带权周转时间：</span><code>w = t(周转时间) / tr(程序运行时间)</code></p><p><span>平均带权周转时间：</span><code>w&#39; = (w1 + w2 + w3 + ...) / n</code></p></blockquote><h2 id='第五单元-死锁'><span>第五单元 死锁</span></h2><p><span>【单选题】以下（ ）方法属于预防死锁</span></p><ul><li><em><span>A、</span></em><span>银行家算法</span></li><li><em><span>B、</span></em><span>有序分配</span></li><li><em><span>C、</span></em><span>信号量互斥</span></li><li><em><span>D、</span></em><span>结束进程</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><blockquote><p><span>进程饥饿：系统不能保证进程的等待时间上限，从而使该进程长时间等待，当等待时间给进程推进和响应带来明显不利影响</span></p><p><span>死锁：两个或多个进程已经陷入阻塞，都在无期限地等待永远不会发生的条件的一种系统状态</span></p><p><span>死锁的起因：1、系统资源不足。2、进程并发推进的顺序不当</span></p><p><span>死锁的必要条件：1、互斥条件。2、不剥夺条件。3、部分分配条件。4、环路条件。只要一个不成立就不会发生死锁</span></p><p><span>解决死锁的方法：预防死锁、避免死锁、检测死锁、恢复死锁 ---&gt; 预先静态分配法（破坏部分条件以确保死锁不会发生）、有序资源分配法（破坏环路）、鸵鸟算法（忽视死锁）</span></p></blockquote><blockquote><p><span>预防死锁：破坏死锁的四个必要条件之一或者多个。例子：部分分配-&gt;预先静态分配法；环路-&gt;有序资源分配法</span></p><p><span>避免死锁：遇到进程申请资源时，运用响应算法去判断是否统一分配资源。例子：银行家算法</span></p></blockquote><hr /><p><span>【多选题】产生死锁的四个必要条件是 （  ） </span></p><ul><li><em><span>A、</span></em><span>共享</span></li><li><em><span>B、</span></em><span>不剥夺</span></li><li><em><span>C、</span></em><span>环路</span></li><li><em><span>D、</span></em><span>请求和保持</span></li><li><em><span>E、</span></em><span>保持和阻塞</span></li><li><em><span>F、</span></em><span>互斥</span></li></ul><p><span>正确答案： BCDF</span></p><hr /><p><span>【判断题】死锁的四个必要条件满足时，不一定会出现死锁正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>死锁-&gt;必要条件</span><em><span>√</span></em><span>, 必要条件-&gt;死锁×</span></p></blockquote><hr /><p><span>【判断题】有些系统解决死锁的一个方案是不去解决正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>因为解决死锁的代价太大</span></p></blockquote><hr /><p><span>【判断题】安全状态是没有死锁的状态,非安全状态是有死锁的状态。正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><blockquote><p><span>非安全是有可能死锁</span></p></blockquote><hr /><p><span>【判断题】如果资源是共享的，那么不会产生死锁。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>死锁的四个必要条件，之所以会发生死锁就是因为抢占共享资源</span></p></blockquote><hr /><p><span>【判断题】单道系统中不存在死锁。正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><h2 id='第六单元-存储器管理'><span>第六单元 存储器管理</span></h2><p><span>【单选题】以下说法正确的是（）</span></p><ul><li><em><span>A、</span></em><span>首次适应算法比最佳适应算法更适合大作业</span></li><li><em><span>B、</span></em><span>最坏适应算法空间利用率低，通常不采用 （x）</span></li><li><em><span>C、</span></em><span>循环首次的缺点是空闲分区更集中</span></li><li><em><span>D、</span></em><span>最佳适应算法会使得空闲碎片减少（多）</span></li></ul><p><span>我的答案：A</span></p><blockquote><p><span>分区分配是指选择一个合适的空闲区并从中分割出所需要的大小分配给程序</span></p><p><span>根据空闲区表的不同排序，放置策略分为首次适应算法、最佳适应算法、最坏适应算法</span></p><p><span>&gt;</span><span> 首次适应算法：按空闲区地址递增排序，优先使用主存低地址的空闲区（会在低地址空间留下较多的小空闲区）</span></p><p><span>&gt;</span><span> 最佳适应算法：按空闲区大小进行递增排序（会留下大量的内存碎片）</span></p><p><span>&gt;</span><span> 最坏适应算法：按空闲区地址递减排序，一次便能查找所要的分区，不一定是最坏</span></p></blockquote><hr /><p><span>【填空题】已知内存分区如下图</span></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/e5a75bd81a0c294cde55fea58f51c6f6.png" referrerpolicy="no-referrer"></p><p><span>当一个进程需要申请20K的空间时，首次适应算法选择起始地址为( 填空1) K的空闲分区，最佳适应算法选择起始地址为( 填空2) K的空闲分区，最坏适应算法选择起始地址为( 填空3) K的空闲分区</span></p><p><span>我的答案：</span><em><span>第一空：</span></em><span> 60</span><em><span>第二空：</span></em><span> 270</span><em><span>第三空：</span></em><span> 390</span></p><hr /><p><span>【判断题】相对效率最好的动态分区算法是“最佳适应算法” 。我的答案：</span><em><span>×</span></em></p><hr /><p><span>【判断题】按最佳适应算法分配的分区,一定与作业要求的容量大小最接近。我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】采用分区分配管理，不管什么算法，不可避免会有内部碎片（内零头）。我的答案：</span><em><span>√</span></em></p><hr /><p><span>【单选题】以下访问速度最快的是（ ）</span></p><ul><li><em><span>A、</span></em><span>寄存器</span></li><li><em><span>B、</span></em><span>高速缓存</span></li><li><em><span>C、</span></em><span>内存</span></li><li><em><span>D、</span></em><span>固态硬盘</span></li></ul><p><span>正确答案： A 我的答案：A</span></p><blockquote><p><span>高速缓存(Cache)有L1 L2 L3共三级缓存,它的速度是和CPU同步的,而</span><a href='https://zhidao.baidu.com/search?word=%BC%C4%B4%E6%C6%F7&amp;fr=iknow_pc_qb_highlight'><span>寄存器</span></a><span>本身是属于CPU的,比</span><a href='https://zhidao.baidu.com/search?word=%D6%F7%B4%E6&amp;fr=iknow_pc_qb_highlight'><span>主存</span></a><span>快多了</span></p></blockquote><hr /><p><span>【单选题】对固定分区方式说法正确的是（ ）</span></p><ul><li><em><span>A、</span></em><span>分区数固定，可以运行的进程数是确定的</span></li><li><em><span>B、</span></em><span>分区大小是可以变换的</span></li><li><em><span>C、</span></em><span>分区大小都是一样的</span></li><li><em><span>D、</span></em><span>分区大小可以不等，内存利用率高</span></li></ul><p><span>正确答案： A 我的答案：D</span></p><blockquote><p><span>&gt;</span><span> 固定分区：用户区分为若干个大小的分区</span></p><p><span>特点：固定分区，分区固定，大小固定（但是可以不一样），分区数目固定</span></p><p><span>缺点：浪费内存，大程序可能无法运行，作业的内存无法被动态扩充，各个分区的作业要共享程序和数据很难实现，可以并发运行的程序数量收到分区数量的限制</span></p><p><span>&gt;</span><span> 单一分区（不分区）：内存空间划分为系统区和用户区，系统区放操作系统，而用户区不分区，全部归一个用户作业所占用。仅使用于单用户单任务的操作系统。既可以采用静态地址映射（大多数）也可以采用动态地址映射。</span></p><p><span>缺点：程序运行时需要占整个用户区内存，即使是小程序也是，浪费内存，且设备利用率低</span></p><p><span>&gt;</span><span> 动态分区：程序装入时创建分区，使分区的大小刚好与程序的大小相等。内存的大小、位置和数量都是动态的。</span></p><p><span>有点：避免固定内存空间的浪费，提高内存资源的利用率，有利于都到程序设计，实现多个作业对内存的共享</span></p></blockquote><hr /><p><span>【判断题】高速缓存是软件的概念，是内存划分出来的一部分</span><br/><span>正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><blockquote><p><span>高速缓存位于CPU与内存之间，也有一些CPU将其集成在CPU芯片中</span></p></blockquote><hr /><p><span>【单选题】对虚拟存储器中 Belady 现象说法正确的是（   ）</span></p><ul><li><em><span>A、</span></em><span>虚拟存储器页面换入换出非常频繁的一种现象</span></li><li><em><span>B、</span></em><span>采用FIFO置换算法可能出现的一种现象</span></li><li><em><span>C、</span></em><span>给一个进程增加空间，进程发生缺页的频率会降低的现象</span></li><li><em><span>D、</span></em><span>无法预知进程将要使用哪个页面而产生的缺页现象</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><blockquote><p><span>&gt;</span><span> 最佳淘汰算法（OPT）：淘汰以后不再需要的或最远的将来才会用到的页面</span></p><p><span>&gt;</span><span> 先进先出淘汰算法（FIFO）：淘汰内存中已经</span><strong><span>停留时间最长</span></strong><span>的页面</span></p><p><span>&gt;</span><span> 最久未使用淘汰算法（LRU）：淘汰内存中最长时间</span><strong><span>未被使用</span></strong><span>的页面</span></p><p><span>&gt;</span><span> 最不经常使用淘汰算法（LFU）：淘汰当前时间为止被</span><strong><span>访问次数最少</span></strong><span>的页面</span></p></blockquote><hr /><p><span>【单选题】LRU置换算法是将（ ）置换掉</span></p><ul><li><em><span>A、</span></em><span>最近最少使用的页</span></li><li><em><span>B、</span></em><span>内存中最不常用的页</span></li><li><em><span>C、</span></em><span>驻留内存时间最长的页</span></li><li><em><span>D、</span></em><span>内存中以后用的最少的页</span></li></ul><p><span>正确答案： A 我的答案：C</span></p><hr /><p><span>【填空题】虚拟存储管理系统中，假设访存时间是10ms，平均缺页中断处理是25ms，平均缺页中断率是5%，那么在该系统中，页面在内存时的访存时间为（ 填空1 ）ms，页面不在内存时的访存时间为（  填空2 ）ms，平均的有效访存时间是（ 填空3  ）ms（如果有小数则保留2位小数）</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 20;20.0;20.00 </span><em><span>第二空：</span></em><span> 55;55.0;55.00 </span><em><span>第三空：</span></em><span> 21.75</span></p><blockquote><p><span>在内存：访问页表+访问内存 10+10</span></p><p><span>不在： 访问页表10+中断25+访问页表10+访问内存10 = 55</span></p><p><span>(页调入内存后不知道在何处，不一定是在原来页表处，所以再次访问页表）</span></p><p><span>平均：20</span><span>*</span><span>0.95+55</span><span>*</span><span>0.05 = 21.75</span></p></blockquote><hr /><p><span>【判断题】在有虚拟存储管理的系统中，可以运行比实际内存大的程序正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><hr /><p><span>【单选题】引入虚拟存储器的目的是（  ）。</span></p><ul><li><em><span>A、</span></em><span>实现存储保护</span></li><li><em><span>B、</span></em><span>扩充内存容量</span></li><li><em><span>C、</span></em><span>减少内存碎片</span></li><li><em><span>D、</span></em><span>加快访问速度</span></li></ul><p><span>正确答案： B 我的答案：B</span></p><hr /><p><span>【单选题】虚拟存储管理系统的基础是程序的 （  ）理论。</span></p><ul><li><em><span>A、</span></em><span>动态性    </span></li><li><em><span>B、</span></em><span>虚拟性</span></li><li><em><span>C、</span></em><span>局部性</span></li><li><em><span>D、</span></em><span>全局性</span></li></ul><p><span>正确答案： C 我的答案：C</span></p><hr /><p><span>【单选题】为了满足程序员在编程上需求的存储管理技术是（  ）</span></p><ul><li><em><span>A、</span></em><span>固定分区技术</span></li><li><em><span>B、</span></em><span>动态分区技术</span></li><li><em><span>C、</span></em><span>分页存储管理</span></li><li><em><span>D、</span></em><span>分段存储管理</span></li></ul><p><span>正确答案： D 我的答案：D</span></p><hr /><p><span>【填空题】若在一分页存储管理系统中，某作业的页表为：页号0、1、2、3，分别对应的块号是2、3、1、6。已知页面大小为 1024 字节，试将逻辑地址 4000转化为相应的物理地址（7072 ）</span></p><blockquote><p><span>4000/1024 = 3</span></p><p><span>4000-1024</span><span>*</span><span>3 = 928</span></p><p><span>1024</span><span>*</span><span>6 + 928 = 7072</span></p></blockquote><hr /><p><span>【填空题】没有快表情况下，分页系统访问一次数据，要访问（ 填空1） 次内存；分段系统访问一次数据，要访问（ 填空2） 次内存；段页式存储系统访问一次数据，要访问（ 填空3） 次内存</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> 2 </span><em><span>第二空：</span></em><span> 2 </span><em><span>第三空：</span></em><span> 3</span></p><h2 id='第一章课后作业'><span>第一章课后作业</span></h2><p><span>(单选题)操作系统最基本的特性是(    ) </span></p><ul><li><span>A. 并发性</span></li><li><span>B. 虚拟性</span></li><li><span>C. 复杂性</span></li><li><span>D. 整体性</span></li><li><span>E. 核心性</span></li></ul><p><em><span>我的答案:</span></em><span> A:并发性;</span><em><span>正确答案:</span></em><span> A:</span></p><hr /><p><span> (单选题)在设计时的无序性是哪种结构的OS的缺点？</span></p><ul><li><span>A. 层次化结构</span></li><li><span>B. 客户-服务器模式</span></li><li><span>C. 模块化结构</span></li><li><span>D. 面向对象模式</span></li></ul><p><em><span>我的答案:</span></em><span> C:模块化结构;</span><em><span>正确答案:</span></em><span> C</span></p><hr /><p><span>(单选题)推动分时系统形成发展的主要动力是</span></p><ul><li><span>A. 吞吐量需求</span></li><li><span>B. 提高效率</span></li><li><span>C. 交互需求</span></li><li><span>D. 安全需求</span></li></ul><p><em><span>我的答案:</span></em><span> C:交互需求;</span><em><span>正确答案:</span></em><span> C:交互需求;</span></p><hr /><p><span>(单选题)在工业系统中常用的OS类型是</span></p><ul><li><span>A. 软实时</span></li><li><span>B. 硬实时</span></li><li><span>C. 微内核</span></li><li><span>D. 集成式</span></li></ul><p><em><span>我的答案:</span></em><span> B:硬实时;</span><em><span>正确答案:</span></em><span> B:硬实时;</span></p><hr /><p><span>(单选题)当某个程序陷入死循环时，</span></p><ul><li><span>A. 电脑死机，没响应</span></li><li><span>B. 可以切换到其他程序继续运行</span></li><li><span>C. CPU是满负荷运行</span></li><li><span>D. 如果只有1个CPU，电脑无法响应外部事件</span></li></ul><p><em><span>我的答案:</span></em><span> B:</span><em><span>正确答案:</span></em><span> B:</span></p><blockquote><p><span>在单道系统里面是不能切换到其他程序的</span></p></blockquote><hr /><p><span>(单选题)哪个不是单道批处理系统的缺点</span></p><ul><li><span>A. 平均周转时间长</span></li><li><span>B. 无交互能力</span></li><li><span>C. 独占CPU</span></li><li><span>D. 执行速度慢</span></li></ul><p><em><span>我的答案:</span></em><span> D:执行速度慢;</span><em><span>正确答案:</span></em><span> D</span></p><hr /><p><span>(填空题)操作系统的基本特征是【填空1】    【 填空2】  【填空3】  【填空4】（每空填2个字）</span></p><p><em><span>正确答案：</span></em><span>(1) 并发(2) 共享 (3) 虚拟(4) 异步</span></p><hr /><table><tbody><tr><td><strong>A</strong></td><td><strong>B</strong></td><td><strong>C</strong></td></tr><tr><td>计算</td><td>20</td><td>40</td><td>20</td></tr><tr><td>IO</td><td>30</td><td>10</td><td>30</td></tr><tr><td>计算</td><td>20</td><td>10</td><td>10</td></tr></tbody></table><p><span>程序ABC依次进入计算机系统，如果系统是单道系统，则完成3个任务需要（ 填空1  ）时间，假设是多道系统,则所有程序都完成需要  (填空2     )</span></p><p><em><span>正确答案：</span></em><span>(1) 190(2) 120</span></p><blockquote><p><span>20+40+20+10+20+10=120</span></p></blockquote><hr /><table><tbody><tr><td><strong>A</strong></td><td><strong>B</strong></td><td><strong>C</strong></td></tr><tr><td>计算</td><td>20</td><td>8</td><td>10</td></tr><tr><td>IO</td><td>30</td><td>20</td><td>10</td></tr><tr><td>计算</td><td>20</td><td>10</td><td>10</td></tr></tbody></table><p><span>程序ABC依次进入多道批处理系统，假设三道程序使用相同设备进行 I/O 操作,即程序以串行方式使用设备,所有程序都完成最少需要  (填空1        )。如果IO三道程序使用了不同的设备进行IO（即并行），则完成所需的最少时间是（填空2       ）？</span></p><p><em><span>正确答案：</span></em><span>(1) 90(2) 88</span></p><hr /><p><span> (判断题)没有操作系统的计算机也可以运行浏览器</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 错</span><em><span>正确答案:</span></em><span> 错</span></p><hr /><p><span> (判断题)如果要运行的程序需要的内存大于计算机的真实内存，程序无法运行</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 错</span><em><span>正确答案:</span></em><span> 错</span></p><hr /><p><span> (判断题)实时操作系统和其他系统相比的特点是速度快</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 错</span><em><span>正确答案:</span></em><span> 错</span></p><blockquote><p><span>截至时间是关键</span></p></blockquote><h2 id='第二章课后作业'><span>第二章课后作业</span></h2><p><span> (单选题, 4分)进程和程序说法错误的是</span></p><ul><li><span>A. 进程是动态的，程序是静态的</span></li><li><span>B. 一个进程可能对应多个程序</span></li><li><span>C. 进程是在内存中，程序在外存中</span></li><li><span>D. 进程是程序的运行过程的描述</span></li></ul><p><em><span>我的答案:</span></em><span> B;</span><em><span>正确答案:</span></em><span> B</span></p><hr /><p><span>(单选题, 4分)一个进程被唤醒意味着( )</span></p><ul><li><span>A. 进程变为活动就绪状态</span></li><li><span>B. 该进程重新占有了CPU</span></li><li><span>C. 它的优先权变为最大</span></li><li><span>D. 其PCB移至等待队列队首</span></li></ul><p><em><span>我的答案:</span></em><span> A;</span><em><span>正确答案:</span></em><span> A</span></p><hr /><p><span> (单选题, 4分)进程P创建若干个线程,这多个线程不共享的是( )</span></p><ul><li><span>A. 进程P的全局变量</span></li><li><span>B. 进程P打开的文件</span></li><li><span>C. 进程P的I/O资源</span></li><li><span>D. 进程P中某线程的控制块</span></li></ul><p><em><span>我的答案:</span></em><span> D；</span><em><span>正确答案:</span></em><span> D;</span></p><hr /><p><span> (多选题, 4分)进程的特征是</span></p><ul><li><span>A. 动态</span></li><li><span>B. 并发</span></li><li><span>C. 共享</span></li><li><span>D. 异步</span></li><li><span>E. 独立</span></li></ul><p><em><span>我的答案:</span></em><span> BCDE </span><em><span>正确答案:</span></em><span> ABDE</span></p><hr /><p><span>(判断题, 2分)进程只是宏观上并发的，不能是微观上并行运行的</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 对</span><em><span>正确答案:</span></em><span> 错</span></p><hr /><p><span>(判断题, 2分)PCB随着程序运行而创建，存储在磁盘上</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 对</span><em><span>正确答案:</span></em><span> 错</span></p><hr /><p><span>(判断题, 2分)子进程的进程号pid是0</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 对</span><em><span>正确答案:</span></em><span> 错</span></p><blockquote><p><span>pid=fork( ) pid是fork的返回值，用来区别后续代码执行分支。当前进程（父进程）的子进程的进程号是父进程中的pid，</span></p></blockquote><h2 id='虚拟存储器课后作业'><span>虚拟存储器课后作业</span></h2><p><span>分页虚拟存储管理系统中，页面的大小和可能产生的缺页中断次数（  ）</span></p><ul><li><span>A. 成正比</span></li><li><span>B. 成反比</span></li><li><span>C. 固定比</span></li><li><span>D. 没有固定关系</span></li></ul><p><em><span>我的答案:</span></em><span> B:成反比;</span><em><span>正确答案:</span></em><span> D</span></p><hr /><p><span>(单选题)如果处理器有32位地址，则其虚拟地址空间为（  ）</span></p><ul><li><span>A. 2G   </span></li><li><span>B. 4G</span></li><li><span>C. 8G</span></li><li><span>D. 不能确定</span></li></ul><p><em><span>我的答案:</span></em><span> B:4G;</span><em><span>正确答案:</span></em><span> B:4G;</span></p><hr /><p><span>(单选题)采用段式存储管理的系统中，若地址用24位表示，其中8位表示段号，则允许每段的最大长度是</span></p><ul><li><span>A. 2^8</span></li><li><span>B. 2^16</span></li><li><span>C. 2^24</span></li><li><span>D. 2^32</span></li></ul><p><em><span>我的答案:</span></em><span> B:2^16;</span><em><span>正确答案:</span></em><span> B:2^16;</span></p><hr /><p><span> (单选题) 分区管理要求对每一个作业都要分配（   ）的内存单元</span></p><ul><li><span>A. 地址连续    </span></li><li><span>B. 若干地址不连续</span></li><li><span>C. 若干连续的地址块，但块不一定连续</span></li><li><span>D. 软干连续的页框</span></li></ul><p><em><span>我的答案:</span></em><span> A:地址连续 ;</span><em><span>正确答案:</span></em><span> A:地址连续 ;</span></p><hr /><p><span>(单选题) 分页管理中，页表存放在（   ）</span></p><ul><li><span>A. 页表寄存器</span></li><li><span>B. 快表</span></li><li><span>C. 内存</span></li><li><span>D. 外存</span></li></ul><p><em><span>我的答案:</span></em><span> A:页表寄存器;</span><em><span>正确答案:</span></em><span> C:内存;</span></p><hr /><p><span>(单选题)作业在执行中发生了缺页中断，经操作系统处理后，应让其执行</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>指令</span></p><ul><li><span>A. 被中断的前一条</span></li><li><span>B. 被中断的</span></li><li><span>C. 被中断的后一条</span></li><li><span>D. 启动时的第一条</span></li></ul><p><em><span>我的答案:</span></em><span> C:被中断的后一条;</span><em><span>正确答案:</span></em><span> B:被中断的;</span></p><hr /><p><span> (单选题)在请求分页存储管理中，若采用FIFO页面淘汰算法，则当分配的页面数增加时，缺页中断的次数</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span></p><ul><li><span>A. 增加</span></li><li><span>B. 减少</span></li><li><span>C. 可能增加可能减少</span></li><li><span>D. 不变</span></li></ul><p><em><span>我的答案:</span></em><span> C:可能增加可能减少;</span><em><span>正确答案:</span></em><span> C:可能增加可能减少;</span></p><hr /><p><span>(单选题)在请求分页存储管理中，若采用LRU页面淘汰算法，则当分配的页面数增加时，缺页中断的次数</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>_</span><span>。</span></p><ul><li><span>A. 通常会增加</span></li><li><span>B. 通常会减少</span></li><li><span>C. 可能增加也可能减少</span></li><li><span>D. 不影响</span></li></ul><p><em><span>我的答案:</span></em><span> C:可能增加也可能减少;</span><em><span>正确答案:</span></em><span> B:通常会减少;</span></p><hr /><p><span>(单选题)下面算法中不属于页式虚拟存储管理中的页面调度算法的是（ ）。</span></p><ul><li><span>A. 最近最少使用调度算法</span></li><li><span>B. CLOCK算法</span></li><li><span>C. 优先级调度算法</span></li><li><span>D. LRU算法</span></li></ul><p><em><span>我的答案:</span></em><span> B:CLOCK算法;</span><em><span>正确答案:</span></em><span> C</span></p><hr /><p><span>(单选题) 下面关于存储管理的叙述中正确的是</span></p><ul><li><span>A.  存储保护的目的是限制内存的分配</span></li><li><span>B. 在内存大小为 M、用户个数为 N 的分时系统中，每个用户占用 M/N 大小的内存空间</span></li><li><span>C. 在虚拟内存系统中，只要磁盘空间无限大，作业就能拥有任意大的编址空间</span></li><li><span>D.  实现虚拟内存管理必须有相应的硬件的支持</span></li></ul><p><em><span>我的答案:</span></em><span> D;</span><em><span>正确答案:</span></em><span> D;</span></p><blockquote><p><span>存储保护的目的就是为了保护主存中各区域内的信息不被破坏,它包括存储的权限,存储不可跨越区域等等</span></p></blockquote><hr /><p><span>一请求分页存储系统，一个进程分配的页面数为4，对于如下页面访问顺序：1,2,3,4,5,3,4,1,6,7,8,7,8,9,7,8,9,5,4,5,4,2, 分别使用FIFO，LRU,OPT页面置换算法，分别产生( 填空1 ），（填空2），（填空3）次缺页中断</span></p><p><em><span>正确答案：</span></em><span>(1) 13(2) 13(3) 11</span></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/2c28ddc532dac5a09f0a42c2233541db-2-1024x300.png" referrerpolicy="no-referrer"></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/e18de3f0045ac2dfaaa487f341180a01-1-1024x298.png" referrerpolicy="no-referrer"></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/701e681f811c4c8b91b2779b5582cbfb-1024x269.png" referrerpolicy="no-referrer"></p><hr /><p><span>(判断题)分页存储管理系统中，操作系统可以动态调整页面的大小</span></p><ul><li><span>A. 对</span></li><li><span>B. 错</span></li></ul><p><em><span>我的答案:</span></em><span> 错</span><em><span>正确答案:</span></em><span> 错</span></p><h2 id='io设备课后作业'><span>IO设备课后作业</span></h2><p><span>下面的选项中哪个不是设备驱动程序功能(  )</span></p><ul><li><span>A. 检查用户I/O请求的合法性</span></li><li><span>B. 及时响应由控制器或通道发来的中断请求</span></li><li><span>C. 控制I/O设备的I/O操作</span></li><li><span>D. 了解I/O设备的状态，传送有关参数，设置设备的工作方式</span></li></ul><p><em><span>正确答案:</span></em><span> C</span></p><blockquote><p><span>设备驱动程序的功能包括：</span></p><p><span> 将接收到的抽象要求转换为具体要求。检查用户I/O的合法性，了解设备的状态，传递有关参数，设置设备的工作方式。发出I/O操作命令，启动I/O设备，完成I/O操作。响应通道发来的中断请求，根据中断类型调用相应的中断处理程序。构造通道程序。</span></p></blockquote><hr /><p><span>在系统内存中设置磁盘缓冲区的主要目的是（）</span></p><ul><li><span>A.减少磁盘I/O 次数</span></li><li><span>B.减少平均寻道时间</span></li><li><span>C.提高磁盘数据可靠性</span></li><li><span>D.实现设备无关性</span></li></ul><p><em><span>正确答案:</span></em><span> A</span></p><hr /><p><span>操作系统的I/O子系统通常由四个层次组成，每一层明确定义了与邻近层次的接口。其合理的层次组织排列顺序是（）</span></p><ul><li><span>A. 用户级I/O软件、设备无关软件、设备驱动程序、中断处理程序</span></li><li><span>B.用户级I/O软件、设备无关软件、中断处理程序、设备驱动程序</span></li><li><span>C.用户级I/O软件、设备驱动程序、设备无关软件、中断处理程序</span></li><li><span>D.用户级I/O软件、中断处理程序、设备无关软件、设备驱动程序</span></li></ul><p><em><span>正确答案:</span></em><span> A</span></p><hr /><p><span>设系统缓冲区和用户工作均采单缓冲，从外读入1个数据块到系统缓冲区的时间为100，从系统缓冲区读入 1个数据块到用户工作区的时间为5，对用户工作区中的1个数据块进行分析的时间为90。进程从外设读入并分析2个数据块的最短时间是（  ）</span></p><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/school/204609f6ffdce3ca8d3c46b38abf35ca-1.png" referrerpolicy="no-referrer"></p><ul><li><span>A. 200</span></li><li><span>B. 295</span></li><li><span>C. 300</span></li><li><span>D. 390</span></li></ul><p><em><span>正确答案:</span></em><span> C</span></p><blockquote><p><span>100+5+100+5+90</span></p><p><span>数据块1从外设到用户工作区的总时间为105，在这段时间中，数据块2没有进行操作。在数据块1进行分析处理时，数据块2从外设到用户工作区的总时间为105，这段时间是并行的。再加上数据块2进行处理的时间90，总共是300，答案为C</span></p></blockquote><hr /><p><span>有关SPOOLing系统说法正确的是</span></p><ul><li><span>A. 构成SPOOLing系统的基本条件，是具有外围输入机和外围输出机</span></li><li><span>B. 构成SPOOLing系统的基本条件，是只要操作系统中采用多道程序技术</span></li><li><span>C. 在SPOOLing系统中，用户程序可将输出数据送到输出井中，待输出设备空 闲时再执行数据输出操作</span></li><li><span>D. SPOOLing系统是虚拟存储技术的体现</span></li><li><span>E. SPOOLing系统是在用户程序要读取数据时启动输入进程输入数据</span></li><li><span>F. SPOOLing系统实现了对I/O设备的虚拟，只要输入设备空闲，SPOOLing可预先 将输入数据从设备传送到输入井中供用户程序随时读取</span></li><li><span>G. 当输出设备忙时，SPOOLing系统中的用户程序暂.停执行，待I/O空闲时再被唤醒, 去执行操作</span></li></ul><p><em><span>正确答案:</span></em><span> CF</span></p><h2 id='其他题'><span>其他题</span></h2><p><span>设从磁盘将一块数据传送到缓冲区所用实际为80μs，将缓冲区中数据传送到用户区所用时间为40μs，CPU处理数据所用的时间为3μs。则处理该数据，采用单缓冲传送磁盘数据，系统所用平均总时间（一共传输多块）为（120）。多缓冲为（80）</span></p><blockquote><p><span>max(磁盘到缓冲区，CPU处理) + 缓冲区到用户区 = max(80, 30) + 40 = 120</span></p><p><span>max(磁盘到缓冲区，CPU处理+缓冲区到用户区) = max(80, 43) = 80</span></p></blockquote><hr /><p><span>某文件占10个磁盘块，现要把该文件磁盘块逐个读入主存缓冲区，并送用户区进行分析。假设一个缓冲区与一个磁盘块大小相同，把一个磁盘块读入缓冲区时间为80μs，将缓冲区的数据传送到用户区的时间是60μs，CPU对一块数据进行分析的时间为40μs。在单缓冲区和双缓冲区结构下，读入并分析完该文件的时间分别是（C）。</span></p><ul><li><span>1260μs，840μs</span></li><li><span>1440μs，840μs</span></li><li><span>1440μs，900μs</span></li><li><span>1260μs，900μs</span></li></ul><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.51875px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">单缓冲区总时间=(磁盘写入缓冲区时间+缓冲区读出时间)*磁盘块数+CPU处理最后一块数据的时间=(80+60)*10+40=1440us</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">双缓冲总时间=磁盘写入缓冲区时间*磁盘块数+读出最后一块数据时间+CPU分析最后一块数据时间=80*10+60+40=900us</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 69px;"></div><div class="CodeMirror-gutters" style="display: none; height: 69px;"></div></div></div></pre><hr /><p><span>操作系统--分别用FCFS，SSTF，SCAN，CSCAN算法计算总寻道长度和平均寻道长度例题（详细）：</span><a href='https://blog.csdn.net/weixin_45678463/article/details/111866092'><span>https://blog.csdn.net/weixin</span><span>_</span><span>45678463/article/details/111866092</span></a></p><hr /><p><span>设备和CPU之间的数据传送控制方式：程序直接控制方式，中断控制方式 ，通道方式，DMA方式（直接内存访问）</span></p><hr /><p><span>【填空题】cpu通过( 填空1 ) 和 (填空2) 两种方式读写设备控制器内的寄存器. (知识点位于可在教材上找到)</span></p><p><span>正确答案：</span><em><span>第一空：</span></em><span> IO指令;I/O指令;专门的IO指令;专门I/O指令</span><em><span>第二空：</span></em><span> 内存映射IO;内存映射I/O;内存映像IO</span></p><hr /><p><span>【单选题】设备控制器位于(  )  </span></p><ul><li><em><span>A、</span></em><span>CPU内部</span></li><li><em><span>B、</span></em><span>CPU和IO设备之间</span></li><li><em><span>C、</span></em><span>设备内部</span></li><li><em><span>D、</span></em><span>设备之间</span></li></ul><p><span>正确答案： B :</span></p><hr /><p><span>【单选题】对于IO通道说法正确的是( )</span></p><ul><li><em><span>A、</span></em><span>IO通道是IO和CPU之间的传输通道</span></li><li><em><span>B、</span></em><span>IO通道是IO设备之间的数据传输通道</span></li><li><em><span>C、</span></em><span>IO通道有自己的指令系统</span></li><li><em><span>D、</span></em><span>IO通道有自己的内存</span></li></ul><p><span>正确答案： C </span></p><blockquote><p><span>（1）字节多路通道——可以控制多台低速设备</span></p><p><span>（2）数组选择通道——一段时间内只能接一台高速设备</span></p><p><span>（3）数组多路通道——可连接多台高、中速的外围设备</span></p></blockquote><hr /><p><span>【单选题】硬盘通常被称为（ ）</span></p><ul><li><em><span>A、</span></em><span>字符设备</span></li><li><em><span>B、</span></em><span>块设备</span></li><li><em><span>C、</span></em><span>虚拟设备</span></li><li><em><span>D、</span></em><span>独占设备</span></li></ul><p><span>正确答案： B </span></p><blockquote><p><span>独占设备。进程应互斥地访问这类设备。如打印机、磁带机等。</span></p><p><span>共享设备。是指在一段时间内允许多个进程同时访问的设备。如磁盘。</span></p><p><span>虚拟设备:如本身因有属性为独占设备,但通过虚拟技术将其虚拟为若干台逻辑设备,供若干用户(进程)同时使用。提高设备的利用率。如 虚拟打印机</span></p></blockquote><hr /><p><span>大多数低速设备都属于(A)设备。</span></p><p><span>A.独享         B.共享         C.虚拟    D.SPOOLing</span></p><hr /><p><span>【单选题】DMA方式常用于( )</span></p><ul><li><em><span>A、</span></em><span>少量连续字符传输</span></li><li><em><span>B、</span></em><span>少量不连续字符传输</span></li><li><em><span>C、</span></em><span>大量连续字符块传输</span></li><li><em><span>D、</span></em><span>大量不连续字符块传输</span></li></ul><p><span>正确答案： C; 我的答案：D</span></p><hr /><p><span>【多选题】引入IO缓存的目的是(  )</span></p><ul><li><em><span>A、</span></em><span>缓和CPU和I/O设备间速度不匹配的矛盾</span></li><li><em><span>B、</span></em><span>减少CPU中断的频率</span></li><li><em><span>C、</span></em><span>提高CPU和IO的并行性</span></li><li><em><span>D、</span></em><span>提高总线传输速度</span></li><li><em><span>E、</span></em><span>提高IO处理速度</span></li></ul><p><span>正确答案： ABC  我的答案：AC</span></p><hr /><p><span>【单选题】下面的选项中哪个不是设备驱动程序功能(  )</span></p><ul><li><em><span>A、</span></em><span>检查用户I/O请求的合法性</span></li><li><em><span>B、</span></em><span>及时响应由控制器或通道发来的中断请求</span></li><li><em><span>C、</span></em><span>控制I/O设备的I/O操作</span></li><li><em><span>D、</span></em><span>了解I/O设备的状态，传送有关参数，设置设备的工作方式</span></li></ul><p><span>正确答案： C :;我的答案：C</span></p><blockquote><p><span>设备驱动程序的功能包括：</span></p><p><span> 将接收到的抽象要求转换为具体要求。检查用户I/O的合法性，了解设备的状态，传递有关参数，设置设备的工作方式。发出I/O操作命令，启动I/O设备，完成I/O操作。响应通道发来的中断请求，根据中断类型调用相应的中断处理程序。构造通道程序。</span></p></blockquote><hr /><p><span>【多选题】SPOOLing技术构成的一个系统包括以下哪些部分(  )</span></p><ul><li><em><span>A、</span></em><span>磁盘上的IO井</span></li><li><em><span>B、</span></em><span>内存中的IO缓冲区</span></li><li><em><span>C、</span></em><span>IO进程</span></li><li><em><span>D、</span></em><span>井管理程序</span></li><li><em><span>E、</span></em><span>IO控制器</span></li></ul><p><span>我的答案：ABCD</span></p><hr /><p><span>【填空题】平均寻道时间较短,但容易产生饥饿现象的调度算法是( 填空1 ) , 磁臂始终朝一个方向运动的调度算法是( 填空2 ), 能避免&quot;磁臂粘着&quot;的调度算法是( 填空3 )</span></p><p><span>请选择ABCDE  填空</span></p><p><span>A : FIFO   B:  SSTF   C : SCAN   D: CSCAN   E: N-STEP-SCAN</span></p><p><span>我的答案：</span><em><span>第一空：</span></em><span> B</span><em><span>第二空：</span></em><span> A</span><em><span>第三空：</span></em><span> C</span></p><h2 id='文件系统'><span>文件系统</span></h2><p><span>【单选题】对索引文件的索引表的说法正确的是( )       </span></p><ul><li><em><span>A、</span></em><span>建立索引表的目的的减小存储空间</span></li><li><em><span>B、</span></em><span>索引表中包含文件的数据及其物理地址</span></li><li><em><span>C、</span></em><span>对索引文件存取时, 必须先查找索引表</span></li><li><em><span>D、</span></em><span>索引表中的每个记录的索引项可以有多个</span></li></ul><p><span>正确答案： C </span></p><hr /><p><span>【判断题】索引顺序文件可以不用对所有的记录索引, 而索引非顺序文件必须为每个记录建立一个索引项</span></p><p><span>正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】索引文件对记录关键字和主文件记录都进行了排序,所以检索速度比顺序文件更快</span><br/><span>正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>没有对主文件记录排序</span></p></blockquote><hr /><p><span>【判断题】流式文件中的数据格式(如音乐文件)在不同的操作系统中(比如UNIX和Windows)是不一样的</span><br/><span>正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><blockquote><p><span>流式文件没有格式, 都是作为数据处理</span></p></blockquote><hr /><p><span>【单选题】磁盘的索引结点的引入是为了（  ）</span></p><ul><li><em><span>A、</span></em><span>减小FCB占用的空间</span></li><li><em><span>B、</span></em><span>减少文件占用空间</span></li><li><em><span>C、</span></em><span>离散存储文件</span></li><li><em><span>D、</span></em><span>减少磁盘碎片</span></li></ul><p><span>正确答案： A </span></p><hr /><p><span>【判断题】FCB的有序集合 被称为文件目录</span><br/><span>正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><hr /><p><span>【判断题】文件的显式链接存放方式比隐式链接方式更可靠</span><br/><span>正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><blockquote><p><span>都存在断链无法访问的情况, 隐式链接的链条存放在文件本身， 显示链接的链条存放在FAT表，一个是FAT表块坏了断链，一个是文件磁盘块坏了断链</span></p></blockquote><hr /><p><span>【判断题】读取文件时,显式链接比隐式链接更快</span><br/><span>正确答案：</span><em><span>√</span></em><span> 我的答案：</span><em><span>√</span></em></p><blockquote><p><span>显式链接的FAT表可以存放到内存中</span></p></blockquote><h2 id='外部空间管理'><span>外部空间管理</span></h2><p><span>【单选题】有关顺序文件的说法正确的是(  )</span></p><ul><li><em><span>A、</span></em><span>顺序文件也称为连续文件</span></li><li><em><span>B、</span></em><span>顺序文件是按关键字排序的</span></li><li><em><span>C、</span></em><span>顺序文件的逻辑次序和物理次序一定相同</span></li><li><em><span>D、</span></em><span>顺序文件存储时逻辑相邻的记录物理上也相邻</span></li></ul><p><span>正确答案： C </span></p><hr /><p><span>【单选题】文件信息的逻辑块号到物理块号的转换主要是由文件的( )决定的</span></p><ul><li><em><span>A、</span></em><span>逻辑结构</span></li><li><em><span>B、</span></em><span>顺序结构</span></li><li><em><span>C、</span></em><span>索引结构</span></li><li><em><span>D、</span></em><span>物理结构</span></li></ul><p><span>正确答案： D </span></p><hr /><p><span>【判断题】磁盘文件连续分配会存在外零头, 采用紧凑, 可以提高文件处理效率</span><br/><span>正确答案：</span><em><span>×</span></em><span> 我的答案：</span><em><span>×</span></em></p><blockquote><p><span>不管是否”紧凑”, 都是连续分配, 效率一样. 紧凑, 挪出大空间</span></p></blockquote></div></div>
+
+<script>(function(){var e=document.body.parentElement,t=[],n=null,i=document.body.classList.contains("typora-export-collapse-outline"),r=function(e,t,n){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var i=e.target;i&&i!=this;i=i.parentNode)if(i.matches(t)){!1===n.call(i,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)};function o(){return e.scrollTop}r("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),d(),!1}),r("click",".outline-item",function(e){var t=this.querySelector(".outline-label");if(location.hash="#"+t.getAttribute("href"),i){var n=this.closest(".outline-item-wrapper").classList;n.contains("outline-item-open")||n.add("outline-item-open"),c(),n.add("outline-item-active")}});var a,s,l=function(){var e=o();n=null;for(var i=0;i<t.length&&t[i][1]-e<60;i++)n=t[i]},c=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},d=function(){if(n){c();var e=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(n[0]):n[0])+'"]');if(e)if(i){var t=e.closest(".outline-item-open>ul>.outline-item-wrapper");if(t)t.classList.add("outline-item-active");else{for(var r=(e=e.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");r;)r=(e=r).parentElement.closest(".outline-item-wrapper");e.classList.add("outline-item-active")}}else e.closest(".outline-item-wrapper").classList.add("outline-item-active")}};window.addEventListener("scroll",function(e){a&&clearTimeout(a),a=setTimeout(function(){l(),d()},300)});var u=function(){s=setTimeout(function(){!function(){t=[];var e=o();document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(n=>{var i=n.getAttribute("id");t.push([i,e+n.getBoundingClientRect().y])})}(),l(),d()},300)};window.addEventListener("resize",function(e){s&&clearTimeout(s),u()}),u()})();</script></body>
+</html>
