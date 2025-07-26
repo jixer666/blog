@@ -205,6 +205,66 @@ docker run -d --name zookeeper --privileged=true -p 2181:2181  -v /lijunxi/zooke
 :/data -v /lijunxi/zookeeper/conf:/conf -v /lijunxi/zookeeper/logs:/datalog zookeeper
 ```
 
+## Jenkins
+
+| **Jenkins 版本**    | **最低 JDK 要求** | **推荐 JDK 版本** | **兼容性说明**                   |
+| :------------------ | :---------------- | :---------------- | :------------------------------- |
+| Jenkins 2.428 (LTS) | JDK 11            | JDK 17            | 从 2.357 起不再支持 JDK 8。      |
+| Jenkins 2.346 (LTS) | JDK 8             | JDK 11            | 最后一个支持 JDK 8 的 LTS 版本。 |
+| Jenkins 2.164+      | JDK 8             | JDK 11            | 支持 JDK 8/11，但推荐 JDK 11。   |
+| Jenkins 2.361+      | JDK 11            | JDK 17            | 停止对 JDK 8 的官方支持。        |
+| Jenkins 2.387+      | JDK 11            | JDK 17            | 新增对 JDK 17 的正式支持。       |
+
+Docker 下载
+
+```bash
+docker pull jenkins/jenkins:2.346.1-lts
+```
+
+启动
+
+```bash
+docker run -d \
+  --name jenkins \
+  -p 8080:8080 -p 50000:50000 \
+  -v /usr/bin/lijunxi/jenkins:/var/jenkins_home \
+  -v $(which docker):/usr/bin/docker \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -u 0 \
+  --restart=on-failure:3 \
+  jenkins/jenkins:2.346.1-lts
+```
+
+管理员账号：jixer666jenkins jixer666jenkins
+
+## Gitlab
+
+Docker 下载
+
+```bash
+docker pull gitlab/gitlab-ce:latest
+```
+
+启动
+
+```bash
+docker run \
+ -itd  \
+ -p 9980:80 \
+ -p 9922:22 \
+ -v /home/gitlab/etc:/etc/gitlab  \
+ -v /home/gitlab/log:/var/log/gitlab \
+ -v /home/gitlab/opt:/var/opt/gitlab \
+ --restart always \
+ --privileged=true \
+ --name gitlab \
+ gitlab/gitlab-ce
+```
+
+
+
+
+
 ## 部署项目
 
 ### Nginx 配置

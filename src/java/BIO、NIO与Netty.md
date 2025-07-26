@@ -263,7 +263,7 @@ ello:5A hello:6A
 
 Boss 线程组只有一个线程，用于监听 Accept 事件。Worker 线程组有多个线程，用于监听 Read 和 Write 事件
 
-![https://gitee.com/lijunxi666/picture-bed/raw/master/netty/Snipaste_2025-07-06_14-03-53.png](https://gitee.com/lijunxi666/picture-bed/raw/master/netty/Snipaste_2025-07-06_14-03-53.png)			
+![https://gitee.com/lijunxi666/picture-bed/raw/master/netty/Snipaste_2025-07-06_14-03-53.png](https://gitee.com/lijunxi666/picture-bed/raw/master/netty/Snipaste_2025-07-06_14-03-53.png)
 
 2、EvenLoop 事件循环
 
