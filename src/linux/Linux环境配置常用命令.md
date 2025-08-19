@@ -303,6 +303,8 @@ scp -r D:\Springboot\Springboot项目\blog\blog-server\target\blog-server-1.0-SN
 
 ### 运行 SpringBoot 项目
 
+**普通方法**
+
 运行 jar 包并输出日志文件，日志文件会按照10mb大小为一个文件保存
 
 ```bash
@@ -320,3 +322,28 @@ ps aux | grep "java -jar"
 ```bash
 kill -9 xxx
 ```
+
+**Docker 部署**
+
+编写 Dockerfile 文件
+
+```dockerfile
+FROM  openjdk:8
+VOLUME /usr/bin/lijunxi/test
+ADD project-admin.jar project-admin.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/project-admin.jar"]
+```
+
+构建镜像
+
+```bash
+docker build -t archive-demo .
+```
+
+运行
+
+```bash
+docker run -d -p 8080:8080 --name archive-demo archive-demo
+```
+
