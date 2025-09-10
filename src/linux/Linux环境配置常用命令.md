@@ -72,6 +72,8 @@ docker -v
 docker info
 ```
 
+对于 Windows 版本，常出现的问题已经以及解决方案：https://blog.csdn.net/cplvfx/article/details/138033c2
+
 ## MySQL
 
 Docker 下载
@@ -261,9 +263,9 @@ docker run \
  gitlab/gitlab-ce
 ```
 
+gitlab 默认账号：root
 
-
-
+gitlab 默认密码：/etc/gitlab/initial_root_password
 
 ## 部署项目
 
