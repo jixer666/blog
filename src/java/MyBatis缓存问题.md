@@ -56,7 +56,7 @@ public void deleteImMessage(String msgId, String uid) {
 生效条件：
 
 - 必须是同一个会话（`sqlsession`）
-- xxxxxxxxxx public class Main {    public static void main(String[] args) {        Context context = new Context();        context.setObj(3);        ContextHolder.set(context);​        ContextHolderUtil.run(() -> {            Context context1 = ContextHolder.getIsNotNull();            context1.setObj(2);            System.out.println(ContextHolder.get().getObj());        }).needNew().go();​        System.out.println(ContextHolder.get());​        ContextHolderUtil.run(() -> {            Context context1 = ContextHolder.getIsNotNull();            context1.setObj(1);            System.out.println(ContextHolder.get().getObj());        }).needNew().go();​        System.out.println(ContextHolder.get());    }}java
+- 调用的查询方法是一个
 - 在两次或者多次查询过程中间没有更新、插入和删除的操作
 
 原理：每一次查询都会先去查询是否有缓存，若无缓存，就会去执行 sql 语句，执行后会放入一个 `CacheKey` 为 key，执行结果为 value 的 map 中，代码如下：
