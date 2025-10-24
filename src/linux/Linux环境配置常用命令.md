@@ -267,6 +267,40 @@ gitlab 默认账号：root
 
 gitlab 默认密码：/etc/gitlab/initial_root_password
 
+## Elasticsearch
+
+创建网络
+
+```bash
+docker network create es-net
+```
+
+拉取镜像
+
+```bash
+docker pull elasticsearch:6.5.4
+```
+
+启动
+
+```bash
+docker run -d --restart=no --name es --network es-net -p 9200:9200 -p 9300:9300 --privileged -v /d/environment/elasticsearch/data:/usr/share/elasticsearch/data -v /d/environment/elasticsearch/plugins:/usr/share/elasticsearch/plugins -e "discovery.type=single-node" -e "ES_JAVA_OPTS=-Xms512m -Xmx512m" -e "xpack.security.enabled=false" elasticsearch:6.5.4
+```
+
+## Kibana
+
+拉取镜像
+
+```bash
+docker pull kibana:6.5.4
+```
+
+启动
+
+```bash
+docker run -d --name kibana -e ELASTICSEARCH_HOSTS=http://es:9200 --network=es-net -p 5601:5601 kibana:6.5.4
+```
+
 ## 部署项目
 
 ### Nginx 配置
