@@ -301,6 +301,36 @@ docker pull kibana:6.5.4
 docker run -d --name kibana -e ELASTICSEARCH_HOSTS=http://es:9200 --network=es-net -p 5601:5601 kibana:6.5.4
 ```
 
+## Zipkin
+
+拉取镜像
+
+```bash
+docker pull openzipkin/zipkin
+```
+
+启动
+
+内存存储
+
+```bash
+docker run -d -p 9411:9411 --name zipkin openzipkin/zipkin
+```
+
+MySQL 存储
+
+```bash
+docker run -d -p 9411:9411 -e STORAGE_TYPE=mysql -e MYSQL_HOST=127.0.0.1:3306 -e MYSQL_USER=root -e MYSQL_PASS=123456 -e MYSQL_DB=zipkin --name zipkin-mysql openzipkin/zipkin
+```
+
+ES 存储
+
+```bash
+docker run -d -p 9411:9411 -e STORAGE_TYPE=elasticsearch  -e ES_HOSTS=http://elasticsearch:9200 --name zipkin-es openzipkin/zipkin
+```
+
+
+
 ## 部署项目
 
 ### Nginx 配置
