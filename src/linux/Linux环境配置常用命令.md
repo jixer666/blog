@@ -237,6 +237,10 @@ docker run -d \
   jenkins/jenkins:2.346.1-lts
 ```
 
+```bash
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v D:/environment/jenkins:/var/jenkins_home -v D:/docker/resources/bin/docker.exe:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -u 0 --restart=on-failure:3 jenkins/jenkins:2.479.1
+```
+
 管理员账号：jixer666jenkins jixer666jenkins
 
 ## Gitlab
@@ -265,7 +269,7 @@ docker run \
 
 gitlab 默认账号：root
 
-gitlab 默认密码：/etc/gitlab/initial_root_password
+gitlab 默认密码：/etc/gitlab/initial_root_password，自定义后的密码为：Ljx20021106..
 
 ## Elasticsearch
 
