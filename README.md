@@ -15,3 +15,4 @@ blog
 http://htmlpreview.github.io/?
 ```
 
+图床地址：https://gitee.com/lijunxi666/picture-bed
