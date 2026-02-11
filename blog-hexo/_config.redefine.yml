@@ -1,0 +1,30 @@
+info:
+  title: Jixer的小屋
+  author: Jixer
+  url:
+
+defaults:
+  avatar: http://q1.qlogo.cn/g?b=qq&nk=2770063826&s=100
+  favicon: http://43.143.14.69:9000/common/logo/favicon.ico
+  logo: 
+
+home_banner:
+  title: Jixer的小屋
+  social_links:
+    enable: true
+    links:
+      github: https://github.com/jixer666
+
+navbar:
+  links:
+    分类:
+      icon: fa-solid fa-folder
+      path: /categories/
+
+articles:
+  word_count:
+    enable: true
+  author_label:
+    auto: true
+
+
