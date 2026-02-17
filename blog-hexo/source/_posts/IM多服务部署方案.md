@@ -1,10 +1,11 @@
 ---
-title: Jenkins+Gitlab自动化部署
+title: IM多服务部署方案
 date: 2026-2-11 20:46:01
 tags: ["Java", "Netty"]
 category: 工作
 thumbnail: 
 sticky: 
+layout: docs 
 ---
 
 # 需求背景

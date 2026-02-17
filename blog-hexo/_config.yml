@@ -4,9 +4,9 @@
 
 # Site
 title: Jixer的小屋
-subtitle: ''
-description: 'Never Give Up'
-keywords: '博客'
+subtitle: Never Give Up
+description: Never Give Up
+keywords: 博客,Jixer的小屋
 author: Jixer
 language: zh-CN
 timezone: 'Asia/Shanghai'
@@ -98,8 +98,12 @@ ignore:
 ## Themes: https://hexo.io/themes/
 # theme: landscape
 theme: redefine
+# theme: volantis
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+
+all_minifier: true

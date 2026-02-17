@@ -1,0 +1,10 @@
+navbar:
+  visiable: auto
+  logo: 
+    img: 
+    icon: http://43.143.14.69:9000/common/logo/favicon.ico
+    title: Jixer的小屋
+  menu:
+    - name: 博客
+      icon: fa-solid fa-rss
+      url: /

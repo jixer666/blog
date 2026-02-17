@@ -1,7 +1,8 @@
 info:
   title: Jixer的小屋
   author: Jixer
-  url:
+  subtitle: Never Give Up
+  url: http://blog.jixer.top
 
 defaults:
   avatar: http://q1.qlogo.cn/g?b=qq&nk=2770063826&s=100
@@ -28,3 +29,8 @@ articles:
     auto: true
 
 
+footer:
+  start: 2026/2/8
+  icp:
+    enable: true
+    number: 蜀ICP备2026006693号
