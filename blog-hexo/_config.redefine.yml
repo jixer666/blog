@@ -21,6 +21,14 @@ navbar:
     分类:
       icon: fa-solid fa-folder
       path: /categories/
+  search:
+    enable: true          # 确保这是 true
+    type: local           # 使用本地搜索
+    path: /search.xml     # 注意开头的斜杠
+    field: all            # 或 post
+    content: true
+    limit: 10
+
 
 articles:
   word_count:
@@ -34,3 +42,11 @@ footer:
   icp:
     enable: true
     number: 蜀ICP备2026006693号
+
+
+
+
+global:
+  website_counter:
+    enable: false
+    url: http://127.0.0.1:15000/api/rr.js
