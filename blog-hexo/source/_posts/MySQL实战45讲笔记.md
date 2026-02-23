@@ -112,3 +112,88 @@ select f1, f2 from user where email = 'xxx';
 要保证选用的前缀索引能够具有区分性，尽量不要出现太多相同，否则会多扫描几次表 + 回表。例如身份证这个字段，就可以使用前缀索引，但存储的时候需要倒序存储
 
 前缀索引无法和覆盖索引一起使用，无论设置的长度是多少，即使已经包含了整个字段，但是只要设置了长度就不行，都会再索引树上查询出 ID 后，进行回表一次查询具体的数据
+
+## 刷盘机制和IO调优
+
+刷盘是将内存中脏数据页写入到磁盘的过程，刷盘的时机：
+
+- redo log 满了
+- 内存满了，需要将部分数据页淘汰，若淘汰的数据页是脏页，就需要刷盘
+- MySQL 空闲的时候
+- MySQL 关闭的时候
+
+**注意：当 redo log 写满了或者脏页比例太高 MySQL 所有的查询和更新操作，会影响性能**
+
+MySQL 的刷盘是由 `innodb_io_capacity` 控制的，它的大小取值和电脑磁盘 IOPS 有关，在 Linux 可以通过命令查看
+
+```bash
+fio -filename=$filename -direct=1 -iodepth 1 -thread -rw=randrw -ioengine=psync -bs=16k -size=500M -numjobs=10 -runtime=10 -group_reporting -name=mytest
+```
+
+笔者电脑输出如下：
+
+```bash
+mytest: (g=0): rw=randrw, bs=(R) 16.0KiB-16.0KiB, (W) 16.0KiB-16.0KiB, (T) 16.0KiB-16.0KiB, ioengine=psync, iodepth=1
+...
+fio-3.7
+Starting 10 threads
+mytest: Laying out IO file (1 file / 500MiB)
+Jobs: 1 (f=1): [m(1),_(9)][100.0%][r=174MiB/s,w=172MiB/s][r=11.1k,w=11.0k IOPS][eta 00m:00s]
+mytest: (groupid=0, jobs=10): err= 0: pid=1607: Mon Feb 23 20:31:15 2026
+   read: IOPS=19.0k, BW=312MiB/s (327MB/s)(2500MiB/8012msec)       // 重点看着，读IOPS
+    clat (usec): min=23, max=28076, avg=180.49, stdev=618.98
+     lat (usec): min=23, max=28076, avg=180.59, stdev=619.10
+    clat percentiles (usec):
+     |  1.00th=[   49],  5.00th=[   62], 10.00th=[   68], 20.00th=[   84],
+     | 30.00th=[   91], 40.00th=[  104], 50.00th=[  115], 60.00th=[  128],
+     | 70.00th=[  139], 80.00th=[  157], 90.00th=[  210], 95.00th=[  297],
+     | 99.00th=[ 1352], 99.50th=[ 3425], 99.90th=[10159], 99.95th=[13173],
+     | 99.99th=[19268]
+   bw (  KiB/s): min= 5523, max=90627, per=12.06%, avg=38528.03, stdev=24139.07, samples=117
+   iops        : min=  345, max= 5664, avg=2407.66, stdev=1508.63, samples=117
+  write: IOPS=19.0k, BW=312MiB/s (327MB/s)(2500MiB/8012msec)       // 重点看着，写IOPS
+    clat (usec): min=29, max=39211, avg=201.08, stdev=664.45
+     lat (usec): min=29, max=39211, avg=201.41, stdev=665.09
+    clat percentiles (usec):
+     |  1.00th=[   60],  5.00th=[   67], 10.00th=[   77], 20.00th=[   92],
+     | 30.00th=[  109], 40.00th=[  122], 50.00th=[  137], 60.00th=[  147],
+     | 70.00th=[  161], 80.00th=[  180], 90.00th=[  231], 95.00th=[  318],
+     | 99.00th=[ 1434], 99.50th=[ 3654], 99.90th=[10814], 99.95th=[14091],
+     | 99.99th=[20055]
+   bw (  KiB/s): min= 5792, max=88247, per=12.08%, avg=38590.79, stdev=24139.00, samples=117
+   iops        : min=  362, max= 5515, avg=2411.57, stdev=1508.64, samples=117
+  lat (usec)   : 50=0.82%, 100=30.44%, 250=61.06%, 500=5.44%, 750=0.72%
+  lat (usec)   : 1000=0.27%
+  lat (msec)   : 2=0.47%, 4=0.34%, 10=0.33%, 20=0.11%, 50=0.01%
+  cpu          : usr=1.34%, sys=21.22%, ctx=302541, majf=0, minf=25
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=159977,160023,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+   READ: bw=312MiB/s (327MB/s), 312MiB/s-312MiB/s (327MB/s-327MB/s), io=2500MiB (2621MB), run=8012-8012msec
+  WRITE: bw=312MiB/s (327MB/s), 312MiB/s-312MiB/s (327MB/s-327MB/s), io=2500MiB (2622MB), run=8012-8012msec
+
+Disk stats (read/write):
+    dm-0: ios=159349/159405, merge=0/0, ticks=11523/11832, in_queue=23382, util=97.24%, aggrios=159977/160023, aggrmerge=0/0, aggrticks=11442/11810, aggrin_queue=23163, aggrutil=96.78%
+  sda: ios=159977/160023, merge=0/0, ticks=11442/11810, in_queue=23163, util=96.78%
+```
+
+总 IOPS ≈ 38000（读写各19000）
+
+MySQL 的配置 `my.cnf` 参考取值
+
+```ini
+[mysqld]
+innodb_io_capacity = 25000  -- 实际IOPS的60-70%
+innodb_io_capacity_max = 60000   -- 压测出的磁盘物理极限值（或者略低一点）
+```
+
+另一个概念：**连坐刷盘**
+
+当刷盘的脏数据页旁边也是脏页，也会根据 `innodb_flush_neighbors` 设置的值进行 '连坐'，若旁边的旁边也是脏页，也会刷盘，一直这么连坐下去。值为1就是连坐，为0就不会，取值参考如下：
+
+- HDD 时代（机械硬盘）： 建议设置为 1。利用顺序写减少磁头寻道，提升性能。
+- SSD 时代（固态硬盘）： 建议设置为 0。SSD 的随机 IO 性能极强，不需要“连坐”，只刷脏页本身能减少响应延迟，MySQL 默认值
