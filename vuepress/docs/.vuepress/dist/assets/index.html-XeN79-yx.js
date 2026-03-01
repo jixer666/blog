@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./app-B9IyngIV.js";const n={};function c(r,o){return a(),t("div")}const i=e(n,[["render",c]]),_=JSON.parse('{"path":"/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/","title":"","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"消息队列/index.md"}');export{i as comp,_ as data};

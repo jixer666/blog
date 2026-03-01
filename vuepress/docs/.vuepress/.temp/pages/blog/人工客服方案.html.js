@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/blog/人工客服方案.html.vue"
+const data = JSON.parse("{\"path\":\"/blog/%E4%BA%BA%E5%B7%A5%E5%AE%A2%E6%9C%8D%E6%96%B9%E6%A1%88.html\",\"title\":\"人工客服方案\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":3,\"title\":\"方案\",\"slug\":\"方案\",\"link\":\"#方案\",\"children\":[]},{\"level\":3,\"title\":\"WebSocket 连接过程\",\"slug\":\"websocket-连接过程\",\"link\":\"#websocket-连接过程\",\"children\":[]},{\"level\":3,\"title\":\"两种 Websocket 实现对比\",\"slug\":\"两种-websocket-实现对比\",\"link\":\"#两种-websocket-实现对比\",\"children\":[]},{\"level\":2,\"title\":\"基础功能\",\"slug\":\"基础功能\",\"link\":\"#基础功能\",\"children\":[{\"level\":3,\"title\":\"用户\",\"slug\":\"用户\",\"link\":\"#用户\",\"children\":[]},{\"level\":3,\"title\":\"客服\",\"slug\":\"客服\",\"link\":\"#客服\",\"children\":[]}]},{\"level\":2,\"title\":\"拓展功能\",\"slug\":\"拓展功能\",\"link\":\"#拓展功能\",\"children\":[]},{\"level\":2,\"title\":\"技术优化实现\",\"slug\":\"技术优化实现\",\"link\":\"#技术优化实现\",\"children\":[{\"level\":3,\"title\":\"混合传输模式\",\"slug\":\"混合传输模式\",\"link\":\"#混合传输模式\",\"children\":[]},{\"level\":3,\"title\":\"心跳检测机制\",\"slug\":\"心跳检测机制\",\"link\":\"#心跳检测机制\",\"children\":[]},{\"level\":3,\"title\":\"重试机制\",\"slug\":\"重试机制\",\"link\":\"#重试机制\",\"children\":[]},{\"level\":3,\"title\":\"消息确认机制\",\"slug\":\"消息确认机制\",\"link\":\"#消息确认机制\",\"children\":[]},{\"level\":3,\"title\":\"自定义二进制协议\",\"slug\":\"自定义二进制协议\",\"link\":\"#自定义二进制协议\",\"children\":[]}]},{\"level\":2,\"title\":\"参考文章\",\"slug\":\"参考文章\",\"link\":\"#参考文章\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"blog/人工客服方案.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

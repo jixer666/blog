@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/algorithm/牛客小白月赛92.html.vue"
+const data = JSON.parse("{\"path\":\"/algorithm/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B92.html\",\"title\":\"牛客小白月赛92\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"获得木头\",\"slug\":\"获得木头\",\"link\":\"#获得木头\",\"children\":[]},{\"level\":2,\"title\":\"采矿时间到！\",\"slug\":\"采矿时间到\",\"link\":\"#采矿时间到\",\"children\":[]},{\"level\":2,\"title\":\"耕种时间到！\",\"slug\":\"耕种时间到\",\"link\":\"#耕种时间到\",\"children\":[]},{\"level\":2,\"title\":\"探索的时光\",\"slug\":\"探索的时光\",\"link\":\"#探索的时光\",\"children\":[]},{\"level\":2,\"title\":\"来硬的\",\"slug\":\"来硬的\",\"link\":\"#来硬的\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"algorithm/牛客小白月赛92.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

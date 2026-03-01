@@ -1,0 +1,183 @@
+<template><div><h1 id="jenkins-gitlab-自动化部署" tabindex="-1"><a class="header-anchor" href="#jenkins-gitlab-自动化部署"><span>Jenkins + Gitlab 自动化部署</span></a></h1>
+<div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>2025-12-14</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div>
+<h2 id="环境准备" tabindex="-1"><a class="header-anchor" href="#环境准备"><span>环境准备</span></a></h2>
+<h3 id="jenkins" tabindex="-1"><a class="header-anchor" href="#jenkins"><span>Jenkins</span></a></h3>
+<p>Docker 安装命令：</p>
+<div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre v-pre><code><span class="line"><span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> jenkins <span class="token parameter variable">-p</span> <span class="token number">8080</span>:8080 <span class="token parameter variable">-p</span> <span class="token number">50000</span>:50000 <span class="token parameter variable">-v</span> D:/environment/jenkins:/var/jenkins_home <span class="token parameter variable">-v</span> D:/docker/resources/bin/docker.exe:/usr/bin/docker <span class="token parameter variable">-v</span> /var/run/docker.sock:/var/run/docker.sock <span class="token parameter variable">-u</span> <span class="token number">0</span> <span class="token parameter variable">--restart</span><span class="token operator">=</span>on-failure:3 jenkins/jenkins:2.479.1</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><p>注意：Jenkins 版本选用的是 jenkins:2.479.1，需要 JDK 17 及以上版本</p>
+<h3 id="gitlab" tabindex="-1"><a class="header-anchor" href="#gitlab"><span>Gitlab</span></a></h3>
+<p>Docker安装命令：</p>
+<div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre v-pre><code><span class="line"><span class="token function">docker</span> run <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">-itd</span>  <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">-p</span> <span class="token number">9980</span>:80 <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">-p</span> <span class="token number">9922</span>:22 <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">-v</span> /home/gitlab/etc:/etc/gitlab  <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">-v</span> /home/gitlab/log:/var/log/gitlab <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">-v</span> /home/gitlab/opt:/var/opt/gitlab <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">--restart</span> always <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">--privileged</span><span class="token operator">=</span>true <span class="token punctuation">\</span></span>
+<span class="line"> <span class="token parameter variable">--name</span> gitlab <span class="token punctuation">\</span></span>
+<span class="line"> gitlab/gitlab-ce</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="实现步骤" tabindex="-1"><a class="header-anchor" href="#实现步骤"><span>实现步骤</span></a></h2>
+<p>1、准备好一个 SpringBoot 项目，并推送到 Gitlab 仓库上</p>
+<p>2、Jenkins 在<strong>插件管理</strong>中安装 <code v-pre>Git Parameter</code> 和 <code v-pre>Maven</code> 插件</p>
+<p>3、Jenkins 在<strong>全局工具配置</strong>配置好 JDK 环境（需要准备两个，一个是 SpringBoot 项目的 JDK 版本，一个是 Jenkin 所需的 JDK 17）和 Maven 环境</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-01-38.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-01-38.png"></p>
+<p>4、Jenkins 在<strong>全局凭据</strong>中配置好 Git 的账号和密码认证</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-05-14.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-05-14.png"></p>
+<p>5、Jenkins 创建一个 Maven 项目，修改项目的配置</p>
+<ul>
+<li>
+<p>修改 Git 参数，修改为以 Tag 的形式构建项目</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-06-08.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-06-08.png"></p>
+</li>
+<li>
+<p>添加 Git 仓库地址、认证身份和指定构建的方式</p>
+<p>注意：这里的指定构建方式需要和上面的 Git 参数名称一致</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-07-56.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-07-56.png"></p>
+</li>
+<li>
+<p>添加构建完成后执行的 Shell 脚本命令</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-10-22.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-10-22.png"></p>
+<p>Shell 脚本如下：</p>
+<div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre v-pre><code><span class="line"><span class="token shebang important">#!/bin/bash</span></span>
+<span class="line"><span class="token comment"># Jenkins 部署脚本</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 服务名称</span></span>
+<span class="line"><span class="token assign-left variable">SERVER_NAME</span><span class="token operator">=</span>testdemo</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># jar包名称</span></span>
+<span class="line"><span class="token assign-left variable">JAR_NAME</span><span class="token operator">=</span>testdemo-1.0-SNAPSHOT.jar</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 源jar路径（Maven打包后的目录）</span></span>
+<span class="line"><span class="token assign-left variable">JAR_PATH</span><span class="token operator">=</span>/var/jenkins_home/workspace/testdemo/target</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 运行jar包的目录</span></span>
+<span class="line"><span class="token assign-left variable">JAR_WORK_PATH</span><span class="token operator">=</span>/var/jenkins_home/workspace/testdemo/target</span>
+<span class="line"></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"=== 开始部署 <span class="token variable">$SERVER_NAME</span> ==="</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 1. 检查jar包是否存在</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"1. 检查jar包是否存在..."</span></span>
+<span class="line"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> <span class="token parameter variable">-f</span> <span class="token string">"<span class="token variable">$JAR_PATH</span>/<span class="token variable">$JAR_NAME</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"错误: 找不到jar包 <span class="token variable">$JAR_PATH</span>/<span class="token variable">$JAR_NAME</span>"</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"当前目录内容:"</span></span>
+<span class="line">    <span class="token function">ls</span> <span class="token parameter variable">-la</span> <span class="token variable">$JAR_PATH</span>/</span>
+<span class="line">    <span class="token builtin class-name">exit</span> <span class="token number">1</span></span>
+<span class="line"><span class="token keyword">fi</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"✅ jar包存在: <span class="token variable">$JAR_PATH</span>/<span class="token variable">$JAR_NAME</span>"</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 2. 查找并停止旧进程</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"2. 查询进程id--><span class="token variable">$SERVER_NAME</span>"</span></span>
+<span class="line"><span class="token assign-left variable">PID</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">ps</span> <span class="token parameter variable">-ef</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"<span class="token variable">$JAR_NAME</span>"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $2}'</span><span class="token variable">)</span></span></span>
+<span class="line"></span>
+<span class="line"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$PID</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"得到进程ID: <span class="token variable">$PID</span>"</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"结束进程..."</span></span>
+<span class="line">    </span>
+<span class="line">    <span class="token comment"># 逐个杀死进程</span></span>
+<span class="line">    <span class="token keyword">for</span> <span class="token for-or-select variable">id</span> <span class="token keyword">in</span> <span class="token variable">$PID</span></span>
+<span class="line">    <span class="token keyword">do</span></span>
+<span class="line">        <span class="token builtin class-name">echo</span> <span class="token string">"正在结束进程: <span class="token variable">$id</span>"</span></span>
+<span class="line">        <span class="token function">kill</span> <span class="token parameter variable">-9</span> <span class="token variable">$id</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null</span>
+<span class="line">        <span class="token function">sleep</span> <span class="token number">1</span></span>
+<span class="line">    <span class="token keyword">done</span></span>
+<span class="line">    </span>
+<span class="line">    <span class="token comment"># 确认进程是否已结束</span></span>
+<span class="line">    <span class="token function">sleep</span> <span class="token number">2</span></span>
+<span class="line">    <span class="token assign-left variable">CHECK_PID</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">ps</span> <span class="token parameter variable">-ef</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"<span class="token variable">$JAR_NAME</span>"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $2}'</span><span class="token variable">)</span></span></span>
+<span class="line">    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-z</span> <span class="token string">"<span class="token variable">$CHECK_PID</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span>
+<span class="line">        <span class="token builtin class-name">echo</span> <span class="token string">"✅ 结束进程完成"</span></span>
+<span class="line">    <span class="token keyword">else</span></span>
+<span class="line">        <span class="token builtin class-name">echo</span> <span class="token string">"⚠️ 警告: 仍有进程存活: <span class="token variable">$CHECK_PID</span>"</span></span>
+<span class="line">    <span class="token keyword">fi</span></span>
+<span class="line"><span class="token keyword">else</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"没有找到正在运行的进程"</span></span>
+<span class="line"><span class="token keyword">fi</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 3. 复制jar包（如果不在同一目录）</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"3. 复制jar包到执行目录..."</span></span>
+<span class="line"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$JAR_PATH</span>"</span> <span class="token operator">!=</span> <span class="token string">"<span class="token variable">$JAR_WORK_PATH</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"复制: cp <span class="token variable">$JAR_PATH</span>/<span class="token variable">$JAR_NAME</span> <span class="token variable">$JAR_WORK_PATH</span>/"</span></span>
+<span class="line">    <span class="token function">cp</span> <span class="token variable">$JAR_PATH</span>/<span class="token variable">$JAR_NAME</span> <span class="token variable">$JAR_WORK_PATH</span>/</span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"✅ 复制jar包完成"</span></span>
+<span class="line"><span class="token keyword">else</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"源目录和目标目录相同，跳过复制"</span></span>
+<span class="line"><span class="token keyword">fi</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 4. 切换到工作目录</span></span>
+<span class="line"><span class="token builtin class-name">cd</span> <span class="token variable">$JAR_WORK_PATH</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 5. 修改文件权限</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"4. 修改文件权限..."</span></span>
+<span class="line"><span class="token function">chmod</span> <span class="token number">755</span> <span class="token variable">$JAR_NAME</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"✅ 文件权限已修改"</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 6. 启动应用</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"5. 启动应用..."</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"启动命令: nohup java -jar <span class="token variable">$JAR_NAME</span> &amp;"</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 设置环境变量防止Jenkins杀死进程</span></span>
+<span class="line"><span class="token builtin class-name">export</span> <span class="token assign-left variable">BUILD_ID</span><span class="token operator">=</span>dontKillMe</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 后台启动并记录日志</span></span>
+<span class="line"><span class="token function">nohup</span> <span class="token function">java</span> <span class="token parameter variable">-jar</span> <span class="token variable">$JAR_NAME</span> <span class="token operator">></span> app.log <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 获取新进程ID</span></span>
+<span class="line"><span class="token function">sleep</span> <span class="token number">3</span></span>
+<span class="line"><span class="token assign-left variable">NEW_PID</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">ps</span> <span class="token parameter variable">-ef</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"<span class="token variable">$JAR_NAME</span>"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token function">grep</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'{print $2}'</span><span class="token variable">)</span></span></span>
+<span class="line"></span>
+<span class="line"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-n</span> <span class="token string">"<span class="token variable">$NEW_PID</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"✅ 应用启动成功!"</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"进程ID: <span class="token variable">$NEW_PID</span>"</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"日志文件: <span class="token variable">$JAR_WORK_PATH</span>/app.log"</span></span>
+<span class="line">    </span>
+<span class="line">    <span class="token comment"># 显示最近日志</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"=== 最近日志 ==="</span></span>
+<span class="line">    <span class="token function">tail</span> <span class="token parameter variable">-20</span> app.log</span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"================"</span></span>
+<span class="line"><span class="token keyword">else</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"❌ 应用启动失败!"</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">"查看错误日志:"</span></span>
+<span class="line">    <span class="token function">tail</span> <span class="token parameter variable">-50</span> app.log</span>
+<span class="line">    <span class="token builtin class-name">exit</span> <span class="token number">1</span></span>
+<span class="line"><span class="token keyword">fi</span></span>
+<span class="line"></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">"=== 部署完成 ==="</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></li>
+</ul>
+<p>6、在 Gitlab 中打一个 Tag</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-11-44.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-11-44.png"></p>
+<p>7、在 jenkin 的所创建的 Maven 项目的 <code v-pre>Build with Parameters</code> 一栏就能够看到这个 Git 项目所有的 Tag，根据所需要 tag 版本进行构建即可</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-12-28.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-12-28.png"></p>
+<p>8、构建成功后的日志如图所示，项目会自动运行并且输出的地址也会在日志中显示</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-15-07.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-15-07.png"></p>
+<p>9、验证是否部署成功，项目中的代码如下：</p>
+<div class="language-java line-numbers-mode" data-highlighter="prismjs" data-ext="java"><pre v-pre><code><span class="line"><span class="token annotation punctuation">@RestController</span></span>
+<span class="line"><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/test"</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestController</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token annotation punctuation">@GetMapping</span></span>
+<span class="line">    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span></span>
+<span class="line">        <span class="token keyword">return</span> <span class="token string">"test"</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>通过 <code v-pre> curl http://localhost:15000/test</code> 验证是否输出 <code v-pre>test</code>，输出如图所示，发现成功输出，部署成功</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-16-49.png" alt="https://gitee.com/lijunxi666/picture-bed/raw/master/jenkins+gitlab/Snipaste_2025-12-14_21-16-49.png"></p>
+</div></template>
+
+

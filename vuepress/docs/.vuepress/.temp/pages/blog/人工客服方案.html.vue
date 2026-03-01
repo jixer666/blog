@@ -1,0 +1,368 @@
+<template><div><h1 id="人工客服方案" tabindex="-1"><a class="header-anchor" href="#人工客服方案"><span>人工客服方案</span></a></h1>
+<div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>2025-07-02</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div>
+## 技术选型
+<h3 id="方案" tabindex="-1"><a class="header-anchor" href="#方案"><span>方案</span></a></h3>
+<ul>
+<li>
+<p>**方案一：**沿用项目中已使用的聊天方案：基于 Java EE 的 WebSocket 标准（JSR-356）</p>
+<ul>
+<li>
+<p>优点：</p>
+<p>1、成本低，快速上手</p>
+</li>
+<li>
+<p>缺点：
+1、通常做多只能支持几千个连接，当连接过多会出现资源耗尽、性能降低等问题</p>
+<p>2、心跳检测不完善，无法及时检测断开的连接</p>
+<p>3、没有对用户进行认证、消息确认、消息重试等机制</p>
+<p>4、发送消息是同步阻塞方式，高并发下性能低</p>
+</li>
+</ul>
+</li>
+<li>
+<p>**方案二：**使用 Netty 框架</p>
+<ul>
+<li>
+<p>优点：</p>
+<p>1、采用 NIO 方式，单机最高支持10万+个连接</p>
+<p>2、延迟低、内存占用小</p>
+</li>
+</ul>
+</li>
+<li>
+<p>**方案三：**短轮询</p>
+<ul>
+<li>
+<p>缺点：</p>
+<p>1、会产生大量无效请求</p>
+</li>
+<li>
+<p>适用场景：</p>
+<p>1、扫码登录</p>
+<p>2、客户端使用量不大的情况</p>
+</li>
+</ul>
+</li>
+<li>
+<p>**方案四：**长轮询（请求会长时间挂在服务器端）</p>
+<ul>
+<li>
+<p>缺点：</p>
+<p>1、后端服务器压力大</p>
+<p>2、任然存在无效请求</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="websocket-连接过程" tabindex="-1"><a class="header-anchor" href="#websocket-连接过程"><span>WebSocket 连接过程</span></a></h3>
+<p>客户端会发送一个 http 请求，告诉服务器端要升级为 WebSocket 协议，等握手成功后就能够进行数据双向传输</p>
+<p>首次请求如下所示：</p>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code><span class="line">accept-encoding		gzip, deflate, br, zstd</span>
+<span class="line">accept-language		zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6</span>
+<span class="line">cache-control 		no-cache</span>
+<span class="line">connection			Upgrade   // 升级协议</span>
+<span class="line">upgrade				websocket   // 升级协议</span>
+<span class="line">host				xxxx.xxxx.xxxx</span>
+<span class="line">origin				xxxx.xxxx.xxxx</span>
+<span class="line">pragma				no-cache</span>
+<span class="line">sec-websocket-extensions	permessage-deflate; client_max_window_bits</span>
+<span class="line">sec-websocket-key			O7JM2xKwy+5NInxu2Jmdew==</span>
+<span class="line">sec-websocket-version		13</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="两种-websocket-实现对比" tabindex="-1"><a class="header-anchor" href="#两种-websocket-实现对比"><span>两种 Websocket 实现对比</span></a></h3>
+<p>以下是 Tomcat 实现 WebSocket 与 Netty 在实现 WebSocket 服务时的对比表格：</p>
+<table>
+<thead>
+<tr>
+<th><strong>对比维度</strong></th>
+<th><strong>原生WebSocket (JSR-356)</strong></th>
+<th><strong>Netty</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>协议支持</strong></td>
+<td>仅支持标准WebSocket协议</td>
+<td>支持WebSocket及自定义协议，可扩展其他协议(如MQTT)</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>单机约支持5,000-10,000连接</td>
+<td>单机可支持100,000+连接</td>
+</tr>
+<tr>
+<td><strong>线程模型</strong></td>
+<td>依赖Servlet容器线程模型(阻塞IO)，基于多线程的架构，每个连接都会分配一个线程，适用于处理相对较少的并发连接</td>
+<td>基于Reactor的非阻塞IO模型(多路复用)，使用单线程或少量线程处理大量的并发连接</td>
+</tr>
+<tr>
+<td><strong>内存管理</strong></td>
+<td>普通JVM内存管理</td>
+<td>自带内存池和零拷贝技术</td>
+</tr>
+<tr>
+<td><strong>代码复杂度</strong></td>
+<td>注解驱动，开发简单</td>
+<td>需要理解Channel、Pipeline等概念，学习曲线较陡</td>
+</tr>
+<tr>
+<td><strong>依赖关系</strong></td>
+<td>内置于Java EE/Jakarta EE容器</td>
+<td>需额外引入Netty依赖</td>
+</tr>
+<tr>
+<td><strong>心跳机制</strong></td>
+<td>需手动实现</td>
+<td>内置IdleStateHandler</td>
+</tr>
+<tr>
+<td><strong>SSL支持</strong></td>
+<td>需容器配置</td>
+<td>通过SslHandler快速集成</td>
+</tr>
+<tr>
+<td><strong>集群支持</strong></td>
+<td>需自行实现(如Redis广播)</td>
+<td>可结合多种集群方案(如Zookeeper)</td>
+</tr>
+<tr>
+<td><strong>广播效率</strong></td>
+<td>O(n)遍历发送</td>
+<td>优化的ChannelGroup批量写入</td>
+</tr>
+<tr>
+<td><strong>调试难度</strong></td>
+<td>简单，日志直观</td>
+<td>需理解事件循环机制，调试较复杂</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>中小规模应用(≤1万连接)</td>
+<td>高并发、低延迟、自定义协议场景</td>
+</tr>
+<tr>
+<td><strong>典型QPS</strong></td>
+<td>1万-5万</td>
+<td>10万-100万+</td>
+</tr>
+<tr>
+<td><strong>连接建立速度</strong></td>
+<td>较慢(受限于容器线程池)</td>
+<td>极快(基于NIO)</td>
+</tr>
+<tr>
+<td><strong>内存占用</strong></td>
+<td>较高(每个连接独立Session对象)</td>
+<td>较低(共享ByteBuf内存池)</td>
+</tr>
+<tr>
+<td><strong>与Spring集成</strong></td>
+<td>无缝集成(@ServerEndpoint)</td>
+<td>需手动配置，但Spring有Netty支持包</td>
+</tr>
+<tr>
+<td><strong>长连接保活</strong></td>
+<td>依赖容器实现</td>
+<td>可精细控制(如自定义心跳间隔)</td>
+</tr>
+<tr>
+<td><strong>错误恢复</strong></td>
+<td>自动重连机制有限</td>
+<td>可灵活定制重试策略</td>
+</tr>
+<tr>
+<td><strong>生产案例</strong></td>
+<td>中小型聊天应用、通知服务</td>
+<td>大型IM系统、游戏服务器、金融交易系统</td>
+</tr>
+</tbody>
+</table>
+<h2 id="基础功能" tabindex="-1"><a class="header-anchor" href="#基础功能"><span>基础功能</span></a></h2>
+<h3 id="用户" tabindex="-1"><a class="header-anchor" href="#用户"><span>用户</span></a></h3>
+<p>供应商平台，右下角点击客服，弹出一个小窗口，大致效果如下图所示</p>
+<p>聊天顺序：</p>
+<ul>
+<li>先是 AI 聊天，此时只能发送文本消息，AI 能够根据后台上传好的文档（Word、PDF 等）来进行回答。若用户的问题得不到解决，可以点击转人工</li>
+<li>然后是人工聊天，此时可以发送文本消息、文件等</li>
+</ul>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/customer-service/image-20250701153908197.png" alt="image-20250701153908197"></p>
+<h3 id="客服" tabindex="-1"><a class="header-anchor" href="#客服"><span>客服</span></a></h3>
+<p>在自建平台或者供应商平台新增一个页面，大致效果如下图所示</p>
+<p>一般来说是由用户来主动连接，系统来给用户找一个在线的客服（轮训算法），该客服页面左侧就会新增一栏新的聊天记录</p>
+<p>客服也能够对用户发送文本消息、文件等</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/customer-service/image-20250701155551095.png" alt="image-20250701155551095"></p>
+<h2 id="拓展功能" tabindex="-1"><a class="header-anchor" href="#拓展功能"><span>拓展功能</span></a></h2>
+<ul>
+<li>消息撤回功能（2分钟内可撤回）</li>
+<li>客服快捷回复模板</li>
+<li>热点问题分析看板</li>
+<li>客服工单、用户打分</li>
+<li>等等</li>
+</ul>
+<h2 id="技术优化实现" tabindex="-1"><a class="header-anchor" href="#技术优化实现"><span>技术优化实现</span></a></h2>
+<h3 id="混合传输模式" tabindex="-1"><a class="header-anchor" href="#混合传输模式"><span>混合传输模式</span></a></h3>
+<p>Websocket 采用二进制帧进行数据传输</p>
+<ul>
+<li>对于文本内容，发送方先转为 JSON 格式，再进行传输；接收方将 JSON 格式转为 Java对象</li>
+<li>对于文件，文件拆分成多个分片，分开传输（解决大文件传输过慢的问题）</li>
+</ul>
+<h3 id="心跳检测机制" tabindex="-1"><a class="header-anchor" href="#心跳检测机制"><span>心跳检测机制</span></a></h3>
+<p>作用：保证服务端和客服端的连接的稳定性</p>
+<p>在正常情况下，用户可以主动的关闭浏览器来关闭与服务器端的连接。但在异常情况下，如果用户的浏览器突然崩溃、网络中断或者关闭页面时，前端无法发送断开请求，服务端也无法及时感知到客户端已经下线</p>
+<p>有两种心跳机制，应用层 HEARTBEAT 消息或者 TCP 层 Ping/Pong）来实现 WebSocket 连接的健康检查</p>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>协议层(Ping/Pong)</th>
+<th>应用层(HEARTBEAT)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>兼容性</td>
+<td>所有WebSocket实现</td>
+<td>需客户端配合协议</td>
+</tr>
+<tr>
+<td>网络开销</td>
+<td>2字节（帧头）</td>
+<td>消息体+解析成本</td>
+</tr>
+<tr>
+<td>实现复杂度</td>
+<td>Netty自动处理</td>
+<td>需手动编码</td>
+</tr>
+<tr>
+<td>跨语言支持</td>
+<td>通用</td>
+<td>需各客户端适配</td>
+</tr>
+</tbody>
+</table>
+<p>推荐使用 Ping/Pong 来实现心跳检测</p>
+<h3 id="重试机制" tabindex="-1"><a class="header-anchor" href="#重试机制"><span>重试机制</span></a></h3>
+<p>重试机制在客户端设置，服务端不主动进行重试</p>
+<h3 id="消息确认机制" tabindex="-1"><a class="header-anchor" href="#消息确认机制"><span>消息确认机制</span></a></h3>
+<p>流程时序图如下：</p>
+<div class="language-mermaid line-numbers-mode" data-highlighter="prismjs" data-ext="mermaid"><pre v-pre><code><span class="line"><span class="token keyword">sequenceDiagram</span></span>
+<span class="line">    <span class="token keyword">participant</span> Client</span>
+<span class="line">    <span class="token keyword">participant</span> Server</span>
+<span class="line">    Client<span class="token arrow operator">->></span>Server<span class="token operator">:</span> 发送消息<span class="token text string">(msgId=ABC)</span></span>
+<span class="line">    Server<span class="token arrow operator">->></span>Server<span class="token operator">:</span> 处理业务逻辑</span>
+<span class="line">    Server<span class="token arrow operator">->></span>Client<span class="token operator">:</span> 返回ACK<span class="token text string">(msgId=ABC)</span></span>
+<span class="line">    Client<span class="token arrow operator">->></span>Client<span class="token operator">:</span> 收到ACK后标记消息成功</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>可参考的 JSON 格式：</p>
+<div class="language-json line-numbers-mode" data-highlighter="prismjs" data-ext="json"><pre v-pre><code><span class="line"><span class="token comment">// 客户端发送消息</span></span>
+<span class="line"><span class="token punctuation">{</span></span>
+<span class="line">  <span class="token property">"msgId"</span><span class="token operator">:</span> <span class="token string">"123e4567-e89b-12d3-a456-426614174000"</span><span class="token punctuation">,</span> <span class="token comment">// UUID</span></span>
+<span class="line">  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"chat"</span><span class="token punctuation">,</span></span>
+<span class="line">  <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span></span>
+<span class="line">  <span class="token property">"timestamp"</span><span class="token operator">:</span> <span class="token number">1620000000</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment">// 服务端确认响应</span></span>
+<span class="line"><span class="token punctuation">{</span></span>
+<span class="line">  <span class="token property">"msgId"</span><span class="token operator">:</span> <span class="token string">"123e4567-e89b-12d3-a456-426614174000"</span><span class="token punctuation">,</span> <span class="token comment">// 原消息ID</span></span>
+<span class="line">  <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"ack"</span><span class="token punctuation">,</span></span>
+<span class="line">  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span> <span class="token comment">// success/failure</span></span>
+<span class="line">  <span class="token property">"timestamp"</span><span class="token operator">:</span> <span class="token number">1620000001</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>由 status 标志是否成功，若消息接收失败，则失败的场景以及处理策略如下：</p>
+<table>
+<thead>
+<tr>
+<th>失败场景</th>
+<th>检测方式</th>
+<th>处理策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>网络丢包</strong></td>
+<td>ACK超未收到</td>
+<td>客户端自动重发（指数退避）</td>
+</tr>
+<tr>
+<td><strong>服务端处理失败</strong></td>
+<td>服务端返回<code v-pre>status=failure</code>的ACK</td>
+<td>客户端根据错误类型决定重发或转人工</td>
+</tr>
+<tr>
+<td><strong>消息重复</strong></td>
+<td>服务端发现重复<code v-pre>msgId</code></td>
+<td>返回成功ACK但不再处理业务</td>
+</tr>
+<tr>
+<td><strong>持久化失败</strong></td>
+<td>数据库异常日志</td>
+<td>异步重试队列 + 告警通知</td>
+</tr>
+<tr>
+<td><strong>客户端崩溃</strong></td>
+<td>心跳超时</td>
+<td>服务端清理会话状态，客户端重启后重新拉取未确认消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自定义二进制协议" tabindex="-1"><a class="header-anchor" href="#自定义二进制协议"><span>自定义二进制协议</span></a></h3>
+<p>Websocket 协议与自定义二进制协议对比：</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>WebSocket（JSON/Text）</th>
+<th>自定义二进制协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>兼容性</strong></td>
+<td>✅ 完美支持浏览器、移动端</td>
+<td>❌ 需单独实现各平台客户端</td>
+</tr>
+<tr>
+<td><strong>开发复杂度</strong></td>
+<td>✅ 低（无需编解码，直接处理字符串）</td>
+<td>❌ 高（需设计协议、编解码、版本兼容）</td>
+</tr>
+<tr>
+<td><strong>传输效率</strong></td>
+<td>❌ 较低（文本协议，无压缩）</td>
+<td>✅ 高（二进制紧凑，可压缩）</td>
+</tr>
+<tr>
+<td><strong>扩展性</strong></td>
+<td>✅ 灵活（JSON可动态增减字段）</td>
+<td>❌ 需提前设计字段（或使用Protobuf）</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>普通IM、网页聊天室</td>
+<td>游戏聊天、高频金融消息、IoT</td>
+</tr>
+</tbody>
+</table>
+<p>优化：可使用 Protobuf 来进行代替 JSON 进行序列化和反序列化</p>
+<p>考虑到人工客服发送的消息频率不是很高，所以暂不考虑自定义二进制协议</p>
+<h2 id="参考文章" tabindex="-1"><a class="header-anchor" href="#参考文章"><span>参考文章</span></a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/qq_27828675/article/details/122101564" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_27828675/article/details/122101564</a></li>
+</ul>
+</div></template>
+
+

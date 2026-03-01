@@ -1,0 +1,3 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/算法/牛客小白月赛84.html.vue"
+const data = JSON.parse("{\"path\":\"/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B84.html\",\"title\":\"牛客小白月赛84\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"小蓝的疑惑\",\"slug\":\"小蓝的疑惑\",\"link\":\"#小蓝的疑惑\",\"children\":[]},{\"level\":2,\"title\":\"k级序列\",\"slug\":\"k级序列\",\"link\":\"#k级序列\",\"children\":[]},{\"level\":2,\"title\":\"Reverse\",\"slug\":\"reverse\",\"link\":\"#reverse\",\"children\":[]},{\"level\":2,\"title\":\"Dog vs Cat\",\"slug\":\"dog-vs-cat\",\"link\":\"#dog-vs-cat\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"算法/牛客小白月赛84.md\"}")
+export { comp, data }

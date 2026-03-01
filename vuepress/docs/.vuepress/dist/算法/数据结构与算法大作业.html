@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.20" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme='dark'] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background-color: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const useChoice = localStorage.getItem('vuepress-color-scheme')
+      const systemStatus =
+        'matchMedia' in window
+          ? window.matchMedia('(prefers-color-scheme: dark)').matches
+          : false
+
+      if (useChoice === 'light') {
+        document.documentElement.dataset.theme = 'light'
+      } else if (useChoice === 'dark' || systemStatus) {
+        document.documentElement.dataset.theme = 'dark'
+      }
+    </script>
+    <meta name="referrer" content="no-referrer"><link rel="icon" href="http://43.143.14.69:9000/common/logo/favicon.ico"><title>数据结构与算法大作业 | Jixer的小屋</title><meta name="description" content="Never Give Up">
+    <link rel="preload" href="/assets/style-B3-VMakp.css" as="style"><link rel="stylesheet" href="/assets/style-B3-VMakp.css">
+    <link rel="modulepreload" href="/assets/app-B9IyngIV.js"><link rel="modulepreload" href="/assets/数据结构与算法大作业.html-D2C_Y8ZM.js">
+    <link rel="prefetch" href="/assets/get-started.html-BzHskJVJ.js" as="script"><link rel="prefetch" href="/assets/index.html-xItGf60u.js" as="script"><link rel="prefetch" href="/assets/AI搭建.html-cxEc0URR.js" as="script"><link rel="prefetch" href="/assets/index.html-z5V1m8nM.js" as="script"><link rel="prefetch" href="/assets/BIO、NIO与Netty.html-cpA8hpu3.js" as="script"><link rel="prefetch" href="/assets/ElasticSearch入门.html-C3g2RNx7.js" as="script"><link rel="prefetch" href="/assets/IM多服务部署方案.html-CfmWYsGz.js" as="script"><link rel="prefetch" href="/assets/index.html-BQZxDWnh.js" as="script"><link rel="prefetch" href="/assets/MyBatis缓存问题.html-C_0j_uc0.js" as="script"><link rel="prefetch" href="/assets/Netty部署问题梳理.html-DDICe6je.js" as="script"><link rel="prefetch" href="/assets/OA卡顿问题排查.html-DzF5TMDQ.js" as="script"><link rel="prefetch" href="/assets/PGP加密.html-BjN4MkvC.js" as="script"><link rel="prefetch" href="/assets/SSO单点登录.html-C4SglN5h.js" as="script"><link rel="prefetch" href="/assets/ThreadPoolExecutor源码解读.html-bFCFGfcF.js" as="script"><link rel="prefetch" href="/assets/Web视频处理方案.html-2iKtDwoI.js" as="script"><link rel="prefetch" href="/assets/人工客服方案.html-CbqcHyll.js" as="script"><link rel="prefetch" href="/assets/内部通讯发送消息死锁问题.html-BUsxu4A_.js" as="script"><link rel="prefetch" href="/assets/单机版Redis分布式锁.html-BZ9OuXCm.js" as="script"><link rel="prefetch" href="/assets/多租户多时区解决方案.html-FmzWJcUd.js" as="script"><link rel="prefetch" href="/assets/封装Java线程上下文的局部环境.html-Ez14oFX_.js" as="script"><link rel="prefetch" href="/assets/微信Native支付实现流程.html-5-L6s0HN.js" as="script"><link rel="prefetch" href="/assets/百万数据导入导出方案.html-CBs21Lif.js" as="script"><link rel="prefetch" href="/assets/若依框架分页问题解决方案.html-C_4gTP6T.js" as="script"><link rel="prefetch" href="/assets/index.html-DUeLWTz5.js" as="script"><link rel="prefetch" href="/assets/MySQL实战45讲笔记.html-CIll5fjV.js" as="script"><link rel="prefetch" href="/assets/index.html-CAMbTBVt.js" as="script"><link rel="prefetch" href="/assets/Python学习笔记.html-CcC4g3Jv.js" as="script"><link rel="prefetch" href="/assets/C语言指针.html-Cw3v77HU.js" as="script"><link rel="prefetch" href="/assets/C语言错题集.html-Chcy-Cls.js" as="script"><link rel="prefetch" href="/assets/index.html-kh1KlNKl.js" as="script"><link rel="prefetch" href="/assets/Java错题集.html-Rv7YUKqZ.js" as="script"><link rel="prefetch" href="/assets/人机交互复习资料.html-DECYj19L.js" as="script"><link rel="prefetch" href="/assets/操作系统原理错题集.html-BscddnBn.js" as="script"><link rel="prefetch" href="/assets/数据库系统原理错题集.html-BibUZm5H.js" as="script"><link rel="prefetch" href="/assets/计算机组成原理错题集.html-DSXO5Hdl.js" as="script"><link rel="prefetch" href="/assets/软件工程复习资料.html-DnvzcX2s.js" as="script"><link rel="prefetch" href="/assets/软件测试复习资料.html-CKQvbdUe.js" as="script"><link rel="prefetch" href="/assets/index.html-YxKVcXnN.js" as="script"><link rel="prefetch" href="/assets/Jenkins_Gitlab自动化部署.html-DL5v-qZC.js" as="script"><link rel="prefetch" href="/assets/Linux环境配置常用命令.html-BVK0titw.js" as="script"><link rel="prefetch" href="/assets/index.html-rGR68ABD.js" as="script"><link rel="prefetch" href="/assets/Vue3集成Halo富文本编辑器.html-BCqkBezF.js" as="script"><link rel="prefetch" href="/assets/index.html-3Zk2-weW.js" as="script"><link rel="prefetch" href="/assets/MallChat项目笔记.html-DUx1yVlt.js" as="script"><link rel="prefetch" href="/assets/谷粒商城笔记.html-BmatQy0J.js" as="script"><link rel="prefetch" href="/assets/黑马点评项目笔记.html-5ooFJ7KE.js" as="script"><link rel="prefetch" href="/assets/2024~2025年实习总结.html-lTDn8eT3.js" as="script"><link rel="prefetch" href="/assets/2025年实习第一阶段总结.html-Bt3DDXiY.js" as="script"><link rel="prefetch" href="/assets/index.html-B3GMEMmq.js" as="script"><link rel="prefetch" href="/assets/利尔化学工作总结.html-DVMqawf3.js" as="script"><link rel="prefetch" href="/assets/菜鸟的第一次Java面试.html-CX7jaqTS.js" as="script"><link rel="prefetch" href="/assets/index.html-XeN79-yx.js" as="script"><link rel="prefetch" href="/assets/RabbitMQ学习笔记.html-BYZxKXWI.js" as="script"><link rel="prefetch" href="/assets/2022年算法队选拔赛.html-Rm9FKHUl.js" as="script"><link rel="prefetch" href="/assets/2023年团体程序设计天梯赛.html-BDbQu_cx.js" as="script"><link rel="prefetch" href="/assets/Acwing基础课.html-DXR9gsGD.js" as="script"><link rel="prefetch" href="/assets/index.html-BGPFhq5m.js" as="script"><link rel="prefetch" href="/assets/Leetcode热题100.html-Cjl8eIVv.js" as="script"><link rel="prefetch" href="/assets/Leetcode第128场双周赛.html-BMg2otEV.js" as="script"><link rel="prefetch" href="/assets/Leetcode第396场周赛.html-BSEOGAAo.js" as="script"><link rel="prefetch" href="/assets/Leetcode第398场周赛.html-DEvanOBc.js" as="script"><link rel="prefetch" href="/assets/Leetcode随机打卡题.html-0GCbtVdq.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛81.html-DpWCaOV5.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛84.html-BvkmwgWW.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛85.html-YzOJtGHr.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛86.html-C3B-dGWB.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛87.html-DLY3WeWK.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛88.html-BntJwpEa.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛91.html-W22TgnrP.js" as="script"><link rel="prefetch" href="/assets/牛客小白月赛92.html-CY68QlEQ.js" as="script"><link rel="prefetch" href="/assets/第十三届蓝桥杯B组省赛.html-CgAzJEYS.js" as="script"><link rel="prefetch" href="/assets/第十二届蓝桥杯B组省赛.html-_EKNcP_o.js" as="script"><link rel="prefetch" href="/assets/第十四届蓝桥杯B组国赛.html-CzyJxL-B.js" as="script"><link rel="prefetch" href="/assets/第十四届蓝桥杯B组省赛.html-ClhDyPRV.js" as="script"><link rel="prefetch" href="/assets/404.html-BmH-PmwO.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="vp-theme-container external-link-icon" vp-container><!--[--><header class="vp-navbar" vp-navbar><div class="vp-toggle-sidebar-button" title="toggle sidebar" aria-expanded="false" role="button" tabindex="0"><div class="icon" aria-hidden="true"><span></span><span></span><span></span></div></div><span><a class="route-link" href="/"><!----><span class="vp-site-name" aria-hidden="true">Jixer的小屋</span></a></span><div class="vp-navbar-items-wrapper" style=""><!--[--><!--]--><nav class="vp-navbar-items vp-hide-mobile" aria-label="site navigation"><!--[--><div class="vp-navbar-item"><a class="route-link auto-link" href="/" aria-label="主页"><!--[--><!--[--><!--]--><!--]-->主页<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/ai/" aria-label="Ai"><!--[--><!--[--><!--]--><!--]-->Ai<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/java/" aria-label="Java"><!--[--><!--[--><!--]--><!--]-->Java<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/linux/" aria-label="Linux"><!--[--><!--[--><!--]--><!--]-->Linux<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/mysql/" aria-label="Mysql"><!--[--><!--[--><!--]--><!--]-->Mysql<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/python/" aria-label="Python"><!--[--><!--[--><!--]--><!--]-->Python<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/vue/" aria-label="Vue"><!--[--><!--[--><!--]--><!--]-->Vue<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E5%AD%A6%E6%A0%A1%E4%B9%A0%E9%A2%98/" aria-label="学校习题"><!--[--><!--[--><!--]--><!--]-->学校习题<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE/" aria-label="实战项目"><!--[--><!--[--><!--]--><!--]-->实战项目<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E6%9D%82%E8%B0%88/" aria-label="杂谈"><!--[--><!--[--><!--]--><!--]-->杂谈<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" aria-label="消息队列"><!--[--><!--[--><!--]--><!--]-->消息队列<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link route-link-active auto-link" href="/%E7%AE%97%E6%B3%95/" aria-label="算法"><!--[--><!--[--><!--]--><!--]-->算法<!--[--><!--[--><!--]--><!--]--></a></div><!--]--></nav><!--[--><!--]--><button type="button" class="vp-toggle-color-mode-button" title="toggle color mode"><svg class="light-icon" viewbox="0 0 32 32" style=""><path d="M16 12.005a4 4 0 1 1-4 4a4.005 4.005 0 0 1 4-4m0-2a6 6 0 1 0 6 6a6 6 0 0 0-6-6z" fill="currentColor"></path><path d="M5.394 6.813l1.414-1.415l3.506 3.506L8.9 10.318z" fill="currentColor"></path><path d="M2 15.005h5v2H2z" fill="currentColor"></path><path d="M5.394 25.197L8.9 21.691l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 25.005h2v5h-2z" fill="currentColor"></path><path d="M21.687 23.106l1.414-1.415l3.506 3.506l-1.414 1.414z" fill="currentColor"></path><path d="M25 15.005h5v2h-5z" fill="currentColor"></path><path d="M21.687 8.904l3.506-3.506l1.414 1.415l-3.506 3.505z" fill="currentColor"></path><path d="M15 2.005h2v5h-2z" fill="currentColor"></path></svg><svg class="dark-icon" viewbox="0 0 32 32" style="display:none;"><path d="M13.502 5.414a15.075 15.075 0 0 0 11.594 18.194a11.113 11.113 0 0 1-7.975 3.39c-.138 0-.278.005-.418 0a11.094 11.094 0 0 1-3.2-21.584M14.98 3a1.002 1.002 0 0 0-.175.016a13.096 13.096 0 0 0 1.825 25.981c.164.006.328 0 .49 0a13.072 13.072 0 0 0 10.703-5.555a1.01 1.01 0 0 0-.783-1.565A13.08 13.08 0 0 1 15.89 4.38A1.015 1.015 0 0 0 14.98 3z" fill="currentColor"></path></svg></button><!----></div></header><!--]--><div class="vp-sidebar-mask"></div><!--[--><aside class="vp-sidebar" vp-sidebar><nav class="vp-navbar-items" aria-label="site navigation"><!--[--><div class="vp-navbar-item"><a class="route-link auto-link" href="/" aria-label="主页"><!--[--><!--[--><!--]--><!--]-->主页<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/ai/" aria-label="Ai"><!--[--><!--[--><!--]--><!--]-->Ai<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/java/" aria-label="Java"><!--[--><!--[--><!--]--><!--]-->Java<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/linux/" aria-label="Linux"><!--[--><!--[--><!--]--><!--]-->Linux<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/mysql/" aria-label="Mysql"><!--[--><!--[--><!--]--><!--]-->Mysql<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/python/" aria-label="Python"><!--[--><!--[--><!--]--><!--]-->Python<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/vue/" aria-label="Vue"><!--[--><!--[--><!--]--><!--]-->Vue<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E5%AD%A6%E6%A0%A1%E4%B9%A0%E9%A2%98/" aria-label="学校习题"><!--[--><!--[--><!--]--><!--]-->学校习题<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E5%AE%9E%E6%88%98%E9%A1%B9%E7%9B%AE/" aria-label="实战项目"><!--[--><!--[--><!--]--><!--]-->实战项目<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E6%9D%82%E8%B0%88/" aria-label="杂谈"><!--[--><!--[--><!--]--><!--]-->杂谈<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link auto-link" href="/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" aria-label="消息队列"><!--[--><!--[--><!--]--><!--]-->消息队列<!--[--><!--[--><!--]--><!--]--></a></div><div class="vp-navbar-item"><a class="route-link route-link-active auto-link" href="/%E7%AE%97%E6%B3%95/" aria-label="算法"><!--[--><!--[--><!--]--><!--]-->算法<!--[--><!--[--><!--]--><!--]--></a></div><!--]--></nav><!--[--><!--]--><ul class="vp-sidebar-items"><!--[--><li><a class="route-link route-link-active auto-link vp-sidebar-item vp-sidebar-heading active collapsible" href="/%E7%AE%97%E6%B3%95/" aria-label="算法"><!--[--><!--[--><!--]--><!--]-->算法<!--[--><!--[--><span class="arrow down"></span><!--]--><!--]--></a><ul class="vp-sidebar-children" style=""><!--[--><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/2022%E5%B9%B4%E7%AE%97%E6%B3%95%E9%98%9F%E9%80%89%E6%8B%94%E8%B5%9B.html" aria-label="2022年算法队选拔赛"><!--[--><!--[--><!--]--><!--]-->2022年算法队选拔赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/2023%E5%B9%B4%E5%9B%A2%E4%BD%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A9%E6%A2%AF%E8%B5%9B.html" aria-label="2023年团体程序设计天梯赛"><!--[--><!--[--><!--]--><!--]-->2023年团体程序设计天梯赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/Acwing%E5%9F%BA%E7%A1%80%E8%AF%BE.html" aria-label="Acwing基础课"><!--[--><!--[--><!--]--><!--]-->Acwing基础课<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/Leetcode%E7%83%AD%E9%A2%98100.html" aria-label="Leetcode热题100"><!--[--><!--[--><!--]--><!--]-->Leetcode热题100<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/Leetcode%E7%AC%AC128%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B.html" aria-label="Leetcode第128场双周赛"><!--[--><!--[--><!--]--><!--]-->Leetcode第128场双周赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/Leetcode%E7%AC%AC396%E5%9C%BA%E5%91%A8%E8%B5%9B.html" aria-label="Leetcode第396场周赛"><!--[--><!--[--><!--]--><!--]-->Leetcode第396场周赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/Leetcode%E7%AC%AC398%E5%9C%BA%E5%91%A8%E8%B5%9B.html" aria-label="Leetcode第398场周赛"><!--[--><!--[--><!--]--><!--]-->Leetcode第398场周赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/Leetcode%E9%9A%8F%E6%9C%BA%E6%89%93%E5%8D%A1%E9%A2%98.html" aria-label="Leetcode随机打卡题"><!--[--><!--[--><!--]--><!--]-->Leetcode随机打卡题<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link route-link-active auto-link vp-sidebar-item active" href="/%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%A4%A7%E4%BD%9C%E4%B8%9A.html" aria-label="数据结构与算法大作业"><!--[--><!--[--><!--]--><!--]-->数据结构与算法大作业<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B81.html" aria-label="牛客小白月赛81"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛81<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B84.html" aria-label="牛客小白月赛84"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛84<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B85.html" aria-label="牛客小白月赛85"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛85<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B86.html" aria-label="牛客小白月赛86"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛86<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B87.html" aria-label="牛客小白月赛87"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛87<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B88.html" aria-label="牛客小白月赛88"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛88<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B91.html" aria-label="牛客小白月赛91"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛91<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B92.html" aria-label="牛客小白月赛92"><!--[--><!--[--><!--]--><!--]-->牛客小白月赛92<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%B8%89%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFB%E7%BB%84%E7%9C%81%E8%B5%9B.html" aria-label="第十三届蓝桥杯B组省赛"><!--[--><!--[--><!--]--><!--]-->第十三届蓝桥杯B组省赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E4%BA%8C%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFB%E7%BB%84%E7%9C%81%E8%B5%9B.html" aria-label="第十二届蓝桥杯B组省赛"><!--[--><!--[--><!--]--><!--]-->第十二届蓝桥杯B组省赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFB%E7%BB%84%E5%9B%BD%E8%B5%9B.html" aria-label="第十四届蓝桥杯B组国赛"><!--[--><!--[--><!--]--><!--]-->第十四届蓝桥杯B组国赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><li><a class="route-link auto-link vp-sidebar-item" href="/%E7%AE%97%E6%B3%95/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFB%E7%BB%84%E7%9C%81%E8%B5%9B.html" aria-label="第十四届蓝桥杯B组省赛"><!--[--><!--[--><!--]--><!--]-->第十四届蓝桥杯B组省赛<!--[--><!--[--><!--]--><!--]--></a><!----></li><!--]--></ul></li><!--]--></ul><!--[--><!--]--></aside><!--]--><!--[--><main class="vp-page"><!--[--><!--]--><div vp-content><!--[--><!--]--><div><h1 id="数据结构与算法大作业" tabindex="-1"><a class="header-anchor" href="#数据结构与算法大作业"><span>数据结构与算法大作业</span></a></h1><div style="background:#f8f9fa;padding:12px 16px;border-left:3px solid #4CAF50;margin-bottom:16px;border-radius:0 4px 4px 0;font-size:0.9rem;"><div style="display:flex;align-items:center;gap:30px;flex-wrap:wrap;"><div style="display:flex;align-items:center;gap:8px;"><span style="color:#666;">📅</span><span>2024-01-17</span></div><div style="display:flex;align-items:center;gap:8px;"><span style="color:#666;">✍️</span><span>Jixer</span></div></div></div><h2 id="校园导航" tabindex="-1"><a class="header-anchor" href="#校园导航"><span>校园导航</span></a></h2><blockquote><p>作者QQ：2770063826</p></blockquote><h2 id="图形手稿" tabindex="-1"><a class="header-anchor" href="#图形手稿"><span>图形手稿</span></a></h2><p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/algorithm/d809ddebb8dd0c38cbebfb55867a65a1.png" alt="图片描述"></p><h2 id="源码" tabindex="-1"><a class="header-anchor" href="#源码"><span>源码</span></a></h2><div class="language-c++ line-numbers-mode" data-highlighter="prismjs" data-ext="c++"><pre><code><span class="line">#include&lt;bits/stdc++.h&gt;</span>
+<span class="line">#define ok 1 </span>
+<span class="line">#define error -1</span>
+<span class="line">#define null &quot;no&quot;</span>
+<span class="line">#define MAX 100000</span>
+<span class="line">#define N 100</span>
+<span class="line">using namespace std;</span>
+<span class="line"></span>
+<span class="line">struct p{</span>
+<span class="line">	string name;  // 结点名称 </span>
+<span class="line">	string info;  // 结点信息 </span>
+<span class="line">	int flag;  // 结点是否被删除 </span>
+<span class="line">}n[N];</span>
+<span class="line"></span>
+<span class="line">int point[N][N]; // point存放两点之间的距离 </span>
+<span class="line">int vertexNum, arcNum; // vertexNum点数， arcNum边数</span>
+<span class="line"></span>
+<span class="line">// 查找景点对应下标 </span>
+<span class="line">int get_int(string str){  </span>
+<span class="line">	for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">		if(n[i].name == str) return i;</span>
+<span class="line">	}</span>
+<span class="line">	return error;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 查找下标对应景点 </span>
+<span class="line">string get_string(int x){</span>
+<span class="line">	for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">		if(i == x) return n[i].name;</span>
+<span class="line">	}</span>
+<span class="line">	return null;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 初始化输入 </span>
+<span class="line">int file_scanf(){</span>
+<span class="line">	freopen(&quot;graph.txt&quot;, &quot;r&quot;, stdin); //从文件输入 </span>
+<span class="line">	cin &gt;&gt; vertexNum &gt;&gt; arcNum;</span>
+<span class="line">	for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">		cin &gt;&gt; n[i].name &gt;&gt; n[i].info;	</span>
+<span class="line">		n[i].flag = 1;</span>
+<span class="line">	}</span>
+<span class="line">	for(int i = 0; i &lt; vertexNum; i++){ </span>
+<span class="line">		for(int j = 0; j &lt; vertexNum; j++) </span>
+<span class="line">			point[i][j] = MAX;  // 给矩阵赋初值 </span>
+<span class="line">	}</span>
+<span class="line">	for(int i = 0; i &lt; arcNum; i++){</span>
+<span class="line">		string a, b;</span>
+<span class="line">		int c, x, y;</span>
+<span class="line">		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span>
+<span class="line">		x = get_int(a);</span>
+<span class="line">		y = get_int(b);</span>
+<span class="line">		point[x][y] = c; // 给矩阵赋值 </span>
+<span class="line">		point[y][x] = c;  </span>
+<span class="line">	} </span>
+<span class="line">	freopen(&quot;CON&quot;,&quot;r&quot;,stdin);  // 关闭文件输入 </span>
+<span class="line">	return ok;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 找前驱结点，结果放到path数组中 </span>
+<span class="line">void dijkstra(string s1, string s2, int path[], int &amp;min_dis){</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	int y = get_int(s2);</span>
+<span class="line">	int dis[N], s[N], final[N];</span>
+<span class="line">	for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">		final[i] = 0;</span>
+<span class="line">		dis[i] = point[x][i];</span>
+<span class="line">		if(dis[i] != MAX) path[i] = x; </span>
+<span class="line">        else path[i] = -1;</span>
+<span class="line">	}</span>
+<span class="line">	s[0] = x;</span>
+<span class="line">	final[x] = 1;</span>
+<span class="line">	int flag = 1;</span>
+<span class="line">	while(flag &lt; vertexNum){</span>
+<span class="line">		int k = 0, minn = MAX;</span>
+<span class="line">		for(int i = 0;i &lt; vertexNum; i++){</span>
+<span class="line">			if(i == x) continue;</span>
+<span class="line">			if(!final[i] &amp;&amp; dis[i] &lt; minn){</span>
+<span class="line">				k = i;</span>
+<span class="line">				minn = dis[i];</span>
+<span class="line">			}</span>
+<span class="line">		}</span>
+<span class="line">		s[flag++] = k;</span>
+<span class="line">		final[k] = 1;</span>
+<span class="line">		for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">			if(!final[i] &amp;&amp; dis[i] &gt; dis[k] + point[k][i]){</span>
+<span class="line">				dis[i] = dis[k] + point[k][i];</span>
+<span class="line">				path[i] = k;</span>
+<span class="line">			}</span>
+<span class="line">		}</span>
+<span class="line">	}</span>
+<span class="line">	min_dis = dis[y];  // 存入最短长度 </span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 找最短路径</span>
+<span class="line">void get_path(int x, int y, int path[], int min_path[], int&amp; i){</span>
+<span class="line">	if(x == y) return;</span>
+<span class="line">	min_path[i++] = path[y];  // 此时的path[y]就存放的该时刻的最短路径 </span>
+<span class="line">	get_path(x, path[y], path, min_path, i);</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 格式化输出最短路径 </span>
+<span class="line">void query(string s1, string s2, int path[], int min_dis){</span>
+<span class="line">	int min_path[N];  // min_path数组存放最短路径的最终结果 </span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	int y = get_int(s2);</span>
+<span class="line">	int i = 0;</span>
+<span class="line">	min_path[i++] = y; // 从终点开始往根据数组值前找起点，存入min_path中</span>
+<span class="line">	get_path(x, y, path, min_path, i); </span>
+<span class="line">	cout &lt;&lt; &quot;最短路径：&quot;;</span>
+<span class="line">	for(int j = i - 1; j &gt;= 0; j--){  // 逆序输出min_path即可 </span>
+<span class="line">		int w = min_path[j];</span>
+<span class="line">		if(j == 0) cout &lt;&lt; get_string(w) &lt;&lt; endl;		</span>
+<span class="line">		else cout &lt;&lt; get_string(min_path[j]) &lt;&lt; &quot;-&gt;&quot;;</span>
+<span class="line">	} </span>
+<span class="line">	cout &lt;&lt; &quot;最短长度：&quot; &lt;&lt; min_dis &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 查询地点及相关信息 </span>
+<span class="line">void query_point(){</span>
+<span class="line">	string s1;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入要查询的地点&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1;</span>
+<span class="line">	int w = get_int(s1);</span>
+<span class="line">	if(w == error || n[w].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;不存在！&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	cout &lt;&lt; n[w].name &lt;&lt; &quot;：&quot; &lt;&lt; n[w].info &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 查询两点之间的最短路径 </span>
+<span class="line">void ask_path(){</span>
+<span class="line">	string s1, s2;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入要问路的地点&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1 &gt;&gt; s2;</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	int y = get_int(s2);</span>
+<span class="line">	if(x == error || n[x].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;不存在！&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	if(y == error || n[y].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s2 &lt;&lt; &quot;不存在！&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	int min_dis = 0;</span>
+<span class="line">	int path[N];</span>
+<span class="line">	dijkstra(s1, s2, path, min_dis);</span>
+<span class="line">	if(min_dis == MAX){</span>
+<span class="line">		cout &lt;&lt; &quot;该路径不存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return; </span>
+<span class="line">	}</span>
+<span class="line">	query(s1, s2, path, min_dis);</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 插入一个结点 </span>
+<span class="line">void insert_point(){</span>
+<span class="line">	string s1, s2;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入将要增加的一个景点及相关信息&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1 &gt;&gt; s2;</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	int y = get_int(s2);</span>
+<span class="line">	if(x == error &amp;&amp; y == error){</span>
+<span class="line">		n[vertexNum].name = s1;</span>
+<span class="line">		n[vertexNum].info = s2;</span>
+<span class="line">		n[vertexNum].flag = 1;</span>
+<span class="line">		for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">			point[vertexNum][i] = MAX; // 与该结点无关的点均为最大值 </span>
+<span class="line">			point[i][vertexNum] = MAX;</span>
+<span class="line">		}</span>
+<span class="line">		vertexNum++;</span>
+<span class="line">		cout &lt;&lt; &quot;增加景点成功&quot; &lt;&lt; endl;	</span>
+<span class="line">	}</span>
+<span class="line">	else if(n[x].name == s1 &amp;&amp; n[x].flag == 1){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;景点已经存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	else if(n[y].name == s2 &amp;&amp; n[y].flag == 1){</span>
+<span class="line">		cout &lt;&lt; s2 &lt;&lt; &quot;景点已经存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 更新一个结点 </span>
+<span class="line">void update_point(){</span>
+<span class="line">	string s1, s2, s3;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入将要修改的景点&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1;</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	if(x == error || n[x].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;不存在！&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	cout &lt;&lt; &quot;请输入修改过后的景点及其相关信息&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s2 &gt;&gt; s3;</span>
+<span class="line">	n[x].name = s2;</span>
+<span class="line">	n[x].info = s3;</span>
+<span class="line">	cout &lt;&lt; &quot;修改成功&quot; &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 插入一条路径 </span>
+<span class="line">void insert_path(){</span>
+<span class="line">	string s1, s2;</span>
+<span class="line">	int dis;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入将要增加的一条路径&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1 &gt;&gt; s2 &gt;&gt; dis;</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	int y = get_int(s2);</span>
+<span class="line">	if(x == error || n[x].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;不存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	if(y == error || n[y].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s2 &lt;&lt; &quot;不存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return; </span>
+<span class="line">	}</span>
+<span class="line">	point[x][y] = dis;</span>
+<span class="line">	point[y][x] = dis;</span>
+<span class="line">	cout &lt;&lt; &quot;增加路径成功&quot; &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 删除景点</span>
+<span class="line">void remove_point() {</span>
+<span class="line">	string s1;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入将要删除的景点&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1;</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	if(x == error || n[x].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;不存在！&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	} </span>
+<span class="line">	for(int i = 0; i &lt; vertexNum; i++){</span>
+<span class="line">		point[x][i] = MAX;</span>
+<span class="line">		point[i][x] = MAX;</span>
+<span class="line">	}</span>
+<span class="line">	n[x].flag = 0;</span>
+<span class="line">	cout &lt;&lt; &quot;删除景点成功&quot; &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 删除一条路径 </span>
+<span class="line">void remove_path(){</span>
+<span class="line">	string s1, s2;</span>
+<span class="line">	cout &lt;&lt; &quot;请输入需要删除的一条路径&quot; &lt;&lt; endl;</span>
+<span class="line">	cin &gt;&gt; s1 &gt;&gt; s2;</span>
+<span class="line">	int x = get_int(s1);</span>
+<span class="line">	int y = get_int(s2);</span>
+<span class="line">	if(x == error || n[x].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s1 &lt;&lt; &quot;景点不存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	if(y == error || n[y].flag == 0){</span>
+<span class="line">		cout &lt;&lt; s2 &lt;&lt; &quot;景点不存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	if(point[x][y] == MAX){</span>
+<span class="line">		cout &lt;&lt; &quot;该路径不存在&quot; &lt;&lt; endl;</span>
+<span class="line">		return;</span>
+<span class="line">	}</span>
+<span class="line">	point[x][y] = MAX;</span>
+<span class="line">	point[y][x] = MAX;</span>
+<span class="line">	cout &lt;&lt; &quot;删除路径成功&quot; &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 功能选择 </span>
+<span class="line">void my_choose(int x){</span>
+<span class="line">	if(x == 1) query_point();</span>
+<span class="line">	else if(x == 2) ask_path();</span>
+<span class="line">	else if(x == 3) insert_point();</span>
+<span class="line">	else if(x == 4) update_point();</span>
+<span class="line">	else if(x == 5) insert_path();</span>
+<span class="line">	else if(x == 6) remove_point();</span>
+<span class="line">	else if(x == 7) remove_path();</span>
+<span class="line">	else if(x == 8){</span>
+<span class="line">		cout &lt;&lt; &quot;退出成功&quot; &lt;&lt; endl;</span>
+<span class="line">		exit(0);</span>
+<span class="line">	}</span>
+<span class="line">	else cout &lt;&lt; &quot;无该选项，请重新输入&quot; &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">// 菜单 </span>
+<span class="line">void menu(){</span>
+<span class="line">	cout &lt;&lt; &quot;***************欢迎来到四川轻化工大学***************&quot; &lt;&lt; endl;</span>
+<span class="line">	cout &lt;&lt; &quot;1.	查询景点信息&quot; &lt;&lt; endl;</span>
+<span class="line">	cout &lt;&lt; &quot;2.	问路查询&quot; &lt;&lt; endl;	</span>
+<span class="line">	cout &lt;&lt;	&quot;3.	增加一个景点及相关信息&quot; &lt;&lt; endl;</span>
+<span class="line">	cout &lt;&lt;	&quot;4.	修改一个景点及相关信息&quot;	&lt;&lt;endl;</span>
+<span class="line">	cout &lt;&lt;	&quot;5.	增加一条新的路径&quot; &lt;&lt; endl;	</span>
+<span class="line">	cout &lt;&lt;	&quot;6.	删除一个点及相关信息&quot; &lt;&lt; endl;</span>
+<span class="line">	cout &lt;&lt;	&quot;7.	删除一条路径&quot; &lt;&lt; endl;</span>
+<span class="line">	cout &lt;&lt;	&quot;8.	退出&quot; &lt;&lt; endl;</span>
+<span class="line">	cout &lt;&lt;	&quot;***************轻化工校园导游系统***************&quot; &lt;&lt; endl;</span>
+<span class="line">    cout &lt;&lt; &quot;请选择需要的服务(1-8)：&quot; &lt;&lt; endl;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">int main(){</span>
+<span class="line">	file_scanf();</span>
+<span class="line">	while(1){</span>
+<span class="line">		menu();</span>
+<span class="line">		int id;</span>
+<span class="line">		cin &gt;&gt; id;</span>
+<span class="line">		my_choose(id);</span>
+<span class="line">	}</span>
+<span class="line">	return 0;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="测试数据" tabindex="-1"><a class="header-anchor" href="#测试数据"><span>测试数据</span></a></h2><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre><code><span class="line">9 16</span>
+<span class="line">图书馆 藏书丰富，知识的海洋</span>
+<span class="line">计算机学院A6 电脑多，学术探讨聚集地</span>
+<span class="line">南大门 学校南门出入口</span>
+<span class="line">西门 学生车辆进出校园</span>
+<span class="line">五粮液网球国际中心  网球场上感受同学们的意气风发</span>
+<span class="line">综合楼 综合办公区域</span>
+<span class="line">品正食府C1 饭菜美味，种类多样</span>
+<span class="line">器美园 理工男聚集地</span>
+<span class="line">令雅园 有留学生，感受异国文化</span>
+<span class="line">南大门 品正食府C1 300</span>
+<span class="line">南大门 计算机学院A6 400</span>
+<span class="line">南大门 西门 500</span>
+<span class="line">品正食府C1 计算机学院A6 200</span>
+<span class="line">计算机学院A6 图书馆 100</span>
+<span class="line">图书馆 器美园 200</span>
+<span class="line">器美园 五粮液网球国际中心  200</span>
+<span class="line">图书馆 令雅园 200</span>
+<span class="line">器美园 令雅园 300</span>
+<span class="line">西门 五粮液网球国际中心 200</span>
+<span class="line">计算机学院A6 西门 400</span>
+<span class="line">计算机学院A6 令雅园 250</span>
+<span class="line">南大门 综合楼 200</span>
+<span class="line">综合楼 西门 400</span>
+<span class="line">图书馆 西门 400</span>
+<span class="line">图书馆 五粮液网球国际中心  300</span>
+<span class="line"></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="哈夫曼树" tabindex="-1"><a class="header-anchor" href="#哈夫曼树"><span>哈夫曼树</span></a></h2><blockquote><p>作者QQ：1594359733</p></blockquote><h2 id="源码-1" tabindex="-1"><a class="header-anchor" href="#源码-1"><span>源码</span></a></h2><div class="language-c++ line-numbers-mode" data-highlighter="prismjs" data-ext="c++"><pre><code><span class="line">#include&lt;stdio.h&gt;</span>
+<span class="line">#include&lt;windows.h&gt;</span>
+<span class="line">#include&lt;bits/stdc++.h&gt;</span>
+<span class="line">using namespace std;</span>
+<span class="line">#define MAX 100</span>
+<span class="line">struct SS{</span>
+<span class="line">	char c;</span>
+<span class="line">	int n;</span>
+<span class="line"></span>
+<span class="line">}charnum[MAX];                        				//统计所有字符的数量</span>
+<span class="line"></span>
+<span class="line">typedef struct {									// 定义Huffman树结点结构</span>
+<span class="line">    char data;         								// 结点值</span>
+<span class="line">    int weight;        								// 权重</span>
+<span class="line">    int parent;        								// 父结点</span>
+<span class="line">    int lchild;      								// 左孩子</span>
+<span class="line">    int rchild;      								// 右孩子</span>
+<span class="line">//    string er;										//二进制编码 </span>
+<span class="line">}HTNode;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">typedef struct {     			// 定义Huffman编码结构</span>
+<span class="line">    char cd[MAX]; </span>
+<span class="line">    int start; </span>
+<span class="line">}HCode;</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">bool cmp(SS a,SS b){</span>
+<span class="line">	return a.n&lt;b.n;                   				//按照字符数量排序</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">void CreatHT(HTNode *HT, int n){</span>
+<span class="line">	int i,k,l,r;</span>
+<span class="line">	int m1, m2;</span>
+<span class="line">    for(i = 1;i&lt;2*n; i++) </span>
+<span class="line">        HT[i].parent = HT[i].lchild = HT[i].rchild = 0;						// 初始化</span>
+<span class="line">    for(i = n+1; i&lt;2*n; i++) {    											// 构造Huffman树</span>
+<span class="line">        m1 = m2 = 0x7fff;													// m1取最小权重，m2取次小权重</span>
+<span class="line">        int lnode = 0,rnode = 0;     										// lnode, rnode分别取两个最小权重的结点位置</span>
+<span class="line">        for( k=1; k&lt;i; k++)</span>
+<span class="line">		{	if(HT[k].parent==0)</span>
+<span class="line">			{</span>
+<span class="line">				if(HT[k].weight&lt;m1) {</span>
+<span class="line">	                m2 = m1;</span>
+<span class="line">					rnode=lnode;</span>
+<span class="line">					m1 = HT[k].weight;</span>
+<span class="line">					lnode=k;</span>
+<span class="line">				}</span>
+<span class="line">				else if(HT[k].weight&lt;m2) {</span>
+<span class="line">					m2 = HT[k].weight;</span>
+<span class="line">					rnode = k;</span>
+<span class="line">				}</span>
+<span class="line">            }</span>
+<span class="line">		}</span>
+<span class="line">        HT[lnode].parent = i;</span>
+<span class="line">		HT[rnode].parent = i;</span>
+<span class="line">		HT[i].weight =  HT[lnode].weight+HT[rnode].weight;</span>
+<span class="line">		HT[i].lchild = lnode;</span>
+<span class="line">		HT[i].rchild = rnode;</span>
+<span class="line">    }</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">void CreatHCode(HTNode *HT, HCode *hcd, int n ){</span>
+<span class="line">	int i, f, c;</span>
+<span class="line">	HCode hc;</span>
+<span class="line">    for(i=1; i&lt;=n; i++) </span>
+<span class="line">    {</span>
+<span class="line">		hc.start = n;</span>
+<span class="line">        c = i;</span>
+<span class="line">        f = HT[i].parent;</span>
+<span class="line">        while( f!=0 ) {</span>
+<span class="line">            if(HT[f].lchild==c)   										// c是f的左孩子，编码取&#39;0&#39;，否则取&#39;1&#39;</span>
+<span class="line">                hc.cd[--hc.start]=&#39;0&#39;;</span>
+<span class="line">            else</span>
+<span class="line">                hc.cd[--hc.start]=&#39;1&#39;;</span>
+<span class="line">            c = f;														// 向根结点方向搜索</span>
+<span class="line">			f = HT[f].parent;</span>
+<span class="line">        }</span>
+<span class="line">		hcd[i]= hc;</span>
+<span class="line">    }</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">void Made_01(HTNode *HT, HCode *hcd, int n, map&lt;char,string&gt; &amp;mp){</span>
+<span class="line">	int i,k;</span>
+<span class="line">	string re = &quot;&quot;;</span>
+<span class="line">	for(i = 1; i&lt;=n; i++){</span>
+<span class="line">		re = &quot;&quot;;</span>
+<span class="line">		for(k=hcd[i].start; k&lt;n; k++)re+=hcd[i].cd[k];			</span>
+<span class="line">		mp[HT[i].data] = re;</span>
+<span class="line">	}</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">string sout(map&lt;char,string&gt; mp1,string S_01){						//转回的字符串 </span>
+<span class="line">	string s1 = &quot;&quot;;int i = 0;														//单个字符的哈夫曼编码</span>
+<span class="line">	string s_out = &quot;&quot;;</span>
+<span class="line">	while(S_01[i]!=&#39;\0&#39;){											//遍历哈夫曼编码得到原字符串 </span>
+<span class="line">		s1+=S_01[i++];</span>
+<span class="line">		for(map&lt;char,string&gt;::iterator it = mp1.begin();it!=mp1.end();it++){</span>
+<span class="line">			if(it-&gt;second==s1){</span>
+<span class="line">				s_out+=it-&gt;first;</span>
+<span class="line">				s1 = &quot;&quot;;</span>
+<span class="line">				break;</span>
+<span class="line">			}</span>
+<span class="line">		}</span>
+<span class="line">	}</span>
+<span class="line">	return s_out;</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">void print(){</span>
+<span class="line">	cout&lt;&lt;endl;</span>
+<span class="line">    for(int i = 0;i&lt;32;i++)cout&lt;&lt;&quot; &quot;;</span>
+<span class="line">    cout&lt;&lt;&quot;--------------欢迎使用文章压缩解码文件！--------------&quot;&lt;&lt;endl; </span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">int print1(string &amp;s){																						//输入开始提示界面以及选择s字符串 </span>
+<span class="line">	cout&lt;&lt;&quot;功能有：1.自行输入字符串     2.直接使用测试数据    0.退出程序&quot;&lt;&lt;endl;</span>
+<span class="line">	string x;</span>
+<span class="line">	cout&lt;&lt;&quot;请输入操作指令：&quot;;</span>
+<span class="line">//	string s;</span>
+<span class="line">	cin&gt;&gt; x;</span>
+<span class="line">	</span>
+<span class="line">	if(x==&quot;0&quot;){cout&lt;&lt;&quot;已退出程序\n&quot;;return 0;}</span>
+<span class="line">	else if(x==&quot;2&quot;)s = &quot;Four Words to Make Life Worth.\nwhile Over the years as I&#39;ve sought out ideas, principles and strategies to life&#39;s challenges, I&#39;ve come acrocharnum four simple words that can make living worthwhile. First, life is worthwhile if you learn. What you don&#39;t know will hurt you. You have to have learning to exist, let alone succeed. Life is worthwhile if you learn from your own experiences - negative or positive. We learn to do it right by first sometimes doing it wrong. We call that a positive negative. We also learn from other people&#39;s experience, both positive and negative. Second, life is worthwhile if you try. You can&#39;t just learn; now you have to try something to see if you can do it. Try to make a difference, try to make some progrecharnum, try to learn a new skill, try to learn a new sport. It doesn&#39;t mean you can do everything, but there are a lot of things you can do, if you just try. Try your best and go all out. Third, life is worthwhile if you stay. You have to stay from spring until harvest. Sometimes calamity comes and then it is worth wrapping it up. But just don&#39;t end in the middle. Maybe on the next project you pacharnum, but on this one, if you signed up, see it through. And lastly, life is worthwhile if you care. If you care at all you will get some results, if you care enough you can get incredible results. Care enough to make a difference. Care enough to turn somebody around. Care enough to start a new enterprise. Care enough to set some records. Care enough to win.&quot;;</span>
+<span class="line">	else if(x==&quot;1&quot;){</span>
+<span class="line">		cout&lt;&lt;&quot;请输入要压缩的字符串：&quot;;</span>
+<span class="line">		getchar();</span>
+<span class="line">		getline(cin,s);</span>
+<span class="line">	}</span>
+<span class="line">	else {</span>
+<span class="line">		cout&lt;&lt;&quot;输入错误!\n&quot;;</span>
+<span class="line">		return -1;</span>
+<span class="line">	}</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">void print2(string S_01,string s_out,string s){																		//按照要求输出 </span>
+<span class="line">	cout&lt;&lt;&quot;\t输入1查看哈夫曼编码\n\t输入2查看解码后的字符串\n\t输入3查看原字符串\n\t输入4判断解码后的字符串与原字符型是否一致\n\t输入0退出本次转码&quot;&lt;&lt;endl;</span>
+<span class="line">	string a;</span>
+<span class="line">	while(1){</span>
+<span class="line">		cout&lt;&lt;&quot;   请输入指令：&quot;;</span>
+<span class="line">		cin&gt;&gt;a;</span>
+<span class="line">		if(a==&quot;0&quot;){</span>
+<span class="line">			memset(charnum,0,sizeof(charnum));</span>
+<span class="line">			break;</span>
+<span class="line">		}</span>
+<span class="line">		else if(a==&quot;1&quot;)cout&lt;&lt;&quot;哈夫曼编码为：\n&quot;&lt;&lt;S_01&lt;&lt;endl;</span>
+<span class="line">		else if(a==&quot;2&quot;)cout&lt;&lt;&quot;解码后的字符串为：\n&quot;&lt;&lt;s_out&lt;&lt;endl;</span>
+<span class="line">		else if(a==&quot;3&quot;)cout&lt;&lt;&quot;原字符串为：\n&quot;&lt;&lt;s&lt;&lt;endl; </span>
+<span class="line">		else if(a==&quot;4&quot;)cout&lt;&lt;&quot;原字符串与解码后一致？&quot;&lt;&lt;(s==s_out ? &quot;YES&quot; : &quot;NO&quot;)&lt;&lt;endl; </span>
+<span class="line">		else cout&lt;&lt;&quot;输入错误！\n&quot;;</span>
+<span class="line">	}</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">int main()</span>
+<span class="line">{</span>
+<span class="line">    HTNode HT[2*MAX-1];</span>
+<span class="line">    HCode hcd[MAX];print(); </span>
+<span class="line">	while(1){</span>
+<span class="line">		string s;int fofo = print1(s);</span>
+<span class="line">		if(fofo==-1)continue;</span>
+<span class="line">		else if(fofo==0)break;</span>
+<span class="line">		</span>
+<span class="line">		</span>
+<span class="line">		</span>
+<span class="line">		map&lt;char,int&gt; mp;</span>
+<span class="line">		int len = s.size();</span>
+<span class="line">		for(int i = 0;i&lt;len;i++){</span>
+<span class="line">			mp[s[i]]++;</span>
+<span class="line">		}</span>
+<span class="line">		int n = 0;</span>
+<span class="line">		for(map&lt;char,int&gt;::iterator it = mp.begin();it!=mp.end();it++)n++;			//统计不同字符数量 </span>
+<span class="line">		map&lt;char,int&gt;::iterator it = mp.begin();</span>
+<span class="line">		for(int i = 0;i&lt;n;i++){</span>
+<span class="line">			char c = it-&gt;first;</span>
+<span class="line">			charnum[i].c = c;</span>
+<span class="line">			charnum[i].n = mp[c];</span>
+<span class="line">			it++;</span>
+<span class="line">		}</span>
+<span class="line">		sort(charnum,charnum+n,cmp);										//排序 </span>
+<span class="line">		int sum = 0;</span>
+<span class="line">		for(int i = 0;i&lt;n;i++){                             //测试存入的数量个数与字符串长度是否一样</span>
+<span class="line">			sum+=charnum[i].n;</span>
+<span class="line">		}</span>
+<span class="line">		</span>
+<span class="line">	    for(int i=1; i&lt;=n; i++) {							// 将统计的字符及个数排序好后存入HT中，方便创建哈夫曼树 </span>
+<span class="line">			HT[i].data = charnum[i-1].c;</span>
+<span class="line">			HT[i].weight = charnum[i-1].n;</span>
+<span class="line">	    }</span>
+<span class="line">		cout&lt;&lt;&quot;创建Huffman树中......\t\t&quot;;      		CreatHT(HT, n);							Sleep(200);</span>
+<span class="line">		cout&lt;&lt;&quot;Huffman树创建成功！&quot;&lt;&lt;endl;														Sleep(200);</span>
+<span class="line">		cout&lt;&lt;&quot;创建Huffman编码中......\t\t&quot;; 			CreatHCode(HT, hcd, n);					Sleep(200);</span>
+<span class="line">		cout&lt;&lt;&quot;Huffman编码创建成功！&quot;&lt;&lt;endl;</span>
+<span class="line">		</span>
+<span class="line">		map &lt;char ,string&gt; mp1;</span>
+<span class="line">		Made_01(HT, hcd, n,mp1);</span>
+<span class="line">		cout&lt;&lt;&quot;   字符串编码创建成功！\n&quot;;</span>
+<span class="line">//																		for(map&lt;char,string&gt;::iterator it = mp1.begin();it!=mp1.end();it++){</span>
+<span class="line">//																			cout&lt;&lt;it-&gt;first&lt;&lt;&quot;      &quot;&lt;&lt;it-&gt;second&lt;&lt;endl;</span>
+<span class="line">//																		}		//测试每个字符的哈夫曼编码，最好不用（中文会有问题） </span>
+<span class="line">		</span>
+<span class="line">		string S_01 = &quot;&quot;;           					//S_01为字符串转换后的所有哈夫曼编码</span>
+<span class="line">		for(int i = 0;i&lt;len;i++)S_01+=mp1[s[i]];</span>
+<span class="line">		S_01+=&#39;\0&#39;;cout&lt;&lt;endl&lt;&lt;endl;</span>
+<span class="line">		</span>
+<span class="line">		</span>
+<span class="line">		</span>
+<span class="line">		int i = 0;											//单个字符的哈夫曼编码 </span>
+<span class="line">		string s_out = sout(mp1,S_01);                    							//通过哈夫曼编码解码出的字符串</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">		char cc = s[0];int f = 1;						//若所有字符都相同，则字符的编码就为0，即全部为0 </span>
+<span class="line">		for(int i = 1;i&lt;s.size();i++)if(s[i]!=cc){f=0;break;}</span>
+<span class="line">		if(f==1){</span>
+<span class="line">			S_01 = &quot;&quot;;</span>
+<span class="line">			for(int i=  0;i&lt;len;i++)S_01+=&#39;0&#39;;</span>
+<span class="line">			s_out = s;</span>
+<span class="line">		}</span>
+<span class="line">				</span>
+<span class="line">		print2(S_01,s_out,s);</span>
+<span class="line">				</span>
+<span class="line">	}	</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="例题答案" tabindex="-1"><a class="header-anchor" href="#例题答案"><span>例题答案</span></a></h2><div class="language-c++ line-numbers-mode" data-highlighter="prismjs" data-ext="c++"><pre><code><span class="line">#include&lt;stdio.h&gt;</span>
+<span class="line">#define MAX 21</span>
+<span class="line">typedef struct {				// 定义Huffman树结点结构</span>
+<span class="line">    char data;         		// 结点值</span>
+<span class="line">    int weight;        		// 权重</span>
+<span class="line">    int parent;        		// 父结点</span>
+<span class="line">    int lchild;      			// 左孩子</span>
+<span class="line">    int rchild;      			// 右孩子</span>
+<span class="line">}HTNode;</span>
+<span class="line">typedef struct {     			// 定义Huffman编码结构</span>
+<span class="line">    char cd[MAX]; </span>
+<span class="line">    int start; </span>
+<span class="line">}HCode;</span>
+<span class="line"></span>
+<span class="line">void CreatHT(HTNode *HT, int n)</span>
+<span class="line">{</span>
+<span class="line">	int i,k,l,r;</span>
+<span class="line">	int m1, m2;</span>
+<span class="line">    for(i=1;i&lt;2*n; i++) </span>
+<span class="line">        HT[i].parent = HT[i].lchild = HT[i].rchild = 0;	// 初始化</span>
+<span class="line">    for(i=n+1; i&lt;2*n; i++) {    		// 构造Huffman树</span>
+<span class="line">        m1 =m2 = 0x7fff;			// m1取最小权重，m2取次小权重</span>
+<span class="line">        int lnode  = 0 , rnode = 0;     		// lnode, rnode分别取两个最小权重的结点位置</span>
+<span class="line">        for( k=1; k&lt;i; k++)</span>
+<span class="line">		{	if(HT[k].parent==0)</span>
+<span class="line">			{</span>
+<span class="line">				if(HT[k].weight&lt;m1) {</span>
+<span class="line">	                int m2 = m1;  rnode=lnode;</span>
+<span class="line">					m1 =  HT[k].weight;  lnode=k;</span>
+<span class="line">				}</span>
+<span class="line">				else if(HT[k].weight&lt;m2) {</span>
+<span class="line">					m2 =HT[k].weight;</span>
+<span class="line">					rnode =  k ;</span>
+<span class="line">				}</span>
+<span class="line">            }</span>
+<span class="line">		}</span>
+<span class="line">        HT[lnode].parent = i;</span>
+<span class="line">		HT[rnode].parent = i;</span>
+<span class="line">		HT[i].weight =  HT[lnode].weight+HT[rnode].weight;</span>
+<span class="line">		HT[i].lchild = lnode;</span>
+<span class="line">		HT[i].rchild = rnode;</span>
+<span class="line">    }</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">void CreatHCode(HTNode *HT, HCode *hcd, int n ){</span>
+<span class="line">	int i, f, c;</span>
+<span class="line">	HCode hc;</span>
+<span class="line">    for(i=1; i&lt;=n; i++) </span>
+<span class="line">    {</span>
+<span class="line">		hc.start = n;</span>
+<span class="line">        c = i;</span>
+<span class="line">        f = HT[i].parent;</span>
+<span class="line">        while( f!=0 ) {</span>
+<span class="line">            if(HT[f].lchild==c)   										// c是f的左孩子，编码取&#39;0&#39;，否则取&#39;1&#39;</span>
+<span class="line">                hc.cd[--hc.start]=&#39;0&#39;;</span>
+<span class="line">            else</span>
+<span class="line">                hc.cd[--hc.start]=&#39;1&#39;;</span>
+<span class="line">            c = f;														// 向根结点方向搜索</span>
+<span class="line">			f = HT[f].parent;</span>
+<span class="line">        }</span>
+<span class="line">		hcd[i]= hc;</span>
+<span class="line">    }</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">void PrintHCode(HTNode *HT, HCode *hcd, int n)</span>
+<span class="line">{</span>
+<span class="line">	int i,k;</span>
+<span class="line">	for(i=1; i&lt;=n; i++) </span>
+<span class="line">	{</span>
+<span class="line">		printf(&quot;  %c：&quot;,HT[i].data);</span>
+<span class="line">		for(k= hcd[i].start; k&lt;n; k++)</span>
+<span class="line">			printf(&quot;%c&quot;, hcd[i].cd[k]);</span>
+<span class="line">		printf(&quot;\n&quot;);</span>
+<span class="line">	}</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">int main()</span>
+<span class="line">{</span>
+<span class="line">	int i, n;</span>
+<span class="line">    HTNode HT[2*MAX-1];</span>
+<span class="line">    HCode hcd[MAX];</span>
+<span class="line">	printf(&quot;(1)创建Huffman树......\n&quot;);</span>
+<span class="line">	do {</span>
+<span class="line">	    printf(&quot;  请输入元素个数(1-%d)：&quot;, MAX-1);</span>
+<span class="line">		scanf(&quot;%d&quot;, &amp;n);</span>
+<span class="line">	} while(n&lt;1||n&gt;MAX-1);	// 确保n值合规</span>
+<span class="line">    for(i=1; i&lt;=n; i++) {		// Huffman树结点存放在ht数组从1下标开始的位置</span>
+<span class="line">        fflush(stdin);</span>
+<span class="line">		printf(&quot;  第%d个元素的结点值==&gt;&quot;, i);</span>
+<span class="line">        scanf(&quot;%c&quot;,&amp;HT[i].data);</span>
+<span class="line">		printf(&quot;\t权重==&gt;&quot;);</span>
+<span class="line">		scanf(&quot;%d&quot;,&amp;HT[i].weight);</span>
+<span class="line">    }</span>
+<span class="line">	CreatHT(HT, n);</span>
+<span class="line">	printf(&quot;  Huffman树创建成功！\n&quot;);</span>
+<span class="line">    fflush(stdin);</span>
+<span class="line">	getchar();</span>
+<span class="line">	printf(&quot;(2)创建Huffman编码......\n&quot;);</span>
+<span class="line">	CreatHCode(HT, hcd, n);</span>
+<span class="line">	printf(&quot;  Huffman编码创建成功！\n&quot;);</span>
+<span class="line">	getchar();</span>
+<span class="line"></span>
+<span class="line">	printf(&quot;(3)输出Huffman编码：\n&quot;);</span>
+<span class="line">	PrintHCode(HT, hcd, n);</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">//6</span>
+<span class="line">//a</span>
+<span class="line">//7</span>
+<span class="line">//b</span>
+<span class="line">//9</span>
+<span class="line">//c</span>
+<span class="line">//12</span>
+<span class="line">//d</span>
+<span class="line">//22</span>
+<span class="line">//e</span>
+<span class="line">//23</span>
+<span class="line">//f</span>
+<span class="line">//27</span>
+<span class="line"></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!--[--><!--]--></div><footer class="vp-page-meta"><!----><div class="vp-meta-item git-info"><!----><!----></div></footer><nav class="vp-page-nav" aria-label="page navigation"><a class="route-link auto-link prev" href="/%E7%AE%97%E6%B3%95/Leetcode%E9%9A%8F%E6%9C%BA%E6%89%93%E5%8D%A1%E9%A2%98.html" aria-label="Leetcode随机打卡题"><!--[--><div class="hint"><span class="arrow left"></span> Prev</div><div class="link"><span class="external-link">Leetcode随机打卡题</span></div><!--]--></a><a class="route-link auto-link next" href="/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B81.html" aria-label="牛客小白月赛81"><!--[--><div class="hint">Next <span class="arrow right"></span></div><div class="link"><span class="external-link">牛客小白月赛81</span></div><!--]--></a></nav><!--[--><!--]--></main><!--]--></div><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/assets/app-B9IyngIV.js" defer></script>
+  </body>
+</html>

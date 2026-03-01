@@ -1,0 +1,3 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/java/Netty部署问题梳理.html.vue"
+const data = JSON.parse("{\"path\":\"/java/Netty%E9%83%A8%E7%BD%B2%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86.html\",\"title\":\"Netty部署问题梳理\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"部署方案\",\"slug\":\"部署方案\",\"link\":\"#部署方案\",\"children\":[{\"level\":3,\"title\":\"后端\",\"slug\":\"后端\",\"link\":\"#后端\",\"children\":[]},{\"level\":3,\"title\":\"前端\",\"slug\":\"前端\",\"link\":\"#前端\",\"children\":[]}]},{\"level\":2,\"title\":\"总结\",\"slug\":\"总结\",\"link\":\"#总结\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"java/Netty部署问题梳理.md\"}")
+export { comp, data }

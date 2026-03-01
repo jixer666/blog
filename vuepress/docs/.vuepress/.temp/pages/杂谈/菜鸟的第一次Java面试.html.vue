@@ -1,0 +1,110 @@
+<template><div><h1 id="菜鸟的第一次-java-面试" tabindex="-1"><a class="header-anchor" href="#菜鸟的第一次-java-面试"><span>菜鸟的第一次 Java 面试</span></a></h1>
+<div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>2024-07-02</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div>
+## 开篇
+<p>职位：Java 开发实习生</p>
+<p>起因是经过学长介绍一家成都的公司，我想的是既然是学长介绍的，那么我还是有可能面上的（虽然是第一次面试）。但因为是线下面试，距离较远（需要来回做火车和住宿），所以我得思考下才能答复学长是否能够去</p>
+<p>后面我询问了父母和朋友的意见，决定还是去面试，毕竟机会是留给有准备的人的，而且现在大环境也不好，难得有面试</p>
+<h2 id="准备" tabindex="-1"><a class="header-anchor" href="#准备"><span>准备</span></a></h2>
+<p>在牛客上我找到了一篇关于该公司的笔试题目，后面会给出笔试题</p>
+<blockquote>
+<p>PS：这与我当时的笔试是一样的，算是一个小意外吧</p>
+</blockquote>
+<p>然后我根据我写的简历又重新背一遍八股，讲项目的那些技术都看了一下，不是说很熟悉，至少能够说个大概</p>
+<p>接着每天就在牛客上看面经，遇到不会的都会记录下来</p>
+<h2 id="出发去成都" tabindex="-1"><a class="header-anchor" href="#出发去成都"><span>出发去成都</span></a></h2>
+<p>我是提前一天的去的，当天坐智轨到了高铁站，花了一将近一个小时，然后根据身份证进站，坐车到成都，又花了一个半小时</p>
+<p>到了成都，因为我是第一次到成都，所以我的第一反应就是成都真大啊，我这种土狗难得看到这种高楼建筑</p>
+<p>接着我就在腾讯地图上找附近的酒店，打算住一晚上，第二天是10点面试，所以怕来不及。最后反反复复查找，最终选了一个便宜的民宿，20多块一晚上，还要啥自信车，哈哈哈</p>
+<p>在民宿我也复习了一遍八股，把面试官可能问我的问题猜了个遍</p>
+<h2 id="面试" tabindex="-1"><a class="header-anchor" href="#面试"><span>面试</span></a></h2>
+<p>当天我很早就起床了，大概7点左右，然后坐地铁，公交车，到达了公司门口，这时候大概8点半左右，因为是9点开始上班的，所以我在门口又等了一会（背了下八股），大概9点20左右我就进去面试了</p>
+<p>面试的前台小姐先是让我签到，然后就给了我一张面试题（和牛客上看到的是一样的）和一张个人信息表让我填，这里居然手机都没收，直接然我去个地方写，真不怕我百度搜啊！</p>
+<p>写完后就去三楼面试了，面试官就和聊天，没问技术相关的问题，这时候我就发现不对劲了，感觉像 kpi 面，有一个问题印象比较深刻：说说你关于线上和线下面试的看法</p>
+<p>接着面试官因为要开会，所以就让一位正在工作的研发同事问我，我感觉那位研发同事估计也是第一面试不太会问，所以就随便提出来一两个问题就结束了，没有问八股</p>
+<p>之后那个开始面试我的那个人说：不管录没录取都会给我发消息，一周之内给我答复</p>
+<p>笔试 + 面试全程大概2个小时</p>
+<p>接着我就打车回航了，和来的时候一样，坐地铁到高铁站，坐智轨回学校</p>
+<h2 id="附笔试题" tabindex="-1"><a class="header-anchor" href="#附笔试题"><span>附笔试题</span></a></h2>
+<h3 id="collection与collections的区别-以及一些常用类" tabindex="-1"><a class="header-anchor" href="#collection与collections的区别-以及一些常用类"><span>collection与collections的区别，以及一些常用类</span></a></h3>
+<p>Collection 是集合接口，很多我们熟悉的比如 List、Set、Queue 都是实现的这个接口；Collections 是集合的工具类，包含很多对集合操作的方法，比如：求集合的最大和最小值、排序等。</p>
+<p>常用类：</p>
+<p>Collection:</p>
+<ul>
+<li>List：ArryList、LinkList</li>
+<li>Set：HashSet</li>
+<li>Queue：LinkQueue</li>
+</ul>
+<p>Collections：</p>
+<ul>
+<li>sort();</li>
+<li>max()和min()</li>
+<li>reverse()</li>
+</ul>
+<h3 id="字符串与数组的切片、分割、获取字串等相关类与方法" tabindex="-1"><a class="header-anchor" href="#字符串与数组的切片、分割、获取字串等相关类与方法"><span>字符串与数组的切片、分割、获取字串等相关类与方法</span></a></h3>
+<p>字符串：</p>
+<ul>
+<li>切片：substring(int begin, int end);</li>
+<li>分割：split(String str, int limit)</li>
+<li>获取某个字符：charAt(int index)，indexOf(string str)，lastIndexOf(String str);</li>
+</ul>
+<p>数组：</p>
+<ul>
+<li>切片： Arrays.copyOfRange(int []arry, int begin, int end)</li>
+<li>分割：循环遍历</li>
+</ul>
+<p>Java反射机制的原理与使用场景</p>
+<p>原理：核心类是 Class 类，通过获取 Class 类就可以对类进行操作，比如：调用类的某个方法、获取类的某个属性等</p>
+<p>应用场景：</p>
+<p>1、广泛运用在框架中，比如：在Spring框架中，通过Spring AOP可以实现日记录等</p>
+<h3 id="http中的get请求和post请求的区别" tabindex="-1"><a class="header-anchor" href="#http中的get请求和post请求的区别"><span>HTTP中的GET请求和POST请求的区别</span></a></h3>
+<p>GET</p>
+<ul>
+<li>请求参数能够看见且在url后面</li>
+<li>数据没有加密，不安全</li>
+<li>适合用来获取数据</li>
+</ul>
+<p>POST:</p>
+<ul>
+<li>请求参数不可见，参数在请求体中</li>
+<li>数据加密，安全</li>
+<li>适合用来保存、更新数据</li>
+</ul>
+<h3 id="大型文件上传过程涉及到分片上传-大致思路" tabindex="-1"><a class="header-anchor" href="#大型文件上传过程涉及到分片上传-大致思路"><span>大型文件上传过程涉及到分片上传，大致思路</span></a></h3>
+<p>前端将文件分为多个小片，前端根据文件生成文件的MD5值，按照分片的顺序依次上传，上传的时候需要带上分片的总数、当前分片的序号、分片的文件</p>
+<p>后端收到分片文件后，对分片的序号进行标识缓存，若当前已经上传了就不用保存，否则就保存到一个临时文件目录；等所有分片文件全部上传完成后，就进行合并，合并后需要检验合并后的MD5值是否与之前文件的MD5值是否一致，若不一致就说明上传有误，若一致，就保存到Minio或者阿里云OSS中，最后就是清除文件临时文件</p>
+<h3 id="数据结构中常用的排序算法" tabindex="-1"><a class="header-anchor" href="#数据结构中常用的排序算法"><span>数据结构中常用的排序算法</span></a></h3>
+<p>冒泡排序、归并排序、选择排序、快速排序</p>
+<div class="language-c++ line-numbers-mode" data-highlighter="prismjs" data-ext="c++"><pre v-pre><code><span class="line">void fun(int[] num, int i, int j){</span>
+<span class="line">	if(i &gt;= j) return;</span>
+<span class="line">	int l = i - 1, r = j + 1, mid = num[i + j &gt;&gt; 1];</span>
+<span class="line">	while(l &lt; r){</span>
+<span class="line">		do l ++; while(num[l] &lt; mid);</span>
+<span class="line">		do r --; while(num[r] &gt; mid);</span>
+<span class="line">		if(l &lt; r){</span>
+<span class="line">			int a = num[r];</span>
+<span class="line">			num[r] = num[l];</span>
+<span class="line">			num[l] = a;</span>
+<span class="line">		}</span>
+<span class="line">	}</span>
+<span class="line">	fun(num, i, r);</span>
+<span class="line">	fun(num, r + 1, j);</span>
+<span class="line">}</span>
+<span class="line"></span>
+<span class="line">fun(num, 0, len - 1);</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="后续" tabindex="-1"><a class="header-anchor" href="#后续"><span>后续</span></a></h2>
+<p>无，什么消息都没发</p>
+</div></template>
+
+

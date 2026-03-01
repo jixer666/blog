@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./app-B9IyngIV.js";const n={};function c(r,o){return a(),t("div")}const i=e(n,[["render",c]]),_=JSON.parse('{"path":"/%E5%AD%A6%E6%A0%A1%E4%B9%A0%E9%A2%98/","title":"","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"学校习题/index.md"}');export{i as comp,_ as data};

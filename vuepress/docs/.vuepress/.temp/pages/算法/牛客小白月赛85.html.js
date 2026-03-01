@@ -1,0 +1,3 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/算法/牛客小白月赛85.html.vue"
+const data = JSON.parse("{\"path\":\"/%E7%AE%97%E6%B3%95/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD%E6%9C%88%E8%B5%9B85.html\",\"title\":\"牛客小白月赛85\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"ACCEPT\",\"slug\":\"accept\",\"link\":\"#accept\",\"children\":[]},{\"level\":2,\"title\":\"咕呱蛙\",\"slug\":\"咕呱蛙\",\"link\":\"#咕呱蛙\",\"children\":[]},{\"level\":2,\"title\":\"得分显示\",\"slug\":\"得分显示\",\"link\":\"#得分显示\",\"children\":[]},{\"level\":2,\"title\":\"阿里马马与四十大盗\",\"slug\":\"阿里马马与四十大盗\",\"link\":\"#阿里马马与四十大盗\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"算法/牛客小白月赛85.md\"}")
+export { comp, data }

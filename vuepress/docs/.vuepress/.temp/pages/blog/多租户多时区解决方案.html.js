@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/blog/多租户多时区解决方案.html.vue"
+const data = JSON.parse("{\"path\":\"/blog/%E5%A4%9A%E7%A7%9F%E6%88%B7%E5%A4%9A%E6%97%B6%E5%8C%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.html\",\"title\":\"多租户多时区解决方案\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"背景\",\"slug\":\"背景\",\"link\":\"#背景\",\"children\":[]},{\"level\":2,\"title\":\"介绍\",\"slug\":\"介绍\",\"link\":\"#介绍\",\"children\":[]},{\"level\":2,\"title\":\"实现流程\",\"slug\":\"实现流程\",\"link\":\"#实现流程\",\"children\":[{\"level\":3,\"title\":\"时区转化过程流程图\",\"slug\":\"时区转化过程流程图\",\"link\":\"#时区转化过程流程图\",\"children\":[]},{\"level\":3,\"title\":\"定时任务注解改造\",\"slug\":\"定时任务注解改造\",\"link\":\"#定时任务注解改造\",\"children\":[]}]}],\"git\":{},\"filePathRelative\":\"blog/多租户多时区解决方案.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

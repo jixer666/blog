@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/project/MallChat项目笔记.html.vue"
+const data = JSON.parse("{\"path\":\"/project/MallChat%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0.html\",\"title\":\"MallChat项目笔记\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"微信扫码登录\",\"slug\":\"微信扫码登录\",\"link\":\"#微信扫码登录\",\"children\":[{\"level\":3,\"title\":\"准备\",\"slug\":\"准备\",\"link\":\"#准备\",\"children\":[]},{\"level\":3,\"title\":\"执行过程\",\"slug\":\"执行过程\",\"link\":\"#执行过程\",\"children\":[]}]},{\"level\":2,\"title\":\"用户认证技术Token方案\",\"slug\":\"用户认证技术token方案\",\"link\":\"#用户认证技术token方案\",\"children\":[{\"level\":3,\"title\":\"Cookie + Session 登录\",\"slug\":\"cookie-session-登录\",\"link\":\"#cookie-session-登录\",\"children\":[]},{\"level\":3,\"title\":\"JWT实现token\",\"slug\":\"jwt实现token\",\"link\":\"#jwt实现token\",\"children\":[]},{\"level\":3,\"title\":\"双token方案\",\"slug\":\"双token方案\",\"link\":\"#双token方案\",\"children\":[]},{\"level\":3,\"title\":\"中心管理token\",\"slug\":\"中心管理token\",\"link\":\"#中心管理token\",\"children\":[]}]},{\"level\":2,\"title\":\"分布式锁\",\"slug\":\"分布式锁\",\"link\":\"#分布式锁\",\"children\":[{\"level\":3,\"title\":\"编程式\",\"slug\":\"编程式\",\"link\":\"#编程式\",\"children\":[]},{\"level\":3,\"title\":\"注解\",\"slug\":\"注解\",\"link\":\"#注解\",\"children\":[]}]},{\"level\":2,\"title\":\"IP归属地\",\"slug\":\"ip归属地\",\"link\":\"#ip归属地\",\"children\":[{\"level\":3,\"title\":\"具体流程\",\"slug\":\"具体流程\",\"link\":\"#具体流程\",\"children\":[]},{\"level\":3,\"title\":\"核心代码\",\"slug\":\"核心代码\",\"link\":\"#核心代码\",\"children\":[]}]},{\"level\":2,\"title\":\"黑名单功能\",\"slug\":\"黑名单功能\",\"link\":\"#黑名单功能\",\"children\":[{\"level\":3,\"title\":\"具体流程\",\"slug\":\"具体流程-1\",\"link\":\"#具体流程-1\",\"children\":[]},{\"level\":3,\"title\":\"核心代码\",\"slug\":\"核心代码-1\",\"link\":\"#核心代码-1\",\"children\":[]}]},{\"level\":2,\"title\":\"游标翻页\",\"slug\":\"游标翻页\",\"link\":\"#游标翻页\",\"children\":[{\"level\":3,\"title\":\"深翻页问题\",\"slug\":\"深翻页问题\",\"link\":\"#深翻页问题\",\"children\":[]},{\"level\":3,\"title\":\"游标介绍\",\"slug\":\"游标介绍\",\"link\":\"#游标介绍\",\"children\":[]},{\"level\":3,\"title\":\"总结\",\"slug\":\"总结-3\",\"link\":\"#总结-3\",\"children\":[]}]},{\"level\":2,\"title\":\"前后端资源懒加载\",\"slug\":\"前后端资源懒加载\",\"link\":\"#前后端资源懒加载\",\"children\":[{\"level\":3,\"title\":\"选用原因\",\"slug\":\"选用原因\",\"link\":\"#选用原因\",\"children\":[]},{\"level\":3,\"title\":\"解决办法\",\"slug\":\"解决办法\",\"link\":\"#解决办法\",\"children\":[]},{\"level\":3,\"title\":\"总结\",\"slug\":\"总结-4\",\"link\":\"#总结-4\",\"children\":[]}]},{\"level\":2,\"title\":\"批量缓存框架\",\"slug\":\"批量缓存框架\",\"link\":\"#批量缓存框架\",\"children\":[{\"level\":3,\"title\":\"盘路缓存\",\"slug\":\"盘路缓存\",\"link\":\"#盘路缓存\",\"children\":[]},{\"level\":3,\"title\":\"批量缓存查询\",\"slug\":\"批量缓存查询\",\"link\":\"#批量缓存查询\",\"children\":[]},{\"level\":3,\"title\":\"批量缓存框架\",\"slug\":\"批量缓存框架-1\",\"link\":\"#批量缓存框架-1\",\"children\":[]}]}],\"git\":{},\"filePathRelative\":\"project/MallChat项目笔记.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

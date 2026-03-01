@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/algorithm/第十四届蓝桥杯B组国赛.html.vue"
+const data = JSON.parse("{\"path\":\"/algorithm/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%B1%8A%E8%93%9D%E6%A1%A5%E6%9D%AFB%E7%BB%84%E5%9B%BD%E8%B5%9B.html\",\"title\":\"第十四届蓝桥杯B组国赛\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"班级活动\",\"slug\":\"班级活动\",\"link\":\"#班级活动\",\"children\":[]},{\"level\":2,\"title\":\"合并数列\",\"slug\":\"合并数列\",\"link\":\"#合并数列\",\"children\":[]},{\"level\":2,\"title\":\"AB路线\",\"slug\":\"ab路线\",\"link\":\"#ab路线\",\"children\":[]},{\"level\":2,\"title\":\"抓娃娃\",\"slug\":\"抓娃娃\",\"link\":\"#抓娃娃\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"algorithm/第十四届蓝桥杯B组国赛.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

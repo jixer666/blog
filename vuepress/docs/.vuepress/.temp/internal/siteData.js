@@ -1,0 +1,1 @@
+export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"en-US\",\"title\":\"Jixer的小屋\",\"description\":\"Never Give Up\",\"head\":[[\"meta\",{\"name\":\"referrer\",\"content\":\"no-referrer\"}],[\"meta\",{\"name\":\"referrer\",\"content\":\"never\"}],[\"link\",{\"rel\":\"icon\",\"href\":\"http://43.143.14.69:9000/common/logo/favicon.ico\"}]],\"locales\":{}}")

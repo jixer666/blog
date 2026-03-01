@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/blog/百万数据导入导出方案.html.vue"
+const data = JSON.parse("{\"path\":\"/blog/%E7%99%BE%E4%B8%87%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA%E6%96%B9%E6%A1%88.html\",\"title\":\"百万数据导入导出方案\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"导出\",\"slug\":\"导出\",\"link\":\"#导出\",\"children\":[{\"level\":3,\"title\":\"基本方案\",\"slug\":\"基本方案\",\"link\":\"#基本方案\",\"children\":[]},{\"level\":3,\"title\":\"优化方案\",\"slug\":\"优化方案\",\"link\":\"#优化方案\",\"children\":[]}]},{\"level\":2,\"title\":\"导入\",\"slug\":\"导入\",\"link\":\"#导入\",\"children\":[]},{\"level\":2,\"title\":\"代码仓库\",\"slug\":\"代码仓库\",\"link\":\"#代码仓库\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"blog/百万数据导入导出方案.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

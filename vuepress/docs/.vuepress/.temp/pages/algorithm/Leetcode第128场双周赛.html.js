@@ -1,0 +1,16 @@
+import comp from "D:/blog/vuepress/docs/.vuepress/.temp/pages/algorithm/Leetcode第128场双周赛.html.vue"
+const data = JSON.parse("{\"path\":\"/algorithm/Leetcode%E7%AC%AC128%E5%9C%BA%E5%8F%8C%E5%91%A8%E8%B5%9B.html\",\"title\":\"Leetcode第128场双周赛\",\"lang\":\"en-US\",\"frontmatter\":{},\"headers\":[{\"level\":2,\"title\":\"字符串的分数\",\"slug\":\"字符串的分数\",\"link\":\"#字符串的分数\",\"children\":[]},{\"level\":2,\"title\":\"覆盖所有点的最少矩形数目\",\"slug\":\"覆盖所有点的最少矩形数目\",\"link\":\"#覆盖所有点的最少矩形数目\",\"children\":[]},{\"level\":2,\"title\":\"访问消失节点的最少时间\",\"slug\":\"访问消失节点的最少时间\",\"link\":\"#访问消失节点的最少时间\",\"children\":[]},{\"level\":2,\"title\":\"边界元素是最大值的子数组数目\",\"slug\":\"边界元素是最大值的子数组数目\",\"link\":\"#边界元素是最大值的子数组数目\",\"children\":[]}],\"git\":{},\"filePathRelative\":\"algorithm/Leetcode第128场双周赛.md\"}")
+export { comp, data }
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

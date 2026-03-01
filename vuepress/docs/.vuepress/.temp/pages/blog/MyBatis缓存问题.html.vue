@@ -1,0 +1,109 @@
+<template><div><h1 id="mybaits-缓存问题" tabindex="-1"><a class="header-anchor" href="#mybaits-缓存问题"><span>MyBaits 缓存问题</span></a></h1>
+<div style="background: #f8f9fa; padding: 12px 16px; border-left: 3px solid #4CAF50; margin-bottom: 16px; border-radius: 0 4px 4px 0; font-size: 0.9rem">
+    <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">📅</span>
+            <span>2025-10-24</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="color: #666;">✍️</span>
+            <span>Jixer</span>
+        </div>
+    </div>
+</div>
+<h2 id="问题" tabindex="-1"><a class="header-anchor" href="#问题"><span>问题</span></a></h2>
+<p>笔者在项目使用 MyBatis 对数据进行查询，对于多次出现的同一个查询，想走 MyBatis 一级缓存，可出现了缓存失效的情况</p>
+<h2 id="代码" tabindex="-1"><a class="header-anchor" href="#代码"><span>代码</span></a></h2>
+<p>忽略笔者对方法的取名，下面方法的主要作用就是分别进行了两次查询</p>
+<div class="language-java line-numbers-mode" data-highlighter="prismjs" data-ext="java"><pre v-pre><code><span class="line"><span class="token annotation punctuation">@Override</span></span>
+<span class="line"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteMsg</span><span class="token punctuation">(</span><span class="token class-name">MsgDeleteReq</span> req<span class="token punctuation">,</span> <span class="token class-name">String</span> uid<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    req<span class="token punctuation">.</span><span class="token function">checkParams</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token class-name">AssertUtil</span><span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> <span class="token string">"用户ID不能为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token class-name">ImMessage</span> imMessage <span class="token operator">=</span> imMessageService<span class="token punctuation">.</span><span class="token function">selectImMessageById</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span><span class="token function">getMsgId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    </span>
+<span class="line">    <span class="token class-name">AssertUtil</span><span class="token punctuation">.</span><span class="token function">nonNull</span><span class="token punctuation">(</span>imMessage<span class="token punctuation">,</span> <span class="token string">"消息不存在"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    imMessageService<span class="token punctuation">.</span><span class="token function">deleteImMessage</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span><span class="token function">getMsgId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> uid<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="token annotation punctuation">@Override</span></span>
+<span class="line"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">deleteImMessage</span><span class="token punctuation">(</span><span class="token class-name">String</span> msgId<span class="token punctuation">,</span> <span class="token class-name">String</span> uid<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token class-name">AssertUtil</span><span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>uid<span class="token punctuation">,</span> <span class="token string">"用户ID不能为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token class-name">AssertUtil</span><span class="token punctuation">.</span><span class="token function">isNotEmpty</span><span class="token punctuation">(</span>msgId<span class="token punctuation">,</span> <span class="token string">"消息ID不能为空"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token class-name">ImMessage</span> imMessage <span class="token operator">=</span> <span class="token function">selectImMessageById</span><span class="token punctuation">(</span>msgId<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    imMessage<span class="token punctuation">.</span><span class="token function">addDelRange</span><span class="token punctuation">(</span>uid<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="解决办法" tabindex="-1"><a class="header-anchor" href="#解决办法"><span>解决办法</span></a></h2>
+<p>排查问题，更改日志级别为 <code v-pre>trace</code>，查看控制台发现两次查询不是用一个 <code v-pre>sqlsession</code>，两次查询不是在同一个会话中进行，不在同一个会话一级缓存就失效了</p>
+<p>解决办法：<code v-pre>deleteMsg</code> 方法加上 <code v-pre>@Transactional(readOnly = true)</code> 注解，保证在同一个事务中，但这种注解只适用于全是查询的情况</p>
+<h2 id="拓展" tabindex="-1"><a class="header-anchor" href="#拓展"><span>拓展</span></a></h2>
+<h3 id="一级缓存" tabindex="-1"><a class="header-anchor" href="#一级缓存"><span>一级缓存</span></a></h3>
+<p>默认自动开启</p>
+<p>生效条件：</p>
+<ul>
+<li>必须是同一个会话（<code v-pre>sqlsession</code>）</li>
+<li>调用的查询方法是一个</li>
+<li>在两次或者多次查询过程中间没有更新、插入和删除的操作</li>
+</ul>
+<p>原理：每一次查询都会先去查询是否有缓存，若无缓存，就会去执行 sql 语句，执行后会放入一个 <code v-pre>CacheKey</code> 为 key，执行结果为 value 的 map 中，代码如下：</p>
+<div class="language-java line-numbers-mode" data-highlighter="prismjs" data-ext="java"><pre v-pre><code><span class="line">list <span class="token operator">=</span> resultHandler <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token class-name">List</span><span class="token punctuation">)</span><span class="token keyword">this</span><span class="token punctuation">.</span>localCache<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">//查询缓存</span></span>
+<span class="line"><span class="token keyword">if</span> <span class="token punctuation">(</span>list <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token comment">// 走缓存</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleLocallyCachedOutputParameters</span><span class="token punctuation">(</span>ms<span class="token punctuation">,</span> key<span class="token punctuation">,</span> parameter<span class="token punctuation">,</span> boundSql<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span></span>
+<span class="line">    list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">queryFromDatabase</span><span class="token punctuation">(</span>ms<span class="token punctuation">,</span> parameter<span class="token punctuation">,</span> rowBounds<span class="token punctuation">,</span> resultHandler<span class="token punctuation">,</span> key<span class="token punctuation">,</span> boundSql<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-java line-numbers-mode" data-highlighter="prismjs" data-ext="java"><pre v-pre><code><span class="line"><span class="token keyword">private</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token function">queryFromDatabase</span><span class="token punctuation">(</span><span class="token class-name">MappedStatement</span> ms<span class="token punctuation">,</span> <span class="token class-name">Object</span> parameter<span class="token punctuation">,</span> <span class="token class-name">RowBounds</span> rowBounds<span class="token punctuation">,</span> <span class="token class-name">ResultHandler</span> resultHandler<span class="token punctuation">,</span> <span class="token class-name">CacheKey</span> key<span class="token punctuation">,</span> <span class="token class-name">BoundSql</span> boundSql<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">SQLException</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>localCache<span class="token punctuation">.</span><span class="token function">putObject</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> <span class="token class-name">ExecutionPlaceholder</span><span class="token punctuation">.</span><span class="token constant">EXECUTION_PLACEHOLDER</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token class-name">List</span> list<span class="token punctuation">;</span></span>
+<span class="line">    <span class="token keyword">try</span> <span class="token punctuation">{</span></span>
+<span class="line">        list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">doQuery</span><span class="token punctuation">(</span>ms<span class="token punctuation">,</span> parameter<span class="token punctuation">,</span> rowBounds<span class="token punctuation">,</span> resultHandler<span class="token punctuation">,</span> boundSql<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token keyword">this</span><span class="token punctuation">.</span>localCache<span class="token punctuation">.</span><span class="token function">removeObject</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">    <span class="token comment">// 放入缓存</span></span>
+<span class="line">    <span class="token keyword">this</span><span class="token punctuation">.</span>localCache<span class="token punctuation">.</span><span class="token function">putObject</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> list<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token keyword">if</span> <span class="token punctuation">(</span>ms<span class="token punctuation">.</span><span class="token function">getStatementType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token class-name">StatementType</span><span class="token punctuation">.</span><span class="token constant">CALLABLE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token keyword">this</span><span class="token punctuation">.</span>localOutputParameterCache<span class="token punctuation">.</span><span class="token function">putObject</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> parameter<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">    <span class="token keyword">return</span> list<span class="token punctuation">;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><code v-pre>CacheKey</code> 对象格式如下图所示：</p>
+<p><img src="https://gitee.com/lijunxi666/picture-bed/raw/master/mybatis-cache/20251024165243_37_2.png" alt=""></p>
+<p>对于更新、插入、删除操作，会执行清除全部缓存的操作，代码如下：</p>
+<div class="language-java line-numbers-mode" data-highlighter="prismjs" data-ext="java"><pre v-pre><code><span class="line"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">clearLocalCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>closed<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token keyword">this</span><span class="token punctuation">.</span>localCache<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">        <span class="token keyword">this</span><span class="token punctuation">.</span>localOutputParameterCache<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="二级缓存" tabindex="-1"><a class="header-anchor" href="#二级缓存"><span>二级缓存</span></a></h3>
+<p>二级缓存的开启是需要在对应的 <code v-pre>mapper.xml</code> 文件中加入<code v-pre>&lt;cache&gt;&lt;/cache&gt;</code></p>
+<p>生效条件：</p>
+<ul>
+<li>写入缓存的时机是在当前会话结束（若是平常的 Web 应用就是一次请求结束），目的是防止命中的就是其它线程会话未完成的脏数据</li>
+<li>调用的是同一个 statement  也是 mapper 接口中的同一个方法</li>
+<li>SQL 和 参数必须一致</li>
+<li>如果 <code v-pre>readWrite=true</code>，实体对像必须实现 <code v-pre>Serializable</code> 接口，目的是为了防止和一级缓存一样拿到的是对象的引用而在造成的数据不安全问题，序列化后拿到的就不是一个引用</li>
+</ul>
+<p>二级缓存清除：</p>
+<ul>
+<li>
+<p>对于更新、插入、删除操作，会执行清除全部缓存的操作，是只会删除某个 namespace 级别下的，而一级缓存会全部删除</p>
+</li>
+<li>
+<p>在查询的 xml 中添加 <code v-pre>flushCache=&quot;true&quot;</code>，如下代码所示</p>
+<div class="language-xml line-numbers-mode" data-highlighter="prismjs" data-ext="xml"><pre v-pre><code><span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">flushCache</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span></span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div></li>
+</ul>
+<h2 id="参考文章" tabindex="-1"><a class="header-anchor" href="#参考文章"><span>参考文章</span></a></h2>
+<ul>
+<li><a href="https://blog.csdn.net/foxException/article/details/109203040" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/foxException/article/details/109203040</a></li>
+</ul>
+</div></template>
+
+
