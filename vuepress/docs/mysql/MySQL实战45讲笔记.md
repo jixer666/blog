@@ -319,3 +319,38 @@ row id 排序会使用文件来进行排序，将数据行分到多个文件进�
 - name 本身就是排序的，所以直接取出前1000条数据返回
 
 > 注意：若没有 city = 杭州 的限制，最终还是会对所有结果按照 name 进行排序
+
+## binlog磁盘写入
+
+流程：事务执行产生的日志先写入 binlog cache，事务提交的时候在写入 binlog 并清空 binlog cache。binlog cache 大小是有限制的，若日志大小超过 binlog cache 就会先暂存到磁盘
+
+每个事务都有自己的 binlog cache，但共享 binlog，如图所示
+
+![](https://static001.geekbang.org/resource/image/9e/3e/9ed86644d5f39efb0efec595abb92e3e.png)
+
+write：将日志写入文件系统的 page cache，此时还未写入磁盘，速度很快
+
+fsync：将日志持久化到磁盘
+
+write 和 fsync 调用时机由 `sync_binlog` 控制
+
+- `sync_binlog` 为 0，每次事务提交只 write，不 fsync
+- `sync_binlog` 为 1，每次事务提交都会 fsync
+- `sync_binlog` 为 N，积累 N 个事务后才会执行 fsync，增大这个值能提升性能，但容易出现丢失日志的可能性
+
+## redo log磁盘写入
+
+流程：与 binlog 类似，先写入 redo log buffer，再 write 到 page cache，最后是 fsync 持久化到硬盘
+
+redo log 日志写入策略由 `innodb_flush_log_at_trx_commit` 控制：
+
+- 为0，每次事务提交只写入 redo log buffer
+- 为1，每次事务提交直接持久化硬盘
+- 为2，每次事务提交只把 redo log写入 page cache
+
+持久化到硬盘的时机有三种：
+
+- 事务提交的情况下，后台线程每隔1秒将 redo log buffer 调用 write 到 page cache，再调用 fsync 持久化到硬盘
+- 事务未提交的情况下
+  - 当 redo log buffer 到内存的一半容量的时候会主动写盘，此时因为事务未提交只 write，还未 fsync
+  - 在 `innodb_flush_log_at_trx_commit` 为1的情况下，并行的事务提交的时候，会顺带将其他事务的 redo log buffer 持久化到磁盘

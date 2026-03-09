@@ -6,435 +6,414 @@ export default defineUserConfig({
   lang: "en-US",
   title: "Jixer的小屋",
   description: "Never Give Up",
-
+  
   theme: defaultTheme({
     logo: "",
-
+    
     navbar: [
-      {
-        text: "主页",
-        link: "/",
-      },
-      {
-        text: "Ai",
-        link: "/ai/",
-      },
-      {
-        text: "Java",
-        link: "/java/",
-      },
-      {
-        text: "Linux",
-        link: "/linux/",
-      },
-      {
-        text: "Mysql",
-        link: "/mysql/",
-      },
-      {
-        text: "Python",
-        link: "/python/",
-      },
-      {
-        text: "Vue",
-        link: "/vue/",
-      },
-      {
-        text: "学校习题",
-        link: "/学校习题/",
-      },
-      {
-        text: "实战项目",
-        link: "/实战项目/",
-      },
-      {
-        text: "杂谈",
-        link: "/杂谈/",
-      },
-      {
-        text: "消息队列",
-        link: "/消息队列/",
-      },
-      {
-        text: "算法",
-        link: "/算法/",
-      },
-    ],
-
+  {
+    text: "主页",
+    link: "/"
+  },
+  {
+    text: "Ai",
+    link: "/ai/"
+  },
+  {
+    text: "Java",
+    link: "/java/"
+  },
+  {
+    text: "Linux",
+    link: "/linux/"
+  },
+  {
+    text: "Mysql",
+    link: "/mysql/"
+  },
+  {
+    text: "Python",
+    link: "/python/"
+  },
+  {
+    text: "Vue",
+    link: "/vue/"
+  },
+  {
+    text: "学校习题",
+    link: "/学校习题/"
+  },
+  {
+    text: "实战项目",
+    link: "/实战项目/"
+  },
+  {
+    text: "消息队列",
+    link: "/消息队列/"
+  },
+  {
+    text: "算法",
+    link: "/算法/"
+  }
+],
+    
     sidebar: {
-      "/ai/": [
+    "/ai/": [
         {
-          text: "Ai",
-          link: "/ai/",
-          collapsible: true,
-          children: [
-            {
-              text: "AI搭建",
-              link: "/ai/AI搭建",
-            },
-          ],
-        },
-      ],
-      "/java/": [
+            "text": "Ai",
+            "link": "/ai/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "AI搭建",
+                    "link": "/ai/AI搭建"
+                }
+            ]
+        }
+    ],
+    "/java/": [
         {
-          text: "Java",
-          link: "/java/",
-          collapsible: true,
-          children: [
-            {
-              text: "BIO、NIO与Netty",
-              link: "/java/BIO、NIO与Netty",
-            },
-            {
-              text: "ElasticSearch入门",
-              link: "/java/ElasticSearch入门",
-            },
-            {
-              text: "IM多服务部署方案",
-              link: "/java/IM多服务部署方案",
-            },
-            {
-              text: "MyBatis缓存问题",
-              link: "/java/MyBatis缓存问题",
-            },
-            {
-              text: "Netty部署问题梳理",
-              link: "/java/Netty部署问题梳理",
-            },
-            {
-              text: "OA卡顿问题排查",
-              link: "/java/OA卡顿问题排查",
-            },
-            {
-              text: "PGP加密",
-              link: "/java/PGP加密",
-            },
-            {
-              text: "SSO单点登录",
-              link: "/java/SSO单点登录",
-            },
-            {
-              text: "ThreadPoolExecutor源码解读",
-              link: "/java/ThreadPoolExecutor源码解读",
-            },
-            {
-              text: "Web视频处理方案",
-              link: "/java/Web视频处理方案",
-            },
-            {
-              text: "人工客服方案",
-              link: "/java/人工客服方案",
-            },
-            {
-              text: "内部通讯发送消息死锁问题",
-              link: "/java/内部通讯发送消息死锁问题",
-            },
-            {
-              text: "单机版Redis分布式锁",
-              link: "/java/单机版Redis分布式锁",
-            },
-            {
-              text: "多租户多时区解决方案",
-              link: "/java/多租户多时区解决方案",
-            },
-            {
-              text: "封装Java线程上下文的局部环境",
-              link: "/java/封装Java线程上下文的局部环境",
-            },
-            {
-              text: "微信Native支付实现流程",
-              link: "/java/微信Native支付实现流程",
-            },
-            {
-              text: "百万数据导入导出方案",
-              link: "/java/百万数据导入导出方案",
-            },
-            {
-              text: "若依框架分页问题解决方案",
-              link: "/java/若依框架分页问题解决方案",
-            },
-          ],
-        },
-      ],
-      "/linux/": [
+            "text": "Java",
+            "link": "/java/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "BIO、NIO与Netty",
+                    "link": "/java/BIO、NIO与Netty"
+                },
+                {
+                    "text": "ElasticSearch入门",
+                    "link": "/java/ElasticSearch入门"
+                },
+                {
+                    "text": "IM多服务部署方案",
+                    "link": "/java/IM多服务部署方案"
+                },
+                {
+                    "text": "Java并发编程实战笔记",
+                    "link": "/java/Java并发编程实战笔记"
+                },
+                {
+                    "text": "MyBatis缓存问题",
+                    "link": "/java/MyBatis缓存问题"
+                },
+                {
+                    "text": "Netty部署问题梳理",
+                    "link": "/java/Netty部署问题梳理"
+                },
+                {
+                    "text": "OA卡顿问题排查",
+                    "link": "/java/OA卡顿问题排查"
+                },
+                {
+                    "text": "PGP加密",
+                    "link": "/java/PGP加密"
+                },
+                {
+                    "text": "SSO单点登录",
+                    "link": "/java/SSO单点登录"
+                },
+                {
+                    "text": "ThreadPoolExecutor源码解读",
+                    "link": "/java/ThreadPoolExecutor源码解读"
+                },
+                {
+                    "text": "Web视频处理方案",
+                    "link": "/java/Web视频处理方案"
+                },
+                {
+                    "text": "人工客服方案",
+                    "link": "/java/人工客服方案"
+                },
+                {
+                    "text": "会话列表死锁问题解决方案",
+                    "link": "/java/会话列表死锁问题解决方案"
+                },
+                {
+                    "text": "内部通讯发送消息死锁问题",
+                    "link": "/java/内部通讯发送消息死锁问题"
+                },
+                {
+                    "text": "单机版Redis分布式锁",
+                    "link": "/java/单机版Redis分布式锁"
+                },
+                {
+                    "text": "多租户多时区解决方案",
+                    "link": "/java/多租户多时区解决方案"
+                },
+                {
+                    "text": "封装Java线程上下文的局部环境",
+                    "link": "/java/封装Java线程上下文的局部环境"
+                },
+                {
+                    "text": "微信Native支付实现流程",
+                    "link": "/java/微信Native支付实现流程"
+                },
+                {
+                    "text": "百万数据导入导出方案",
+                    "link": "/java/百万数据导入导出方案"
+                },
+                {
+                    "text": "若依框架分页问题解决方案",
+                    "link": "/java/若依框架分页问题解决方案"
+                }
+            ]
+        }
+    ],
+    "/linux/": [
         {
-          text: "Linux",
-          link: "/linux/",
-          collapsible: true,
-          children: [
-            {
-              text: "Jenkins+Gitlab自动化部署",
-              link: "/linux/Jenkins+Gitlab自动化部署",
-            },
-            {
-              text: "Linux环境配置常用命令",
-              link: "/linux/Linux环境配置常用命令",
-            },
-          ],
-        },
-      ],
-      "/mysql/": [
+            "text": "Linux",
+            "link": "/linux/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "Jenkins+Gitlab自动化部署",
+                    "link": "/linux/Jenkins+Gitlab自动化部署"
+                },
+                {
+                    "text": "Linux环境配置常用命令",
+                    "link": "/linux/Linux环境配置常用命令"
+                }
+            ]
+        }
+    ],
+    "/mysql/": [
         {
-          text: "Mysql",
-          link: "/mysql/",
-          collapsible: true,
-          children: [
-            {
-              text: "MySQL实战45讲笔记",
-              link: "/mysql/MySQL实战45讲笔记",
-            },
-          ],
-        },
-      ],
-      "/python/": [
+            "text": "Mysql",
+            "link": "/mysql/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "MySQL实战45讲笔记",
+                    "link": "/mysql/MySQL实战45讲笔记"
+                }
+            ]
+        }
+    ],
+    "/python/": [
         {
-          text: "Python",
-          link: "/python/",
-          collapsible: true,
-          children: [
-            {
-              text: "Python学习笔记",
-              link: "/python/Python学习笔记",
-            },
-          ],
-        },
-      ],
-      "/vue/": [
+            "text": "Python",
+            "link": "/python/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "Python学习笔记",
+                    "link": "/python/Python学习笔记"
+                }
+            ]
+        }
+    ],
+    "/vue/": [
         {
-          text: "Vue",
-          link: "/vue/",
-          collapsible: true,
-          children: [
-            {
-              text: "Vue3集成Halo富文本编辑器",
-              link: "/vue/Vue3集成Halo富文本编辑器",
-            },
-          ],
-        },
-      ],
-      "/学校习题/": [
+            "text": "Vue",
+            "link": "/vue/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "Vue3集成Halo富文本编辑器",
+                    "link": "/vue/Vue3集成Halo富文本编辑器"
+                }
+            ]
+        }
+    ],
+    "/学校习题/": [
         {
-          text: "学校习题",
-          link: "/学校习题/",
-          collapsible: true,
-          children: [
-            {
-              text: "C语言指针",
-              link: "/学校习题/C语言指针",
-            },
-            {
-              text: "C语言错题集",
-              link: "/学校习题/C语言错题集",
-            },
-            {
-              text: "Java错题集",
-              link: "/学校习题/Java错题集",
-            },
-            {
-              text: "人机交互复习资料",
-              link: "/学校习题/人机交互复习资料",
-            },
-            {
-              text: "操作系统原理错题集",
-              link: "/学校习题/操作系统原理错题集",
-            },
-            {
-              text: "数据库系统原理错题集",
-              link: "/学校习题/数据库系统原理错题集",
-            },
-            {
-              text: "计算机组成原理错题集",
-              link: "/学校习题/计算机组成原理错题集",
-            },
-            {
-              text: "软件工程复习资料",
-              link: "/学校习题/软件工程复习资料",
-            },
-            {
-              text: "软件测试复习资料",
-              link: "/学校习题/软件测试复习资料",
-            },
-          ],
-        },
-      ],
-      "/实战项目/": [
+            "text": "学校习题",
+            "link": "/学校习题/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "C语言指针",
+                    "link": "/学校习题/C语言指针"
+                },
+                {
+                    "text": "C语言错题集",
+                    "link": "/学校习题/C语言错题集"
+                },
+                {
+                    "text": "Java错题集",
+                    "link": "/学校习题/Java错题集"
+                },
+                {
+                    "text": "人机交互复习资料",
+                    "link": "/学校习题/人机交互复习资料"
+                },
+                {
+                    "text": "操作系统原理错题集",
+                    "link": "/学校习题/操作系统原理错题集"
+                },
+                {
+                    "text": "数据库系统原理错题集",
+                    "link": "/学校习题/数据库系统原理错题集"
+                },
+                {
+                    "text": "计算机组成原理错题集",
+                    "link": "/学校习题/计算机组成原理错题集"
+                },
+                {
+                    "text": "软件工程复习资料",
+                    "link": "/学校习题/软件工程复习资料"
+                },
+                {
+                    "text": "软件测试复习资料",
+                    "link": "/学校习题/软件测试复习资料"
+                }
+            ]
+        }
+    ],
+    "/实战项目/": [
         {
-          text: "实战项目",
-          link: "/实战项目/",
-          collapsible: true,
-          children: [
-            {
-              text: "MallChat项目笔记",
-              link: "/实战项目/MallChat项目笔记",
-            },
-            {
-              text: "谷粒商城笔记",
-              link: "/实战项目/谷粒商城笔记",
-            },
-            {
-              text: "黑马点评项目笔记",
-              link: "/实战项目/黑马点评项目笔记",
-            },
-          ],
-        },
-      ],
-      "/杂谈/": [
+            "text": "实战项目",
+            "link": "/实战项目/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "MallChat项目笔记",
+                    "link": "/实战项目/MallChat项目笔记"
+                },
+                {
+                    "text": "谷粒商城笔记",
+                    "link": "/实战项目/谷粒商城笔记"
+                },
+                {
+                    "text": "黑马点评项目笔记",
+                    "link": "/实战项目/黑马点评项目笔记"
+                }
+            ]
+        }
+    ],
+    "/消息队列/": [
         {
-          text: "杂谈",
-          link: "/杂谈/",
-          collapsible: true,
-          children: [
-            {
-              text: "2024~2025年实习总结",
-              link: "/杂谈/2024~2025年实习总结",
-            },
-            {
-              text: "2025年实习第一阶段总结",
-              link: "/杂谈/2025年实习第一阶段总结",
-            },
-            {
-              text: "利尔化学工作总结",
-              link: "/杂谈/利尔化学工作总结",
-            },
-            {
-              text: "菜鸟的第一次Java面试",
-              link: "/杂谈/菜鸟的第一次Java面试",
-            },
-          ],
-        },
-      ],
-      "/消息队列/": [
+            "text": "消息队列",
+            "link": "/消息队列/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "RabbitMQ学习笔记",
+                    "link": "/消息队列/RabbitMQ学习笔记"
+                }
+            ]
+        }
+    ],
+    "/算法/": [
         {
-          text: "消息队列",
-          link: "/消息队列/",
-          collapsible: true,
-          children: [
-            {
-              text: "RabbitMQ学习笔记",
-              link: "/消息队列/RabbitMQ学习笔记",
-            },
-          ],
-        },
-      ],
-      "/算法/": [
-        {
-          text: "算法",
-          link: "/算法/",
-          collapsible: true,
-          children: [
-            {
-              text: "2022年算法队选拔赛",
-              link: "/算法/2022年算法队选拔赛",
-            },
-            {
-              text: "2023年团体程序设计天梯赛",
-              link: "/算法/2023年团体程序设计天梯赛",
-            },
-            {
-              text: "Acwing基础课",
-              link: "/算法/Acwing基础课",
-            },
-            {
-              text: "Leetcode热题100",
-              link: "/算法/Leetcode热题100",
-            },
-            {
-              text: "Leetcode第128场双周赛",
-              link: "/算法/Leetcode第128场双周赛",
-            },
-            {
-              text: "Leetcode第396场周赛",
-              link: "/算法/Leetcode第396场周赛",
-            },
-            {
-              text: "Leetcode第398场周赛",
-              link: "/算法/Leetcode第398场周赛",
-            },
-            {
-              text: "Leetcode随机打卡题",
-              link: "/算法/Leetcode随机打卡题",
-            },
-            {
-              text: "数据结构与算法大作业",
-              link: "/算法/数据结构与算法大作业",
-            },
-            {
-              text: "牛客小白月赛81",
-              link: "/算法/牛客小白月赛81",
-            },
-            {
-              text: "牛客小白月赛84",
-              link: "/算法/牛客小白月赛84",
-            },
-            {
-              text: "牛客小白月赛85",
-              link: "/算法/牛客小白月赛85",
-            },
-            {
-              text: "牛客小白月赛86",
-              link: "/算法/牛客小白月赛86",
-            },
-            {
-              text: "牛客小白月赛87",
-              link: "/算法/牛客小白月赛87",
-            },
-            {
-              text: "牛客小白月赛88",
-              link: "/算法/牛客小白月赛88",
-            },
-            {
-              text: "牛客小白月赛91",
-              link: "/算法/牛客小白月赛91",
-            },
-            {
-              text: "牛客小白月赛92",
-              link: "/算法/牛客小白月赛92",
-            },
-            {
-              text: "第十三届蓝桥杯B组省赛",
-              link: "/算法/第十三届蓝桥杯B组省赛",
-            },
-            {
-              text: "第十二届蓝桥杯B组省赛",
-              link: "/算法/第十二届蓝桥杯B组省赛",
-            },
-            {
-              text: "第十四届蓝桥杯B组国赛",
-              link: "/算法/第十四届蓝桥杯B组国赛",
-            },
-            {
-              text: "第十四届蓝桥杯B组省赛",
-              link: "/算法/第十四届蓝桥杯B组省赛",
-            },
-          ],
-        },
-      ],
-    },
+            "text": "算法",
+            "link": "/算法/",
+            "collapsible": true,
+            "children": [
+                {
+                    "text": "2022年算法队选拔赛",
+                    "link": "/算法/2022年算法队选拔赛"
+                },
+                {
+                    "text": "2023年团体程序设计天梯赛",
+                    "link": "/算法/2023年团体程序设计天梯赛"
+                },
+                {
+                    "text": "Acwing基础课",
+                    "link": "/算法/Acwing基础课"
+                },
+                {
+                    "text": "Leetcode热题100",
+                    "link": "/算法/Leetcode热题100"
+                },
+                {
+                    "text": "Leetcode第128场双周赛",
+                    "link": "/算法/Leetcode第128场双周赛"
+                },
+                {
+                    "text": "Leetcode第396场周赛",
+                    "link": "/算法/Leetcode第396场周赛"
+                },
+                {
+                    "text": "Leetcode第398场周赛",
+                    "link": "/算法/Leetcode第398场周赛"
+                },
+                {
+                    "text": "Leetcode随机打卡题",
+                    "link": "/算法/Leetcode随机打卡题"
+                },
+                {
+                    "text": "数据结构与算法大作业",
+                    "link": "/算法/数据结构与算法大作业"
+                },
+                {
+                    "text": "牛客小白月赛81",
+                    "link": "/算法/牛客小白月赛81"
+                },
+                {
+                    "text": "牛客小白月赛84",
+                    "link": "/算法/牛客小白月赛84"
+                },
+                {
+                    "text": "牛客小白月赛85",
+                    "link": "/算法/牛客小白月赛85"
+                },
+                {
+                    "text": "牛客小白月赛86",
+                    "link": "/算法/牛客小白月赛86"
+                },
+                {
+                    "text": "牛客小白月赛87",
+                    "link": "/算法/牛客小白月赛87"
+                },
+                {
+                    "text": "牛客小白月赛88",
+                    "link": "/算法/牛客小白月赛88"
+                },
+                {
+                    "text": "牛客小白月赛91",
+                    "link": "/算法/牛客小白月赛91"
+                },
+                {
+                    "text": "牛客小白月赛92",
+                    "link": "/算法/牛客小白月赛92"
+                },
+                {
+                    "text": "第十三届蓝桥杯B组省赛",
+                    "link": "/算法/第十三届蓝桥杯B组省赛"
+                },
+                {
+                    "text": "第十二届蓝桥杯B组省赛",
+                    "link": "/算法/第十二届蓝桥杯B组省赛"
+                },
+                {
+                    "text": "第十四届蓝桥杯B组国赛",
+                    "link": "/算法/第十四届蓝桥杯B组国赛"
+                },
+                {
+                    "text": "第十四届蓝桥杯B组省赛",
+                    "link": "/算法/第十四届蓝桥杯B组省赛"
+                }
+            ]
+        }
+    ]
+  },
   }),
-
+  
   head: [
-    [
-      "meta",
-      {
-        name: "referrer",
-        content: "no-referrer",
-      },
-    ],
-    [
-      "meta",
-      {
-        name: "referrer",
-        content: "never",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "http://43.143.14.69:9000/common/logo/favicon.ico",
-      },
-    ],
+  [
+    "meta",
+    {
+      name: "referrer",
+      content: "no-referrer"
+    }
   ],
-
+  [
+    "meta",
+    {
+      name: "referrer",
+      content: "never"
+    }
+  ],
+  [
+    "link",
+    {
+      rel: "icon",
+      href: "http://43.143.14.69:9000/common/logo/favicon.ico"
+    }
+  ]
+],
+  
   bundler: viteBundler(),
 });

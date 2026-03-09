@@ -1,6 +1,9 @@
 @echo off
 chcp 65001 >nul
 
+echo [正在执行] node gen.js
+call node docs/gen.js
+
 echo [正在执行] npm run docs:build
 call npm run docs:build
 

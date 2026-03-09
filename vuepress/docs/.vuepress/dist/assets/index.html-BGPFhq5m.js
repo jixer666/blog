@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app-B9IyngIV.js";const n={};function c(r,o){return a(),t("div")}const i=e(n,[["render",c]]),_=JSON.parse('{"path":"/%E7%AE%97%E6%B3%95/","title":"","lang":"en-US","frontmatter":{},"headers":[],"git":{},"filePathRelative":"算法/index.md"}');export{i as comp,_ as data};
