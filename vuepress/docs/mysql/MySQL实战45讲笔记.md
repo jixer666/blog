@@ -354,3 +354,47 @@ redo log 日志写入策略由 `innodb_flush_log_at_trx_commit` 控制：
 - 事务未提交的情况下
   - 当 redo log buffer 到内存的一半容量的时候会主动写盘，此时因为事务未提交只 write，还未 fsync
   - 在 `innodb_flush_log_at_trx_commit` 为1的情况下，并行的事务提交的时候，会顺带将其他事务的 redo log buffer 持久化到磁盘
+
+## 主备同步
+
+主备同步流程：从库拉取主库的 binlog 
+
+![test.png](https://static001.geekbang.org/resource/image/a6/a3/a66c154c1bc51e071dd2cc8c1d6ca6a3.png)
+
+1、主库事务提交，生成 binlog 日志
+
+2、主库的 dump_thread（转储线程）读取 binlog 并发送给从库的 io_thread
+
+3、从库 io_thread 负责与主库建立连接，接收 binlog 并写入 relay_log（中转日志）
+
+4、sql_thread：读取中转日志，解析出日志里的命令，并执行
+
+5、在 master.info 中从库记录同步位点，以便于下次从该位点继续向主库请求 binlog
+
+**主备 M-S 结构**
+
+![](https://static001.geekbang.org/resource/image/fd/10/fd75a2b37ae6ca709b7f16fe060c2c10.png)
+
+**主备双 M 结构**
+
+![](https://static001.geekbang.org/resource/image/20/56/20ad4e163115198dc6cf372d5116c956.png)
+
+A 和 B 互为主库和备库，因为都是相互监听对方的 binlog 的变化，所以存在循环复制的问题
+
+## binlog日志格式
+
+binlog 日志有三种格式：**statement、row 和 mixed**（前两种的混合）
+
+**statement 日志形式：**
+
+![b9818f73cd7d38a96ddcb75350b52931.png (1882×213)](https://static001.geekbang.org/resource/image/b9/31/b9818f73cd7d38a96ddcb75350b52931.png)
+
+若是用上述图片所示的删除命令，在主备同步的时候，主备节点并不知道 `a` 是索引还是 `t_modified` 是索引，若两者选用的索引不同，就会导致删除的数据不一致
+
+默认是这个，但一般都不会用这个日志形式，需要检查数据库是否采用这种
+
+**row 日志形式：**
+
+![d67a38db154afff610ae3bb64e266826.png (1920×533)](https://static001.geekbang.org/resource/image/d6/26/d67a38db154afff610ae3bb64e266826.png)
+
+与 statement  日志相比，准确的记录是哪一行数据删除，不会出现误删的情况。但若是批量删除多条数据，那么就会记录多个，会比 statement  日志更占用空间
