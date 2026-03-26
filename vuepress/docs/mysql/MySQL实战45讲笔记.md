@@ -48,6 +48,24 @@ update tb_test set value = "111" where idx = 9;
 select * from tb_test where idx = 10;
 ```
 
+MySQL 整体执行流程：
+
+```
+客户端发送 SQL
+      ↓
+Server 层：连接器、分析器、优化器
+      ↓
+Server 层：执行器调用 InnoDB 接口
+      ↓
+InnoDB 层：从 Buffer Pool/磁盘读取数据行
+      ↓
+Server 层：逐行处理（判断权限、投影、函数计算、排序等）
+      ↓
+Server 层：发送结果给客户端（边处理边发送）
+```
+
+**InnoDB 层处理：**
+
 若查询 idx 的数据页在内存中，直接从内存中读取并返回
 
 若查询 idx 的数据页不在内存中，会从 idx 索引树中读取，并保存在内存中，应用 change buffer 进行合并，并返回 
@@ -55,6 +73,10 @@ select * from tb_test where idx = 10;
 > 这里展开说明一下，若查询 idx 数据页不在内存中，在进行索引树查询的时候会有不同的表现：
 > - 若 idx 是普通索引，则会查询到第一条满足的数据后，会接着查询下一条不满条件后才会返回。若此时恰好是跨数据页的，则会又要进行一次 IO 查询（概率很小）
 > - 若 idx 是唯一索引，则会查询到第一条满足的数据后就会返回
+
+**Server 层边处理边发送：**并不会一次性全部读取再发送，会先写入到 net_buffer 中，由 net_buffer_length 控制，默认是16k，写满就进行发送
+
+客户端有两种方式接收：mysql_store_result（一次全读）或 mysql_use_result（逐行读），线上环境对于查询结果不多的都用建议用 mysql_store_result
 
 ## 记录redo log
 
@@ -381,6 +403,18 @@ redo log 日志写入策略由 `innodb_flush_log_at_trx_commit` 控制：
 
 A 和 B 互为主库和备库，因为都是相互监听对方的 binlog 的变化，所以存在循环复制的问题
 
+## 主备延迟
+
+主备延迟就是从库回写完的时间与主库事务提交写入 binlog 日志提交时间的之差
+
+主要受三个方面的影响：
+
+1、大事务
+
+2、大表 DDL
+
+3、从库的性能比主库差
+
 ## binlog日志格式
 
 binlog 日志有三种格式：**statement、row 和 mixed**（前两种的混合）
@@ -398,3 +432,75 @@ binlog 日志有三种格式：**statement、row 和 mixed**（前两种的混�
 ![d67a38db154afff610ae3bb64e266826.png (1920×533)](https://static001.geekbang.org/resource/image/d6/26/d67a38db154afff610ae3bb64e266826.png)
 
 与 statement  日志相比，准确的记录是哪一行数据删除，不会出现误删的情况。但若是批量删除多条数据，那么就会记录多个，会比 statement  日志更占用空间
+
+## Buffer Pool 内存管理算法
+
+Buffer Pool 属于 InnoDB 层的一块内存区域
+
+Buffer Pool 的内存管理算法采用**改进后的 LRU 算法**
+
+将原本的 LRU 算法链表分为**热数据区（New Sublist）**和**冷数据区（Old Sublist）**两部分
+
+热数据区占链表前 5/8 的部分，冷数据区占链表后 3/8 部分
+
+![test.png](https://static001.geekbang.org/resource/image/21/28/21f64a6799645b1410ed40d016139828.png)
+
+执行流程：
+
+- 访问一个链表中已有的数据，将其移至热数据区的第一个，如 state1 和 state 2
+
+- 访问一个链表中未有的数据页，先插入冷数据区的第一个，如 state3
+- 若后续再次访问，并且访问的时间间隔超过1s，就放入热数据区的第一个，没超过1s就放到冷数据第一个不变化
+- 若后续没访问，就一直再冷数据区，逐渐被淘汰
+
+## Join算法
+
+join 连接算法有三种
+
+- Index Nested-Loop Join (INLJ)
+- Block Nested-Loop Join (BNLJ)
+- Hash Join (MySQL 8.0.18+)
+
+**Index Nested-Loop Join**
+
+被驱动表走索引时选用的算法，时间复杂度：O(N * logM)
+
+![](https://static001.geekbang.org/resource/image/d8/f6/d83ad1cbd6118603be795b26d38f8df6.jpg)
+
+执行流程：
+
+- 遍历驱动表
+- 驱动表的每一行根据索引快速定位到被驱动表的数据
+- 合并在一起加入结果集
+
+**Block Nested-Loop Join**
+
+被驱动表的连接字段**无索引**时选用的算法，时间复杂度：O(N * M)
+
+![](https://static001.geekbang.org/resource/image/67/e1/676921fa0883e9463dd34fb2bc5e87e1.png)
+
+![](https://static001.geekbang.org/resource/image/15/73/15ae4f17c46bf71e8349a8f2ef70d573.jpg)
+
+执行流程：
+
+- 遍历驱动表
+- 根据遍历表字段去遍历被驱动表的每一行数据，找出对应的字段
+- 合并在一起加入结果集
+
+join_buffer 内存空间是有限的，默认是256k，由参数 join_buffer_size 控制
+
+当查询的数据量大，join_buffer 放满了，会采用**分段放**的思想：join_buffer 满了，会查询被驱动表的每一行，然后与 join_buffer 中的驱动表进行匹配后加入到结果集，清空 join_buffer ，接着驱动表上一次未查询完的地方继续查询，放到 join_buffer 直至放满，接着又会查询被驱动表的每一行 ... 直至驱动表查询完成
+
+数据量大查询相比于数据量小，会多了 n 次全表查询被驱动表，n 的大小与 join_buffer_size 参数有关，join_buffer_size 越大 n 就越小
+
+此处可以结合 **Buffer Pool 内存管理算法** 的全表扫描的情况来发散分析，全表扫描数据量大，会分段查，LRU 算法冷数据区同一个数据页查询时间可能会超过1s，加入到热数据区导致热点数据被挤出，会影响业务的使用性能
+
+**Hash Join**
+
+被驱动表的连接字段**无索引**时，BNLJ 的优化替代
+
+执行流程：
+
+- 对驱动表建立哈希表
+- 扫描被驱动表，通过哈希查找匹配
+- 合并在一起加入结果集

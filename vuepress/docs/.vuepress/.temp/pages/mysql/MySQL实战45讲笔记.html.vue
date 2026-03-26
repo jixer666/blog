@@ -41,7 +41,21 @@
 <h2 id="查询一条语句的流程" tabindex="-1"><a class="header-anchor" href="#查询一条语句的流程"><span>查询一条语句的流程</span></a></h2>
 <div class="language-sql line-numbers-mode" data-highlighter="prismjs" data-ext="sql"><pre v-pre><code><span class="line"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> tb_test <span class="token keyword">where</span> idx <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span></span>
 <span class="line"></span></code></pre>
-<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><p>若查询 idx 的数据页在内存中，直接从内存中读取并返回</p>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div></div></div><p>MySQL 整体执行流程：</p>
+<div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre v-pre><code><span class="line">客户端发送 SQL</span>
+<span class="line">      ↓</span>
+<span class="line">Server 层：连接器、分析器、优化器</span>
+<span class="line">      ↓</span>
+<span class="line">Server 层：执行器调用 InnoDB 接口</span>
+<span class="line">      ↓</span>
+<span class="line">InnoDB 层：从 Buffer Pool/磁盘读取数据行</span>
+<span class="line">      ↓</span>
+<span class="line">Server 层：逐行处理（判断权限、投影、函数计算、排序等）</span>
+<span class="line">      ↓</span>
+<span class="line">Server 层：发送结果给客户端（边处理边发送）</span>
+<span class="line"></span></code></pre>
+<div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><strong>InnoDB 层处理：</strong></p>
+<p>若查询 idx 的数据页在内存中，直接从内存中读取并返回</p>
 <p>若查询 idx 的数据页不在内存中，会从 idx 索引树中读取，并保存在内存中，应用 change buffer 进行合并，并返回</p>
 <blockquote>
 <p>这里展开说明一下，若查询 idx 数据页不在内存中，在进行索引树查询的时候会有不同的表现：</p>
@@ -50,6 +64,8 @@
 <li>若 idx 是唯一索引，则会查询到第一条满足的数据后就会返回</li>
 </ul>
 </blockquote>
+<p>**Server 层边处理边发送：**并不会一次性全部读取再发送，会先写入到 net_buffer 中，由 net_buffer_length 控制，默认是16k，写满就进行发送</p>
+<p>客户端有两种方式接收：mysql_store_result（一次全读）或 mysql_use_result（逐行读），线上环境对于查询结果不多的都用建议用 mysql_store_result</p>
 <h2 id="记录redo-log" tabindex="-1"><a class="header-anchor" href="#记录redo-log"><span>记录redo log</span></a></h2>
 <p>记录 redo log 有<strong>两阶段提交</strong>，目的是保证了 binlog 和 redo log 逻辑的一致性和解决数据库异常崩溃后的数据一致性问题</p>
 <ul>
@@ -392,6 +408,55 @@
 <li>当 redo log buffer 到内存的一半容量的时候会主动写盘，此时因为事务未提交只 write，还未 fsync</li>
 <li>在 <code v-pre>innodb_flush_log_at_trx_commit</code> 为1的情况下，并行的事务提交的时候，会顺带将其他事务的 redo log buffer 持久化到磁盘</li>
 </ul>
+</li>
+</ul>
+<h2 id="主备同步" tabindex="-1"><a class="header-anchor" href="#主备同步"><span>主备同步</span></a></h2>
+<p>主备同步流程：从库拉取主库的 binlog</p>
+<p><img src="https://static001.geekbang.org/resource/image/a6/a3/a66c154c1bc51e071dd2cc8c1d6ca6a3.png" alt="test.png"></p>
+<p>1、主库事务提交，生成 binlog 日志</p>
+<p>2、主库的 dump_thread（转储线程）读取 binlog 并发送给从库的 io_thread</p>
+<p>3、从库 io_thread 负责与主库建立连接，接收 binlog 并写入 relay_log（中转日志）</p>
+<p>4、sql_thread：读取中转日志，解析出日志里的命令，并执行</p>
+<p>5、在 master.info 中从库记录同步位点，以便于下次从该位点继续向主库请求 binlog</p>
+<p><strong>主备 M-S 结构</strong></p>
+<p><img src="https://static001.geekbang.org/resource/image/fd/10/fd75a2b37ae6ca709b7f16fe060c2c10.png" alt=""></p>
+<p><strong>主备双 M 结构</strong></p>
+<p><img src="https://static001.geekbang.org/resource/image/20/56/20ad4e163115198dc6cf372d5116c956.png" alt=""></p>
+<p>A 和 B 互为主库和备库，因为都是相互监听对方的 binlog 的变化，所以存在循环复制的问题</p>
+<h2 id="主备延迟" tabindex="-1"><a class="header-anchor" href="#主备延迟"><span>主备延迟</span></a></h2>
+<p>主备延迟就是从库回写完的时间与主库事务提交写入 binlog 日志提交时间的之差</p>
+<p>主要受三个方面的影响：</p>
+<p>1、大事务</p>
+<p>2、大表 DDL</p>
+<p>3、从库的性能比主库差</p>
+<h2 id="binlog日志格式" tabindex="-1"><a class="header-anchor" href="#binlog日志格式"><span>binlog日志格式</span></a></h2>
+<p>binlog 日志有三种格式：<strong>statement、row 和 mixed</strong>（前两种的混合）</p>
+<p><strong>statement 日志形式：</strong></p>
+<p><img src="https://static001.geekbang.org/resource/image/b9/31/b9818f73cd7d38a96ddcb75350b52931.png" alt="b9818f73cd7d38a96ddcb75350b52931.png (1882×213)"></p>
+<p>若是用上述图片所示的删除命令，在主备同步的时候，主备节点并不知道 <code v-pre>a</code> 是索引还是 <code v-pre>t_modified</code> 是索引，若两者选用的索引不同，就会导致删除的数据不一致</p>
+<p>默认是这个，但一般都不会用这个日志形式，需要检查数据库是否采用这种</p>
+<p><strong>row 日志形式：</strong></p>
+<p><img src="https://static001.geekbang.org/resource/image/d6/26/d67a38db154afff610ae3bb64e266826.png" alt="d67a38db154afff610ae3bb64e266826.png (1920×533)"></p>
+<p>与 statement  日志相比，准确的记录是哪一行数据删除，不会出现误删的情况。但若是批量删除多条数据，那么就会记录多个，会比 statement  日志更占用空间</p>
+<h2 id="buffer-pool-内存管理算法" tabindex="-1"><a class="header-anchor" href="#buffer-pool-内存管理算法"><span>Buffer Pool 内存管理算法</span></a></h2>
+<p>Buffer Pool 属于 InnoDB 层的一块内存区域</p>
+<p>Buffer Pool 的内存管理算法采用<strong>改进后的 LRU 算法</strong></p>
+<p>将原本的 LRU 算法链表分为**热数据区（New Sublist）<strong>和</strong>冷数据区（Old Sublist）**两部分</p>
+<p>热数据区占链表前 5/8 的部分，冷数据区占链表后 3/8 部分</p>
+<p><img src="https://static001.geekbang.org/resource/image/21/28/21f64a6799645b1410ed40d016139828.png" alt="test.png"></p>
+<p>执行流程：</p>
+<ul>
+<li>
+<p>访问一个链表中已有的数据，将其移至热数据区的第一个，如 state1 和 state 2</p>
+</li>
+<li>
+<p>访问一个链表中未有的数据页，先插入冷数据区的第一个，如 state3</p>
+</li>
+<li>
+<p>若后续再次访问，并且访问的时间间隔超过1s，就放入热数据区的第一个，没超过1s就放到冷数据第一个不变化</p>
+</li>
+<li>
+<p>若后续没访问，就一直再冷数据区，逐渐被淘汰</p>
 </li>
 </ul>
 </div></template>
